@@ -1,0 +1,27 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion gfxBotonActionStyle</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.45.6</h1>
+		<h2>gfxBotonActionStyle</h2>
+		<span class="mini">Fichero /local/trabajo/gccv/html/Framework/../Framework/Lib/lib_gfx.php</span>
+		<br><br>Funcion<br><br><br><br><div class="desc">}
+<br>
+</div>
+<br><div class="box"><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">function&nbsp;</font><font color="#0000BB">gfxBotonActionStyle</font><font color="#007700">(</font><font color="#0000BB">$texto</font><font color="#007700">,</font><font color="#0000BB">$action</font><font color="#007700">,</font><font color="#0000BB">$active</font><font color="#007700">=</font><font color="#0000BB">True</font><font color="#007700">,</font><font color="#0000BB">$errsms</font><font color="#007700">=</font><font color="#DD0000">"Privilegios&nbsp;insuficientes"</font><font color="#007700">,</font><font color="#0000BB">$tabindex</font><font color="#007700">=</font><font color="#DD0000">"1"</font><font color="#007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</font><font color="#0000BB">$active</font><font color="#007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$data</font><font color="#007700">=</font><font color="#DD0000">'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--Inicio&nbsp;de&nbsp;código&nbsp;de&nbsp;Botón--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;table&nbsp;cellspacing="0"&nbsp;border="0"&nbsp;cellpadding="0"&nbsp;style="cursor:pointer;"&nbsp;onClick="'</font><font color="#007700">.</font><font color="#0000BB">$action</font><font color="#007700">.</font><font color="#DD0000">'"&gt;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&nbsp;&nbsp;colspan="0"&nbsp;rowspan="0"&nbsp;align="right"&gt;&lt;img&nbsp;src="framework/Data/Images/b_i.gif"&nbsp;border="0"&gt;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&nbsp;&nbsp;align="center"&nbsp;valign="center"&nbsp;nowrap&nbsp;style="background-image:url(framework/Data/Images/b_c.gif)"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;&nbsp;tabindex="'</font><font color="#007700">.</font><font color="#0000BB">$tabindex</font><font color="#007700">.</font><font color="#DD0000">'"&nbsp;onKeyPress="'</font><font color="#007700">.</font><font color="#0000BB">$action</font><font color="#007700">.</font><font color="#DD0000">'"&nbsp;style="color:black;text-decoration:none;"&nbsp;&gt;'</font><font color="#007700">.</font><font color="#0000BB">$texto</font><font color="#007700">.</font><font color="#DD0000">'&lt;/span&gt;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&nbsp;colspan="0"&nbsp;rowspan="0"&nbsp;align="left"&gt;&lt;img&nbsp;src="framework/Data/Images/b_d.gif"&nbsp;border="0"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--Fin&nbsp;de&nbsp;código&nbsp;de&nbsp;Botón--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$data</font><font color="#007700">=</font><font color="#DD0000">'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--Inicio&nbsp;de&nbsp;código&nbsp;de&nbsp;Botón--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;table&nbsp;cellspacing="0"&nbsp;border="0"&nbsp;cellpadding="0"&nbsp;style="cursor:pointer;"&nbsp;onClick="alert(\''</font><font color="#007700">.</font><font color="#0000BB">$errsms</font><font color="#007700">.</font><font color="#DD0000">'\')"&gt;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&nbsp;&nbsp;style="cursor:pointer;"&nbsp;colspan="0"&nbsp;rowspan="0"&nbsp;align="right"&gt;&lt;img&nbsp;src="framework/Data/Images/b_i.gif"&nbsp;border="0"&gt;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&nbsp;&nbsp;align="center"&nbsp;valign="center"&nbsp;nowrap&nbsp;style="background-image:url(framework/Data/Images/b_c.gif);"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style="color:#AAAAAA;text-decoration:none;"&nbsp;&gt;'</font><font color="#007700">.</font><font color="#0000BB">$texto</font><font color="#007700">.</font><font color="#DD0000">'&lt;/span&gt;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&nbsp;colspan="0"&nbsp;rowspan="0"&nbsp;align="left"&gt;&lt;img&nbsp;src="framework/Data/Images/b_d.gif"&nbsp;border="0"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--Fin&nbsp;de&nbsp;código&nbsp;de&nbsp;Botón--&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</font><font color="#0000BB">$data</font><font color="#007700">;<br />}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">?&gt;</font>
+</font>
+</code></div>
+		<br><br>
+		<div align="center"><a href="lib_gfx-index.html">up</a></div>
+		<br><br>
+		</body>
+		

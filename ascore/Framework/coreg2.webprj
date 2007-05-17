@@ -1,0 +1,32 @@
+<!DOCTYPE webproject>
+<webproject>
+  <project usePreviewPrefix="1" type="Local" previewPrefix="http://arda/~abeiro/coreg2/coreg2/" name="coreg2" encoding="iso 8859-15" >
+    <upload/>
+    <defaultDTD>-//w3c//dtd html 4.01 transitional//en</defaultDTD>
+    <item url="" uploadstatus="1" />
+    <templates>templates/</templates>
+    <toolbars>toolbars/</toolbars>
+    <item modified_time="1114423533" url="coreg2.webprj" uploadstatus="1" />
+    <uploadprofiles showtreeviews="true" defaultProfile="@" >
+      <profile remote_host="" remote_port="" remote_path="" remote_protocol="ftp" user="" name="@" />
+    </uploadprofiles>
+    <author>Augusto Beiro</author>
+    <email/>
+    <debuggerclient>Sin depurador</debuggerclient>
+    <exclude cvsignore="false" />
+    <teamdata>
+      <taskleaders/>
+      <subprojectleaders/>
+      <leader>
+        <name>Augusto Beiro</name>
+        <email>abeiro@activasistemas.com</email>
+      </leader>
+      <member task="" >
+        <name>neuralgya</name>
+        <email>tyler.maister@gmail.com</email>
+      </member>
+      <mailinglist address="" />
+    </teamdata>
+    <events/>
+  </project>
+</webproject>

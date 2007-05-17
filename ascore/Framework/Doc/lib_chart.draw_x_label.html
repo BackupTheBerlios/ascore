@@ -1,0 +1,27 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion draw_x_label</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.45.6</h1>
+		<h2>draw_x_label</h2>
+		<span class="mini">Fichero /local/trabajo/gccv/html/Framework/../Framework/Lib/lib_chart.php</span>
+		<br><br><br><br><div class="desc">}
+<br>
+</div>
+<br><div class="box"><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">function&nbsp;</font><font color="#0000BB">draw_x_label</font><font color="#007700">()&nbsp;{<br />&nbsp;&nbsp;if&nbsp;(!</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">parameter</font><font color="#007700">[</font><font color="#DD0000">'x_label'</font><font color="#007700">])&nbsp;return;<br />&nbsp;&nbsp;</font><font color="#0000BB">$y&nbsp;</font><font color="#007700">=&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">calculated</font><font color="#007700">[</font><font color="#DD0000">'boundary_box'</font><font color="#007700">][</font><font color="#DD0000">'bottom'</font><font color="#007700">]&nbsp;+&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">parameter</font><font color="#007700">[</font><font color="#DD0000">'inner_padding'</font><font color="#007700">];<br />&nbsp;&nbsp;if&nbsp;(</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">parameter</font><font color="#007700">[</font><font color="#DD0000">'x_axis_text'</font><font color="#007700">])&nbsp;</font><font color="#0000BB">$y&nbsp;</font><font color="#007700">+=&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">calculated</font><font color="#007700">[</font><font color="#DD0000">'x_axis'</font><font color="#007700">][</font><font color="#DD0000">'boundary_box_max'</font><font color="#007700">][</font><font color="#DD0000">'height'</font><font color="#007700">]<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">calculated</font><font color="#007700">[</font><font color="#DD0000">'bottom_inner_padding'</font><font color="#007700">];<br />&nbsp;&nbsp;</font><font color="#0000BB">$x&nbsp;</font><font color="#007700">=&nbsp;(</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">calculated</font><font color="#007700">[</font><font color="#DD0000">'boundary_box'</font><font color="#007700">][</font><font color="#DD0000">'right'</font><font color="#007700">]&nbsp;+&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">calculated</font><font color="#007700">[</font><font color="#DD0000">'boundary_box'</font><font color="#007700">][</font><font color="#DD0000">'left'</font><font color="#007700">])&nbsp;/&nbsp;</font><font color="#0000BB">2</font><font color="#007700">;<br />&nbsp;&nbsp;</font><font color="#0000BB">$label&nbsp;</font><font color="#007700">=&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">calculated</font><font color="#007700">[</font><font color="#DD0000">'x_label'</font><font color="#007700">];<br />&nbsp;&nbsp;</font><font color="#0000BB">$coords&nbsp;</font><font color="#007700">=&nbsp;array(</font><font color="#DD0000">'x'&nbsp;</font><font color="#007700">=&gt;&nbsp;</font><font color="#0000BB">$x</font><font color="#007700">,&nbsp;</font><font color="#DD0000">'y'&nbsp;</font><font color="#007700">=&gt;&nbsp;</font><font color="#0000BB">$y</font><font color="#007700">,&nbsp;</font><font color="#DD0000">'reference'&nbsp;</font><font color="#007700">=&gt;&nbsp;</font><font color="#DD0000">'top-center'</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">update_boundaryBox</font><font color="#007700">(</font><font color="#0000BB">$label</font><font color="#007700">[</font><font color="#DD0000">'boundary_box'</font><font color="#007700">],&nbsp;</font><font color="#0000BB">$coords</font><font color="#007700">);<br />&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">print_TTF</font><font color="#007700">(</font><font color="#0000BB">$label</font><font color="#007700">);<br />}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">?&gt;</font>
+</font>
+</code></div>
+		<br><br>
+		<div align="center"><a href="lib_chart-index.html">up</a></div>
+		<br><br>
+		</body>
+		

@@ -1,0 +1,55 @@
+<!--HEAD-->
+<style>
+td.dynamic_class_list_users0 {text-align:center;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_list_users1 {text-align:center;vertical-align:top;background-color:white}
+td.dynamic_class_list_users2 {text-align:center;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_list_users3 {text-align:center;vertical-align:top;background-color:white}
+</style>
+<div align="center">
+<table width="100%" cellspacing="1" border="0" cellpadding="2" align="center" bgcolor="#EAD1C6" style="border:solid 1px gray">
+<th>Nº</th>
+<th><a href="<!-- N:navvars -->&sort=username">Usuario</a></th>
+
+<th><a href="<!-- N:navvars -->&sort=nombre">Nombre</a></th>
+<th><a href="<!-- N:navvars -->&sort=apellidos">Apellidos</a></th>
+<th><a href="<!-- N:navvars -->&sort=grupos">Grupos</a></th>
+<th><a href="<!-- N:navvars -->&sort=activo">Activo</a></th>
+<th></th>
+
+<!--SET-->
+<tr>
+		
+	<td class="<!-- dynamic_class -->"><!-- D:ID --></td>
+
+	<td class="<!-- dynamic_class -->" style="text-align:left;"><A href="view_user.php?ID=<!-- D:ID -->"><!-- D:username --></A></td>
+
+
+
+	<td class="<!-- dynamic_class -->" style="text-align:left;"><!-- D:nombre --></td>
+
+	<td class="<!-- dynamic_class -->" style="text-align:left;"><!-- D:apellidos --></td>
+
+	<td class="<!-- dynamic_class -->" ><!-- D:grupos_nombre --></td>
+
+	<td class="<!-- dynamic_class -->"><!-- D:activo --></td>
+	<!-- I:isAdmin -->
+	<td nowrap class="<!-- dynamic_class -->"  class="<!-- dynamic_class -->" style="padding : 2px; text-align : center;">
+	 <a class="minibuttonik"  target="footer"  href="action_del_user.php?ID=<!-- D:ID -->" onclick="return confirm('<!-- K:_("¿Esta usted seguro?") -->')">&nbsp;<!-- K:_('borrar') -->&nbsp;</a> &nbsp;  
+	 <a href="add_user.php?ID=<!-- D:ID -->" class="minibuttonik"> <!-- K:_('editar') --> </a>
+	</td>
+    	<!-- I:isAdmin -->
+</tr>
+<!--END-->
+</table>
+<br>
+<table width="100%" cellspacing="0" border="0" cellpadding="4" align="center" style="border:solid 1px gray">
+<tr><td align="left">
+	<a href="<!-- N:prevpage -->">Página anterior</a>
+</td>
+<td align="center"><!-- D:Pager -->
+</td><td align="right">
+	<a href="<!-- N:nextpage -->">Página siguiente</a>
+</td>
+</tr>
+</table></div>
+<br>

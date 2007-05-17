@@ -1,0 +1,28 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion DNS_validate_email</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.45.6</h1>
+		<h2>DNS_validate_email</h2>
+		<span class="mini">Fichero /local/trabajo/gccv/html/Framework/../Framework/Lib/lib_DNS.php</span>
+		<br><br><br><br><div class="desc">};
+<br>
+<br>
+</div>
+<br><div class="box"><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">function&nbsp;</font><font color="#0000BB">DNS_validate_email</font><font color="#007700">(</font><font color="#0000BB">$email</font><font color="#007700">)&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$validator</font><font color="#007700">=new&nbsp;</font><font color="#0000BB">email_validation_class</font><font color="#007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;if(!</font><font color="#0000BB">function_exists</font><font color="#007700">(</font><font color="#DD0000">"GetMXRR"</font><font color="#007700">))<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/*<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;If&nbsp;possible&nbsp;specify&nbsp;in&nbsp;this&nbsp;array&nbsp;the&nbsp;address&nbsp;of&nbsp;at&nbsp;least&nbsp;on&nbsp;local<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;DNS&nbsp;that&nbsp;may&nbsp;be&nbsp;queried&nbsp;from&nbsp;your&nbsp;network.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$_NAMESERVERS</font><font color="#007700">=array();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;include(</font><font color="#DD0000">"getmxrr.php"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$validator</font><font color="#007700">-&gt;</font><font color="#0000BB">timeout</font><font color="#007700">=</font><font color="#0000BB">10</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$validator</font><font color="#007700">-&gt;</font><font color="#0000BB">data_timeout</font><font color="#007700">=</font><font color="#0000BB">0</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$validator</font><font color="#007700">-&gt;</font><font color="#0000BB">localuser</font><font color="#007700">=</font><font color="#DD0000">"info"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$validator</font><font color="#007700">-&gt;</font><font color="#0000BB">localhost</font><font color="#007700">=</font><font color="#DD0000">"activasistemas.com"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$validator</font><font color="#007700">-&gt;</font><font color="#0000BB">debug</font><font color="#007700">=</font><font color="#0000BB">1</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$validator</font><font color="#007700">-&gt;</font><font color="#0000BB">html_debug</font><font color="#007700">=</font><font color="#0000BB">0</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$validator</font><font color="#007700">-&gt;</font><font color="#0000BB">exclude_address</font><font color="#007700">=</font><font color="#DD0000">""</font><font color="#007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;if((</font><font color="#0000BB">$result</font><font color="#007700">=</font><font color="#0000BB">$validator</font><font color="#007700">-&gt;</font><font color="#0000BB">ValidateEmailBox</font><font color="#007700">(</font><font color="#0000BB">$email</font><font color="#007700">))&lt;</font><font color="#0000BB">0</font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</font><font color="#0000BB">3</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;else<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</font><font color="#0000BB">$result</font><font color="#007700">)&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</font><font color="#0000BB">1</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</font><font color="#0000BB">0</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">?&gt;</font>
+</font>
+</code></div>
+		<br><br>
+		<div align="center"><a href="lib_DNS-index.html">up</a></div>
+		<br><br>
+		</body>
+		

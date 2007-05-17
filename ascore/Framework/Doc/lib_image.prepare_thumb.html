@@ -1,0 +1,26 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion prepare_thumb</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.45.6</h1>
+		<h2>prepare_thumb</h2>
+		<span class="mini">Fichero /local/trabajo/gccv/html/Framework/../Framework/Lib/lib_image.php</span>
+		<br><br><br><br><div class="desc"> }
+</div>
+<br><div class="box"><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">function&nbsp;</font><font color="#0000BB">prepare_thumb</font><font color="#007700">(</font><font color="#0000BB">$image</font><font color="#007700">,</font><font color="#0000BB">$thumb_w</font><font color="#007700">=</font><font color="#0000BB">160</font><font color="#007700">,</font><font color="#0000BB">$thumb_h</font><font color="#007700">=</font><font color="#0000BB">128</font><font color="#007700">)&nbsp;{<br />&nbsp;<br />&nbsp;&nbsp;</font><font color="#0000BB">$true_width&nbsp;</font><font color="#007700">=&nbsp;</font><font color="#0000BB">imagesx</font><font color="#007700">(</font><font color="#0000BB">$image</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">$true_height&nbsp;</font><font color="#007700">=&nbsp;</font><font color="#0000BB">imagesy</font><font color="#007700">(</font><font color="#0000BB">$image</font><font color="#007700">);<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;if&nbsp;((</font><font color="#0000BB">$true_width</font><font color="#007700">/</font><font color="#0000BB">$thumb_w</font><font color="#007700">)&gt;(</font><font color="#0000BB">$true_height</font><font color="#007700">/</font><font color="#0000BB">$thumb_h</font><font color="#007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$width&nbsp;</font><font color="#007700">=&nbsp;</font><font color="#0000BB">$thumb_w</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$height&nbsp;</font><font color="#007700">=&nbsp;(</font><font color="#0000BB">$true_height</font><font color="#007700">*</font><font color="#0000BB">$thumb_w</font><font color="#007700">)/</font><font color="#0000BB">$true_width</font><font color="#007700">;<br />&nbsp;&nbsp;}<br />&nbsp;&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$height&nbsp;</font><font color="#007700">=&nbsp;</font><font color="#0000BB">$thumb_h</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$width&nbsp;</font><font color="#007700">=&nbsp;(</font><font color="#0000BB">$height</font><font color="#007700">*</font><font color="#0000BB">$true_width</font><font color="#007700">)/</font><font color="#0000BB">$true_height</font><font color="#007700">;<br /><br />&nbsp;&nbsp;}<br />&nbsp;&nbsp;<br />&nbsp;</font><font color="#0000BB">$img_des&nbsp;</font><font color="#007700">=&nbsp;&nbsp;</font><font color="#0000BB">ImageCreateTruecolor</font><font color="#007700">(</font><font color="#0000BB">$width</font><font color="#007700">,</font><font color="#0000BB">$height</font><font color="#007700">);<br />&nbsp;</font><font color="#0000BB">imagecopyresampled</font><font color="#007700">(</font><font color="#0000BB">$img_des</font><font color="#007700">,&nbsp;</font><font color="#0000BB">$image</font><font color="#007700">,&nbsp;</font><font color="#0000BB">0</font><font color="#007700">,&nbsp;</font><font color="#0000BB">0</font><font color="#007700">,&nbsp;</font><font color="#0000BB">0</font><font color="#007700">,&nbsp;</font><font color="#0000BB">0</font><font color="#007700">,&nbsp;</font><font color="#0000BB">$width</font><font color="#007700">,&nbsp;</font><font color="#0000BB">$height</font><font color="#007700">,&nbsp;</font><font color="#0000BB">$true_width</font><font color="#007700">,&nbsp;</font><font color="#0000BB">$true_height</font><font color="#007700">);<br />&nbsp;</font><font color="#0000BB">debug</font><font color="#007700">(</font><font color="#0000BB">__FILE__</font><font color="#007700">.</font><font color="#DD0000">"****&nbsp;IMAGE&nbsp;RESAMPLING&nbsp;****:&nbsp;$width,&nbsp;$height"</font><font color="#007700">,</font><font color="#DD0000">"green"</font><font color="#007700">);<br />&nbsp;return&nbsp;</font><font color="#0000BB">$img_des</font><font color="#007700">;<br />&nbsp;<br />&nbsp;}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">?&gt;</font>
+</font>
+</code></div>
+		<br><br>
+		<div align="center"><a href="lib_image-index.html">up</a></div>
+		<br><br>
+		</body>
+		

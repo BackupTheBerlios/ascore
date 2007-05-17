@@ -1,0 +1,30 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion newObject</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.45.6</h1>
+		<h2>newObject</h2>
+		<span class="mini">Fichero /local/trabajo/gccv/html/Framework/../Framework/SubCore/core.php</span>
+		<br><br>Funcion<br><br><br><br><div class="desc">
+<br>********************************
+<br>Compatibilidad CoreRC4
+<br>********************************
+<br>
+</div>
+<br><div class="box"><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">function&nbsp;</font><font color="#0000BB">newObject</font><font color="#007700">(</font><font color="#0000BB">$class</font><font color="#007700">,</font><font color="#0000BB">$id</font><font color="#007700">=</font><font color="#0000BB">0</font><font color="#007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;global&nbsp;</font><font color="#0000BB">$SYS</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bm</font><font color="#007700">=</font><font color="#0000BB">getmicrotime</font><font color="#007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$tmp</font><font color="#007700">=</font><font color="#0000BB">newObj</font><font color="#007700">(</font><font color="#0000BB">$class</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">debug</font><font color="#007700">(</font><font color="#DD0000">"Inicialiando&nbsp;objecto&nbsp;$id"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$tmp</font><font color="#007700">-&gt;</font><font color="#0000BB">load</font><font color="#007700">(</font><font color="#0000BB">$id</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">debug</font><font color="#007700">(</font><font color="#DD0000">"Tiempo&nbsp;de&nbsp;carga&nbsp;de&nbsp;la&nbsp;clase&nbsp;"</font><font color="#007700">.(</font><font color="#0000BB">getmicrotime</font><font color="#007700">()-</font><font color="#0000BB">$bm</font><font color="#007700">).</font><font color="#DD0000">"&nbsp;s."</font><font color="#007700">,</font><font color="#DD0000">"yellow"&nbsp;</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$SYS</font><font color="#007700">[</font><font color="#DD0000">"load_class_time"</font><font color="#007700">]+=(</font><font color="#0000BB">getmicrotime</font><font color="#007700">()-</font><font color="#0000BB">$bm</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$SYS</font><font color="#007700">[</font><font color="#DD0000">"total_classes_loaded"</font><font color="#007700">]++;<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</font><font color="#0000BB">$tmp</font><font color="#007700">;<br />}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">?&gt;</font>
+</font>
+</code></div>
+		<br><br>
+		<div align="center"><a href="core-index.html">up</a></div>
+		<br><br>
+		</body>
+		

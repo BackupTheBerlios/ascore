@@ -1,0 +1,9 @@
+<!DOCTYPE webprojectsession>
+<webprojectsession>
+  <session usePreviewPrefix="1" previewPrefix="http://arda/~abeiro/coreg2/coreg2/" usePersistentBookmarks="0" >
+    <itemcursorpositions/>
+    <uploadprofiles showtreeviews="true" defaultProfile="@" >
+      <profile remote_host="" remote_port="" remote_path="" remote_protocol="ftp" user="" name="@" />
+    </uploadprofiles>
+  </session>
+</webprojectsession>

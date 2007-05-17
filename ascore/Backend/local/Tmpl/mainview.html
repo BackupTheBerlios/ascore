@@ -1,0 +1,227 @@
+<!--HEAD-->
+<!--SET-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <title>Portal :: Administracion</title>
+  <meta name="GENERATOR" content="Dev-PHP 2.0.12" />
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
+</head>
+<style>
+
+body {
+    margin-top:1px;
+    padding-top:0px;
+    padding-left:0px;
+    margin-left:3px;
+    background-color:#D1CDC5;
+  }
+
+td.tmenuitem {
+    font-family:tahoma,verdana;
+    font-size:11px;
+    cursor:pointer;
+    border:1px solid #D5CEC5;
+    white-space:nowrap;
+    text-align:left;
+  }
+
+td.tmenuitem:hover {
+    border:1px outset #F0F0F0;
+    
+  }
+  
+
+.thook {
+    background : #D5CEC5;
+    font-family:tahoma,verdana;
+    font-size:11px;
+    border : 1px outset #DADADA;
+    line-height:15px;
+    text-align:left;
+    padding-top:5px;
+    padding-right:5px;
+    white-space:nowrap;
+    
+  }
+
+
+.tlink {
+    font-family:tahoma,verdana;
+    font-size:11px;
+    color:black;
+    text-decoration:none;
+    margin:5px;
+  }
+ 
+ .tlink:hover {
+    color:white;
+  
+  }
+
+
+
+</style>
+<script>
+function getBodyLocation() {
+
+	return fbody.location.href;
+	
+}
+function setBodyLocation(url) {
+
+	fbody.location.href=url;
+	
+}
+function wResizeAll() {
+		var s;
+		
+		s=window.innerHeight-25-22-8-29;
+		if (isNaN(s))
+			s=document.body.clientHeight-25-22-8-25-75;
+	
+		try{f=document.getElementById("fbody").style.height=s+"px";}
+		catch(e){alert(s+' '+e)};
+	}
+	
+function ishow(e) {
+	f=document.getElementById(e);
+	f.style.display=(f.style.display=='none')?'':'none';
+}
+function ihide(e) {
+	f=document.getElementById(e);
+	f.style.display="none";
+}
+
+function getoffsetLeft(element){
+	if(!element) return 0;
+		ie=element.offsetLeft + getoffsetLeft(element.offsetParent);
+	if ((isNaN(ie))||(ie==0))
+		ie=1 + getoffsetLeft(element.parentNode);
+	if ((isNaN(ie)))
+		return 0;
+	else 
+		return ie;
+		
+ }
+function getoffsetTop(element){
+	if(!element) return 0;
+		ie=element.offsetTop + getoffsetTop(element.offsetParent);
+	if ((isNaN(ie))||(ie==0))
+		ie=1 + getoffsetTop(element.parentNode);
+	if ((isNaN(ie)))
+		return 0;
+	else 
+		return ie;
+		
+ }
+
+function flip(id) {
+	if (id=='none') {
+			for (i=0;i<mEindex;i++)
+				document.getElementById(menuEntrys[i]).style.display='none';
+		document.getElementById('statusbar').style.display='';
+	}
+	else {
+		if (document.getElementById(id).style.display=='') {
+			for (i=0;i<mEindex;i++) {
+				document.getElementById(menuEntrys[i]).style.display='none';	
+				document.getElementById(menuEntrys[i]).style.zIndex=0;	
+			}
+			
+		}
+	
+		else {
+			for (i=0;i<mEindex;i++)
+				document.getElementById(menuEntrys[i]).style.display='none';	
+			document.getElementById(id).style.display='';
+			document.getElementById(id).style.zIndex=100;
+			
+		
+		}
+	}
+}
+
+function subflip(id) {
+	if (document.getElementById(id).style.display=='') 
+			document.getElementById(id).style.display='none';
+
+	else {
+		document.getElementById(id).style.display='';
+	}
+	
+}
+
+function create_menu_entry(epos,box) {
+	visor=document.getElementById(epos);
+	visor_posX=getoffsetLeft(visor);
+	visor_posY=getoffsetTop(visor);
+	visor=document.getElementById(box);
+	visor.style.position="absolute";
+	visor.style.left=visor_posX+"px";
+	visor.style.top=visor_posY+"px";
+	menuEntrys[mEindex]=box;
+	mEindex++;
+	
+}
+function create_menu_entry_reverse(epos,box) {
+	visor=document.getElementById(epos);
+	visor_posX=getoffsetLeft(visor);
+	visor_posY=getoffsetTop(visor);
+	visor=document.getElementById(box);
+	visor.style.position="absolute";
+	visor.style.right="0px";
+	visor.style.left=(visor_posX-100)+"px";
+	visor.style.top=visor_posY+"px";
+	menuEntrys[mEindex]=box;
+	mEindex++;
+}
+</script>
+<body style="">
+<table width="100%" cellspacing="0" style="z-index : 2;">
+	<tr>
+		
+		<!-- D:menu_entrys -->
+		<td width="100%">
+			&nbsp;
+		</td>
+		
+</tr>
+</table>
+
+<!-- D:menu_entrys_items -->
+
+
+<iframe name="statusbar" id="statusbar" width="100%" height="25" src="public_statusbar.php" frameborder="0" scrolling="no" style="border:1px solid #D8E6F2;"></iframe><br>
+<iframe src="<!-- D:page -->" height="100%" width="100%" scrolling="auto" frameborder="0" name="fbody" id="fbody" style="border:1px solid #D8E6F2;"></iframe><br>
+<iframe name="footer"  width="100%"  height="22" src="public_footer.php" frameborder="0" scrolling="no" style="bottom:0px;border:1px solid #D8E6F2;"></iframe><br>
+
+
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript1.3">
+
+
+var menuEntrys=new Array();
+var mEindex=0;
+	
+	
+for (i=0;i<<!-- D:total_menu_items -->;i++) {
+	create_menu_entry("menuEntry"+i,"menuEntry"+i+"_box");
+}
+</SCRIPT>
+</body>
+</html>
+<script>
+wResizeAll();
+s=window.innerHeight;
+	if (!isNaN(s))
+		window.onresize=wResizeAll;
+/*
+document.getElementById('statusbar').style.display='';
+document.getElementById('fbody').style.display='';
+document.getElementById('footer').style.display='';
+*/
+</script>
+
+
+<!--END-->
