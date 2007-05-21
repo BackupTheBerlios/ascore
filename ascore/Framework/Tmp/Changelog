@@ -17,3 +17,5 @@ ASCore 0.46.7 - - borrados modulos innecesarios
 ASCore 0.46.8 - - Modificacion en lib_planty  (IFPAGER para quitar siguiente pagina)
 ASCore 0.46.9 - - Arreglo de .0.46.8. Nueva funcion http_build_query
 ASCore 0.47.0 - - Arreglo de .0.46.9. Arreglado fileh (codigo obsoleto)
+ASCore 0.47.1 - - Added W: tag in lib_planty for wordwrapping
+

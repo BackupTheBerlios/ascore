@@ -1,5 +1,12 @@
 <?php
 
+function WordWrapping($string,$words) {
+
+	$data=explode(" ",$string);
+	return implode(" ",array_slice ($data,0,$words));
+	
+	
+}
 
 class plantilla {
 
@@ -10,29 +17,29 @@ class plantilla {
 
 	/* 
 	Constructor:
-	Indicar el nombre de la plantilla. No del fichero
-	
+	Give template's name, not file name
+		
 	
 	<!-- D:'.key($dat).' -->	Normal
 	<!-- M:'.key($dat).' -->	Normal
 	<!-- S:'.key($dat).' -->	Money (Euros)
-	<!-- H:'.key($dat).' -->	Hora
+	<!-- H:'.key($dat).' -->	Time
 	<!-- E:'.key($dat).' -->	Float 00,00
 	<!-- F:'.key($dat).' -->	Float
-	<!-- V:'.key($dat).' -->	Entero
+	<!-- V:'.key($dat).' -->	Integer
 	<!-- F:'.key($dat).' -->	Float
 	<!-- A:'.key($dat).' -->	Date
 	<!-- K:'.key($dat).' -->	Function call
-	<!-- O:'.key($dat).' -->	Hardin selects
-	<!-- X:'.key($dat).' -->	Dinamic selects
+	<!-- O:'.key($dat).' -->	HardCode selects
+	<!-- X:'.key($dat).' -->	Dynamic selects
 	<!-- G:'.key($dat).' -->	Check boxes
-	<!-- R:'.key($dat).' -->	Datex (fecha Extendida)
-	<!-- I:'.key($dat).' -->	Bloque condicional. Parseado si key(dat) es true.
-	<!-- L:'.key($dat).' -->	Parrafo resumen sin HTML
+	<!-- R:'.key($dat).' -->	Datex (Extended Date)
+	<!-- I:'.key($dat).' -->	Conditional block. Parsed if key(dat) is true.
+	<!-- L:'.key($dat).' -->	Show first 30 chars
 	
 	<!-- B:'.key($dat).' -->	
 	<!-- C:'.key($dat).' -->	
-	
+	<!-- W: -->			Wordwrap.	
 
 
 
@@ -209,7 +216,7 @@ class plantilla {
 			$res=str_replace('<!-- R:'.key($dat).' -->',int_to_text_ex(current($dat)),$res);
 			
 			$res=str_replace('<!-- L:'.key($dat).' -->',substr(current($dat),0,300)."...",$res);
-			
+			$res=str_replace('<!-- W:'.key($dat).' -->',WordWrapping(strip_tags(current($dat),"<strong>"),50)."...",$res);
 			$res=str_replace('<!-- NR:'.key($dat).' -->',number_format(sprintf("%.2f",current($dat)),2,',',''),$res);
 			
 			/* Checkboxes */
