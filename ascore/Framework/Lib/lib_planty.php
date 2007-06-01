@@ -364,7 +364,7 @@ class plantilla {
 			next($SYS["GLOBAL"]);
 		}
 
-
+		
 		/* Smart pag links */
 		if ($dat["nextP"]<1) {
 				$res=ereg_replace('<!-- IFPAGER1 -->.*<!-- FIPAGER1 -->','',$res);
@@ -374,7 +374,8 @@ class plantilla {
 				$res=ereg_replace('<!-- IFPAGER1 -->.*<!-- FIPAGER1 -->','',$res);
 				
 			}
-		else if (($dat["nextP"]+$dat["offset"]>=$dat["totalPages"])) {
+		//else if (($dat["nextP"]>=$dat["totalPages"])) {
+    			else if (($dat["nextP"]==$dat["offset"])) {
 				$res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
 				
 			}
@@ -443,7 +444,8 @@ class plantilla {
 		
 		//dataDump($dat);
 		/* Smart pag links */
-
+		//echo "<pre>";print_r($dat);echo "</pre>";die();
+		//echo "{$dat["nextP"]}>={$dat["totalPages"]}:{$dat["offset"]}";
 		if ($dat["nextP"]<1) {
 				$res=ereg_replace('<!-- IFPAGER1 -->.*<!-- FIPAGER1 -->','',$res);
 				$res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
@@ -453,7 +455,7 @@ class plantilla {
 				
 			}
 
-                else if (($dat["nextP"]+$dat["offset"]>=$dat["totalPages"])) {
+                else if (($dat["nextP"]==$dat["offset"])) {
     				$res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
 				
 			}

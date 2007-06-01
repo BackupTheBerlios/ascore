@@ -39,7 +39,7 @@ la clase al vuelo.
 
 
 		if ($TrazaStatus>1)
-			debug("Propiedad \"$curEle[0]\" Tipo \"$curEle[1]\" Descripcion \"$curEle[2]\"","blue");
+			coreDebug("Propiedad \"$curEle[0]\" Tipo \"$curEle[1]\" Descripcion \"$curEle[2]\"","blue");
 		$prop["p"][$curEle[0]]="";
 		$prop["pd"][$curEle[0]]=$curEle[2];
 		$prop["pt"][$curEle[0]]=$curEle[1];
@@ -83,12 +83,12 @@ la clase al vuelo.
 			xml_set_element_handler($xml_parser, "xmlstartElement", "xmlendElement");
 			xml_set_character_data_handler($xml_parser, "xmlcharacterData");
 			if (!($fp = c_fopen($file, "r"))) {
-				die(debug("could not open XML input","red"));
+				die(coreDebug("could not open XML input","red"));
 			}
 
 			while ($data = fread($fp, 4096)) {
 				if (!xml_parse($xml_parser, $data, feof($fp))) {
-					die(debug("XML error: ".xml_error_string(xml_get_error_code($xml_parser))." at line ".xml_get_current_line_number($xml_parser),"red"));
+					die(coreDebug("XML error: ".xml_error_string(xml_get_error_code($xml_parser))." at line ".xml_get_current_line_number($xml_parser),"red"));
 				}
 			}
 			xml_parser_free($xml_parser);
@@ -197,7 +197,7 @@ class Ente extends core{
 			
 			if (($cache_time!==False)&&($cache_time>$source_time)) {
 				
-				debug("Cargando definicion compilada de '$name'","yellow");
+				coreDebug("Cargando definicion compilada de '$name'","yellow");
 				$fd = c_fopen (session_save_path()."/coreg2_cache/".$name.".cached_core_object_properties_".$SYS["PROJECT"], "r");
 				$buffer="";
 				while (!feof($fd)) {
@@ -213,26 +213,26 @@ class Ente extends core{
 				/* Establece las propiedades desde un fichero XML */
 				
 				if (file_exists($SYS["DOCROOT"].$SYS["DATADEFPATH"].$name.".def")) {
-					debug("Fichero definicion ".$SYS["DOCROOT"].$SYS["DATADEFPATH"].$name.".def existe");
+					coreDebug("Fichero definicion ".$SYS["DOCROOT"].$SYS["DATADEFPATH"].$name.".def existe");
 					$file = $SYS["DOCROOT"].$SYS["DATADEFPATH"].$name.".def";
 				}
 				else
 					if (e_file_exists("local/Class/{$name}.def")) {
-						debug($SYS["BASE"]."/local/Class/{$name}.def existe");
+						coreDebug($SYS["BASE"]."/local/Class/{$name}.def existe");
 						$file = e_file_exists("local/Class/{$name}.def");
 						}
 					else
-						die(debug($SYS["BASE"]."/local/Class/{$name}.def no  existe"));
+						die(coreDebug($SYS["BASE"]."/local/Class/{$name}.def no  existe"));
 		
 				
 		
-				debug("Cargando definicion de '$name'","yellow");
+				coreDebug("Cargando definicion de '$name'","yellow");
 		
 				$prop=load_prop($file);
 		
 				
 				
-				debug("Compilando dinamicamente '$name'","magenta");
+				coreDebug("Compilando dinamicamente '$name'","magenta");
 				$fd = c_fopen (session_save_path()."/coreg2_cache/".$name.".cached_core_object_properties_".$SYS["PROJECT"], "w");
 				fwrite($fd,serialize($prop),strlen(serialize($prop)));
 				fclose($fd);
@@ -289,7 +289,7 @@ class Ente extends core{
 
 
 		if (!in_array($prop,array_keys($this->properties))) {
-			debug("Propiedad - \"$prop\" - no disponible","red");
+			coreDebug("Propiedad - \"$prop\" - no disponible","red");
 			return false;
 		}
 		else {
@@ -389,7 +389,7 @@ class Ente extends core{
 		$this->data_normalize();
 		$res="";
 		if (($this->ID>1)&&!empty($this->ID)) {
-			debug("Llamada ".$this->name."->save redirigida a update con ".$this->ID,"yellow");
+			coreDebug("Llamada ".$this->name."->save redirigida a update con ".$this->ID,"yellow");
 			return $this->update();
 		}
 		else
@@ -528,7 +528,7 @@ class Ente extends core{
 	function selectAll($offset=0,$sort="ID") {
 
 		global $prefix,$SYS;
-		debug($SYS["DEFAULTROWS"]);
+		coreDebug($SYS["DEFAULTROWS"]);
 		if ((empty($sort)))
 			$sort="ID";
 		$All=array();
@@ -567,7 +567,7 @@ class Ente extends core{
 	Function select
 	*********************/
 
-	function select($q,$offset=0,$sort="ID") {
+	function select($q,$offset=0,$sort="ID",$groupby='',$addfields='') {
 
 		global $prefix,$SYS;
 
@@ -577,7 +577,7 @@ class Ente extends core{
 		if ((empty($offset))||($offset<0))
 			$offset=0;
 
-		$q="SELECT SQL_CALC_FOUND_ROWS * from {$prefix}_".$this->name." WHERE $q AND ID>1";
+		$q="SELECT SQL_CALC_FOUND_ROWS *$addfields from {$prefix}_".$this->name." WHERE $q AND ID>1 $groupby";
 		$q.=" ORDER BY $sort LIMIT $offset,".$SYS["DEFAULTROWS"];
 
 
@@ -664,7 +664,7 @@ class Ente extends core{
 			$list[1]="--";
 		foreach ($all as $k=>$o)
 			if (method_exists($o,$field)) {
-				debug("Llamada listAll tiene argumento a funcion","red");
+				coreDebug("Llamada listAll tiene argumento a funcion","red");
 				$list[$o->ID]=$o->$field();
 			}
 			else
@@ -798,7 +798,7 @@ class Ente extends core{
 
 		global $prefix;
 
-		debug("Prefijo $prefix tabla $this->name","red"); 
+		coreDebug("Prefijo $prefix tabla $this->name","red"); 
 		$q="SHOW TABLES";
 		$bdres=_query($q);
 		$exists=False;
@@ -1383,4 +1383,8 @@ $q.="</table>
 		return $query;
 	}
 	
+	
+
+
+
 }

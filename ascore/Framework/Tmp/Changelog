@@ -18,4 +18,7 @@ ASCore 0.46.8 - - Modificacion en lib_planty  (IFPAGER para quitar siguiente pag
 ASCore 0.46.9 - - Arreglo de .0.46.8. Nueva funcion http_build_query
 ASCore 0.47.0 - - Arreglo de .0.46.9. Arreglado fileh (codigo obsoleto)
 ASCore 0.47.1 - - Added W: tag in lib_planty for wordwrapping
+ASCore 0.47.2 - - Added NI: tag (relaxed conditional) in lib_planty
+		  Changed select to support more SQL Syntax
+		  Fixed bug in lib_planty (Paging)	
 
