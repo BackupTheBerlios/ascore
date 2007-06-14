@@ -39,7 +39,7 @@ la clase al vuelo.
 
 
 		if ($TrazaStatus>1)
-			coreDebug("Propiedad \"$curEle[0]\" Tipo \"$curEle[1]\" Descripcion \"$curEle[2]\"","blue");
+			debug("Propiedad \"$curEle[0]\" Tipo \"$curEle[1]\" Descripcion \"$curEle[2]\"","blue");
 		$prop["p"][$curEle[0]]="";
 		$prop["pd"][$curEle[0]]=$curEle[2];
 		$prop["pt"][$curEle[0]]=$curEle[1];
@@ -83,12 +83,12 @@ la clase al vuelo.
 			xml_set_element_handler($xml_parser, "xmlstartElement", "xmlendElement");
 			xml_set_character_data_handler($xml_parser, "xmlcharacterData");
 			if (!($fp = c_fopen($file, "r"))) {
-				die(coreDebug("could not open XML input","red"));
+				die(debug("could not open XML input","red"));
 			}
 
 			while ($data = fread($fp, 4096)) {
 				if (!xml_parse($xml_parser, $data, feof($fp))) {
-					die(coreDebug("XML error: ".xml_error_string(xml_get_error_code($xml_parser))." at line ".xml_get_current_line_number($xml_parser),"red"));
+					die(debug("XML error: ".xml_error_string(xml_get_error_code($xml_parser))." at line ".xml_get_current_line_number($xml_parser),"red"));
 				}
 			}
 			xml_parser_free($xml_parser);
@@ -197,7 +197,7 @@ class Ente extends core{
 			
 			if (($cache_time!==False)&&($cache_time>$source_time)) {
 				
-				coreDebug("Cargando definicion compilada de '$name'","yellow");
+				debug("Cargando definicion compilada de '$name'","yellow");
 				$fd = c_fopen (session_save_path()."/coreg2_cache/".$name.".cached_core_object_properties_".$SYS["PROJECT"], "r");
 				$buffer="";
 				while (!feof($fd)) {
@@ -213,26 +213,26 @@ class Ente extends core{
 				/* Establece las propiedades desde un fichero XML */
 				
 				if (file_exists($SYS["DOCROOT"].$SYS["DATADEFPATH"].$name.".def")) {
-					coreDebug("Fichero definicion ".$SYS["DOCROOT"].$SYS["DATADEFPATH"].$name.".def existe");
+					debug("Fichero definicion ".$SYS["DOCROOT"].$SYS["DATADEFPATH"].$name.".def existe");
 					$file = $SYS["DOCROOT"].$SYS["DATADEFPATH"].$name.".def";
 				}
 				else
 					if (e_file_exists("local/Class/{$name}.def")) {
-						coreDebug($SYS["BASE"]."/local/Class/{$name}.def existe");
+						debug($SYS["BASE"]."/local/Class/{$name}.def existe");
 						$file = e_file_exists("local/Class/{$name}.def");
 						}
 					else
-						die(coreDebug($SYS["BASE"]."/local/Class/{$name}.def no  existe"));
+						die(debug($SYS["BASE"]."/local/Class/{$name}.def no  existe"));
 		
 				
 		
-				coreDebug("Cargando definicion de '$name'","yellow");
+				debug("Cargando definicion de '$name'","yellow");
 		
 				$prop=load_prop($file);
 		
 				
 				
-				coreDebug("Compilando dinamicamente '$name'","magenta");
+				debug("Compilando dinamicamente '$name'","magenta");
 				$fd = c_fopen (session_save_path()."/coreg2_cache/".$name.".cached_core_object_properties_".$SYS["PROJECT"], "w");
 				fwrite($fd,serialize($prop),strlen(serialize($prop)));
 				fclose($fd);
@@ -289,7 +289,7 @@ class Ente extends core{
 
 
 		if (!in_array($prop,array_keys($this->properties))) {
-			coreDebug("Propiedad - \"$prop\" - no disponible","red");
+			debug("Propiedad - \"$prop\" - no disponible","red");
 			return false;
 		}
 		else {
@@ -389,7 +389,7 @@ class Ente extends core{
 		$this->data_normalize();
 		$res="";
 		if (($this->ID>1)&&!empty($this->ID)) {
-			coreDebug("Llamada ".$this->name."->save redirigida a update con ".$this->ID,"yellow");
+			debug("Llamada ".$this->name."->save redirigida a update con ".$this->ID,"yellow");
 			return $this->update();
 		}
 		else
@@ -528,7 +528,7 @@ class Ente extends core{
 	function selectAll($offset=0,$sort="ID") {
 
 		global $prefix,$SYS;
-		coreDebug($SYS["DEFAULTROWS"]);
+		debug($SYS["DEFAULTROWS"]);
 		if ((empty($sort)))
 			$sort="ID";
 		$All=array();
@@ -664,7 +664,7 @@ class Ente extends core{
 			$list[1]="--";
 		foreach ($all as $k=>$o)
 			if (method_exists($o,$field)) {
-				coreDebug("Llamada listAll tiene argumento a funcion","red");
+				debug("Llamada listAll tiene argumento a funcion","red");
 				$list[$o->ID]=$o->$field();
 			}
 			else
@@ -798,7 +798,7 @@ class Ente extends core{
 
 		global $prefix;
 
-		coreDebug("Prefijo $prefix tabla $this->name","red"); 
+		debug("Prefijo $prefix tabla $this->name","red"); 
 		$q="SHOW TABLES";
 		$bdres=_query($q);
 		$exists=False;

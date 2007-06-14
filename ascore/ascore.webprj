@@ -2033,10 +2033,8 @@
     <item url="Themes/Estilos/images/background.jpg" uploadstatus="1" />
     <item url="Themes/Estilos/global.css" uploadstatus="1" />
     <item url="index.php" uploadstatus="1" />
-    <item url="index.php.old" uploadstatus="1" />
     <item url="main.php" uploadstatus="1" />
     <item url="phpinfo.php" uploadstatus="1" />
-    <item url="svn-commit.tmp" uploadstatus="1" />
     <item url="" uploadstatus="1" />
     <templates>templates/</templates>
     <toolbars>toolbars/</toolbars>
@@ -2057,7 +2055,7 @@
     <item url="Framework/Lib/lib_barcode.php" uploadstatus="1" />
     <item url="Framework/Extensions/barcodeGen_4v123pl1/draw.php" uploadstatus="1" />
     <item url="Framework/Extensions/barcodeGen_4v123pl1/" uploadstatus="1" />
-    <item url="Framework/Plantillas/Public/portada.html" />
-    <item url="Framework/Plantillas/Public/" />
+    <item url="Framework/Plantillas/Public/portada.html" uploadstatus="1" />
+    <item url="Framework/Plantillas/Public/" uploadstatus="1" />
   </project>
 </webproject>

@@ -4,10 +4,8 @@ require_once("Noticias.php");
 
 
 $ID=(isset($ID))?$ID:1;
-if($ID>1)
-	$n=newObject("notice",$ID);
-else
-	$n=newObject("notice");
+$n=newObject("notice",$ID);
+$n=newObject("notice",$ID);
 	
 formAction("action_save_notice.php?ID=$ID","footer","editForm");
 

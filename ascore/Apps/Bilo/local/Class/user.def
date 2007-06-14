@@ -13,6 +13,7 @@
 	<localidad type="string" option="50">Localidad</localidad>
 	<p_state type="string" option="50">Provincia / Estado</p_state>
 	<zip type="string" option="5">Código Postal / ZIP</zip>
+	<mojo type="string" option="5">Campo de coña</mojo>
 	<pais type="string" option="50">Pais</pais>
 </cpd>
 
