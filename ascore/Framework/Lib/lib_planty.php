@@ -35,6 +35,7 @@ class plantilla {
 	<!-- G:'.key($dat).' -->	Check boxes
 	<!-- R:'.key($dat).' -->	Datex (Extended Date)
 	<!-- I:'.key($dat).' -->	Conditional block. Parsed if key(dat) is true.
+	<!-- NI:'.key($dat).' -->	Relaxed Conditional block. Parsed if key(dat)>1
 	<!-- L:'.key($dat).' -->	Show first 30 chars
 	
 	<!-- B:'.key($dat).' -->	
@@ -175,6 +176,15 @@ class plantilla {
 			}
 			else
 				$res=str_replace('<!-- I:'.key($SYS["GLOBAL"]).' -->','',$res);
+
+			/* Patch 20070501 */
+			if (current($SYS["GLOBAL"])<1) {
+				$res=ereg_replace('<!-- NI:'.key($SYS["GLOBAL"]).' -->.*<!-- NI:'.key($SYS["GLOBAL"]).' -->','',$res);
+			}
+			else
+				$res=str_replace('<!-- NI:'.key($SYS["GLOBAL"]).' -->','',$res);
+			/* Patch 20070501 */
+
 			next($SYS["GLOBAL"]);
 		}
 		
@@ -189,7 +199,13 @@ class plantilla {
 			else
 				$res=str_replace('<!-- I:'.key($dat).' -->','',$res);
 
-
+			/* Patch 20070501 */
+			if (current($dat)<1) {
+				$res=ereg_replace('<!-- NI:'.key($dat).' -->.*<!-- NI:'.key($dat).' -->','',$res);
+			}
+			else
+				$res=str_replace('<!-- NI:'.key($dat).' -->','',$res);
+			/* Patch 20070501 */
 			
 			$res=str_replace('<!-- P:'.key($dat).' -->',nl2br(strip_tags(current($dat),"<br />")),$res);
 			$res=str_replace('<!-- D:'.key($dat).' -->',current($dat),$res);
@@ -361,6 +377,14 @@ class plantilla {
 			}
 			else
 				$res=str_replace('<!-- I:'.key($SYS["GLOBAL"]).' -->','',$res);
+			/* Patch 20070501 */
+			if (current($SYS["GLOBAL"])<1) {
+				$res=ereg_replace('<!-- NI:'.key($SYS["GLOBAL"]).' -->.*<!-- NI:'.key($SYS["GLOBAL"]).' -->','',$res);
+			}
+			else
+				$res=str_replace('<!-- NI:'.key($SYS["GLOBAL"]).' -->','',$res);
+			/* Patch 20070501 */
+
 			next($SYS["GLOBAL"]);
 		}
 
@@ -389,7 +413,13 @@ class plantilla {
 			else
 				$res=str_replace('<!-- I:'.key($dat).' -->','',$res);
 
-		
+			/* Patch 20070501 */
+			if (current($dat)<1) {
+				$res=ereg_replace('<!-- NI:'.key($dat).' -->.*<!-- NI:'.key($dat).' -->','',$res);
+			}
+			else
+				$res=str_replace('<!-- NI:'.key($dat).' -->','',$res);
+			/* Patch 20070501 */
 
 			$res=str_replace('<!-- D:'.key($dat).' -->',current($dat),$res);
 			if (is_numeric(current($dat))) 
@@ -470,6 +500,14 @@ class plantilla {
 			else
 				$res=str_replace('<!-- I:'.key($SYS["GLOBAL"]).' -->','',$res);
 			next($SYS["GLOBAL"]);
+
+			if (current($SYS["GLOBAL"])<1) {
+				$res=ereg_replace('<!-- NI:'.key($SYS["GLOBAL"]).' -->.*<!-- I:'.key($SYS["GLOBAL"]).' -->','',$res);
+			}
+			else
+				$res=str_replace('<!-- NI:'.key($SYS["GLOBAL"]).' -->','',$res);
+			
+			next($SYS["GLOBAL"]);
 		}
 
 
@@ -483,7 +521,13 @@ class plantilla {
 			else
 				$res=str_replace('<!-- I:'.key($dat).' -->','',$res);
 
-		
+			/* Patch 20070501 */
+			if (current($dat)<1) {
+				$res=ereg_replace('<!-- NI:'.key($dat).' -->.*<!-- NI:'.key($dat).' -->','',$res);
+			}
+			else
+				$res=str_replace('<!-- NI:'.key($dat).' -->','',$res);
+			/* Patch 20070501 */
 
 			$res=str_replace('<!-- D:'.key($dat).' -->',current($dat),$res);
 			if (is_numeric(current($dat))) 
