@@ -1,6 +1,6 @@
 <?php
 
-define("_COREVER","0.48.0");
+define("_COREVER","0.48.1");
 
 
 /********* SECTION 0:		MAIN CONFIGURATION 
@@ -154,6 +154,7 @@ require("Lib/lib_frame.php");			// Frame library
 require("Lib/lib_gfx.php");			// GFX library
 require("Lib/lib_session.php");			// Session library
 require("Lib/lib_zoom.php");			// Session library
+require("Lib/lib_monitor.php");			// Session library
 
 /* fileh class Initializer. VNH Soon to be removed*/
 $SYS["thumbsize"]="128";

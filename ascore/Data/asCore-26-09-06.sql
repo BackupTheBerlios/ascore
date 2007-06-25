@@ -1,7 +1,7 @@
 # MySQL dump by phpMyDump
 # Host: localhost Database: asCore
 # ----------------------------
-# Server version: 4.1.11-Debian_4sarge2-log
+# Server version: 4.1.11-Debian_4sarge7-log
 
 
 
@@ -137,6 +137,9 @@ CREATE TABLE coreg2_categoria (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_categoria VALUES (1, '',  NULL,  NULL,  NULL,  NULL,  NULL,  NULL);
+INSERT INTO coreg2_categoria VALUES (26, 'Example', 0, 2, 2, 1161945559, 1161945559, 26);
+INSERT INTO coreg2_categoria VALUES (27, 'SubExample', 26, 2, 0, 1161945592, 0, 26);
+INSERT INTO coreg2_categoria VALUES (28, 'SubSubExample', 27, 2, 0, 1161962890, 0, 26);
 INSERT INTO coreg2_categoria VALUES (25, 'prueba3', 24, 8, 0, 1149678822, 0, 19);
 DROP TABLE IF EXISTS `coreg2_chat`;
 # ----------------------------------------
@@ -231,6 +234,8 @@ CREATE TABLE coreg2_data_object (
 
 INSERT INTO coreg2_data_object VALUES (1, 'archive',  NULL, '', '', '...', '...', '...',  NULL, '', '',  NULL, '',  NULL,  NULL,  NULL,  NULL);
 INSERT INTO coreg2_data_object VALUES (2, 'folder', 0, '2', '2', 'rwx', 'r.x', '...', 0, 'Documentacion', '', 1159290518, 'Documentacion', 2, 0, 1159290518, 0);
+INSERT INTO coreg2_data_object VALUES (4, 'folder', 0, '2', '2', 'rwx', 'rwx', '...', 2, 'Informes', '', 1165509889, '', 2, 2, 1161950730, 1165509889);
+INSERT INTO coreg2_data_object VALUES (13, 'folder', 0, '2', '2', 'rwx', 'rwx', '...', 2, 'Documentos', '', 1161956397, '', 2, 0, 1161956397, 0);
 DROP TABLE IF EXISTS `coreg2_documento`;
 # ----------------------------------------
 # table structure for table 'coreg2_documento' 
@@ -252,6 +257,7 @@ CREATE TABLE coreg2_documento (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_documento VALUES (1, '', '', '',  NULL,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL);
+INSERT INTO coreg2_documento VALUES (21, 'Example', '<p><strong>This is a test example</strong></p><p>&nbsp;</p>', 'admin', 1161967943, 1182780950, 26, 2, 2, 1161967943, 1182780950, 26);
 DROP TABLE IF EXISTS `coreg2_fileh`;
 # ----------------------------------------
 # table structure for table 'coreg2_fileh' 
@@ -297,7 +303,7 @@ CREATE TABLE coreg2_foro (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_foro VALUES (1, 'Foro asCore', 'Cuestiones del desarrollo de asCore', 0, 1159290258, '', 0, 0, 0, 1159290258, 0);
-INSERT INTO coreg2_foro VALUES (2, 'Foro asCore', 'Cuestiones del desarrollo de asCore', 0, 1159290265, '', 0, 0, 0, 1159290265, 1159290271);
+INSERT INTO coreg2_foro VALUES (2, 'Foro asCore', 'Developer Issues', 0, 1182780968, '', 0, 0, 2, 1159290265, 1182780968);
 DROP TABLE IF EXISTS `coreg2_foto`;
 # ----------------------------------------
 # table structure for table 'coreg2_foto' 
@@ -393,36 +399,36 @@ CREATE TABLE coreg2_group (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_group VALUES (1, '',  NULL, 'No',  NULL,  NULL,  NULL,  NULL);
-INSERT INTO coreg2_group VALUES (2, 'Administradores', 2, 'Si', 0, 2, 0, 1140165994);
-INSERT INTO coreg2_group VALUES (3, 'Operadores', 4, 'Si', 0, 2, 0, 1140166001);
-INSERT INTO coreg2_group VALUES (4, '', 8, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (5, '', 16, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (6, '', 32, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (7, '', 64, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (8, '', 128, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (9, '', 256, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (10, '', 512, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (11, '', 1024, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (12, '', 2048, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (13, '', 4096, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (14, '', 8192, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (15, '', 16384, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (16, '', 32768, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (17, '', 65536, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (18, '', 131072, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (19, '', 262144, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (20, '', 524288, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (21, '', 1048576, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (22, '', 2097152, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (23, '', 4194304, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (24, '', 8388608, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (25, '', 16777216, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (26, '', 33554432, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (27, '', 67108864, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (28, '', 134217728, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (29, '', 268435456, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (30, '', 536870912, 'No', 2, 2, 1140165675, 1140165851);
-INSERT INTO coreg2_group VALUES (31, 'Anyone', 1073741824, 'No', 2, 2, 1140165675, 1140165851);
+INSERT INTO coreg2_group VALUES (2, 'Administradores', 2, 'Si', 0, 2, 0, 1161949224);
+INSERT INTO coreg2_group VALUES (3, 'Operadores', 4, 'Si', 0, 2, 0, 1161949224);
+INSERT INTO coreg2_group VALUES (4, '', 8, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (5, '', 16, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (6, '', 32, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (7, '', 64, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (8, '', 128, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (9, '', 256, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (10, '', 512, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (11, '', 1024, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (12, '', 2048, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (13, '', 4096, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (14, '', 8192, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (15, '', 16384, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (16, '', 32768, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (17, '', 65536, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (18, '', 131072, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (19, '', 262144, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (20, '', 524288, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (21, '', 1048576, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (22, '', 2097152, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (23, '', 4194304, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (24, '', 8388608, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (25, '', 16777216, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (26, '', 33554432, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (27, '', 67108864, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (28, '', 134217728, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (29, '', 268435456, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (30, '', 536870912, 'No', 2, 2, 1140165675, 1161949224);
+INSERT INTO coreg2_group VALUES (31, 'Anyone', 1073741824, 'No', 2, 2, 1140165675, 1161949224);
 DROP TABLE IF EXISTS `coreg2_notice`;
 # ----------------------------------------
 # table structure for table 'coreg2_notice' 
@@ -442,10 +448,13 @@ CREATE TABLE coreg2_notice (
   `visita` int(11) default NULL,
   `fech_ult_consulta` int(11) default NULL,
   `notas` varchar(100) NOT NULL default '',
+  `fuente` varchar(100) NOT NULL default '',
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+INSERT INTO coreg2_notice VALUES (1, 'Introduzca titulo', 'Prueba', 0, 2, '', 0, '', 2, 0, 1180947539, 0, 0, 0, '', '');
+INSERT INTO coreg2_notice VALUES (10, 'prueba', 'Prueba', 0, 2, '', 0, 'prueba', 2, 2, 1180975291, 1180976093, 16, 1180976093, '', 'prueba');
 DROP TABLE IF EXISTS `coreg2_post`;
 # ----------------------------------------
 # table structure for table 'coreg2_post' 
@@ -487,7 +496,7 @@ CREATE TABLE coreg2_queryb (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_queryb VALUES (1, '', '',  NULL,  NULL,  NULL,  NULL);
-INSERT INTO coreg2_queryb VALUES (2, 'SELECT coreg2_notice.titulo AS \'Titulo|string:100\',coreg2_notice.fecha_pub AS \'Fecha publicacion|date:\' FROM coreg2_notice WHERE 1=1  AND coreg2_notice.ID>\'1\'', 'notice_list', 2, 0, 1140176163, 0);
+INSERT INTO coreg2_queryb VALUES (3, 'SELECT coreg2_user.username AS \'Usuario|string:50\',coreg2_user.nombre AS \'Nombre|string:50\',coreg2_user.apellidos AS \'Apellidos|string:50\' FROM coreg2_user WHERE ID>1', 'Usuarios', 2, 2, 1171132544, 1182781404);
 DROP TABLE IF EXISTS `coreg2_registro`;
 # ----------------------------------------
 # table structure for table 'coreg2_registro' 
@@ -1379,6 +1388,94 @@ INSERT INTO coreg2_registro VALUES (869, 1, 1159221601, 0, 1159290411, 0, 0, 0, 
 INSERT INTO coreg2_registro VALUES (870, 2, 1159221601, 1159290462, 0, 0, 0, 0, 0, 1159290462, 0);
 INSERT INTO coreg2_registro VALUES (871, 2, 1159221601, 0, 1159290532, 0, 0, 2, 0, 1159290532, 0);
 INSERT INTO coreg2_registro VALUES (872, 2, 1159221601, 1159290539, 0, 0, 0, 0, 0, 1159290539, 0);
+INSERT INTO coreg2_registro VALUES (873, 2, 1159308001, 1159343822, 0, 0, 0, 0, 0, 1159343822, 0);
+INSERT INTO coreg2_registro VALUES (874, 2, 1161900001, 1161944125, 0, 0, 0, 0, 0, 1161944125, 0);
+INSERT INTO coreg2_registro VALUES (875, 2, 1161900001, 1161944130, 0, 0, 0, 2, 0, 1161944130, 0);
+INSERT INTO coreg2_registro VALUES (876, 2, 1161900001, 1161944139, 0, 0, 0, 2, 0, 1161944139, 0);
+INSERT INTO coreg2_registro VALUES (877, 2, 1161900001, 1161944143, 0, 0, 0, 2, 0, 1161944143, 0);
+INSERT INTO coreg2_registro VALUES (878, 2, 1161900001, 1161944814, 0, 0, 0, 2, 0, 1161944814, 0);
+INSERT INTO coreg2_registro VALUES (879, 2, 1161900001, 0, 1161945062, 0, 0, 2, 0, 1161945062, 0);
+INSERT INTO coreg2_registro VALUES (880, 2, 1161900001, 1161945070, 0, 0, 0, 0, 0, 1161945070, 0);
+INSERT INTO coreg2_registro VALUES (881, 2, 1161900001, 1161952840, 0, 0, 0, 0, 0, 1161952840, 0);
+INSERT INTO coreg2_registro VALUES (882, 2, 1161900001, 1161952886, 0, 0, 0, 0, 0, 1161952886, 0);
+INSERT INTO coreg2_registro VALUES (883, 2, 1162162801, 1162222215, 0, 0, 0, 0, 0, 1162222215, 0);
+INSERT INTO coreg2_registro VALUES (884, 2, 1162249201, 1162289998, 0, 0, 0, 0, 0, 1162289998, 0);
+INSERT INTO coreg2_registro VALUES (885, 2, 1163545201, 1163584827, 0, 0, 0, 0, 0, 1163584827, 0);
+INSERT INTO coreg2_registro VALUES (886, 2, 1163545201, 1163584828, 0, 0, 0, 2, 0, 1163584828, 0);
+INSERT INTO coreg2_registro VALUES (887, 2, 1163545201, 1163590510, 0, 0, 0, 0, 0, 1163590510, 0);
+INSERT INTO coreg2_registro VALUES (888, 2, 1163545201, 1163590511, 0, 0, 0, 2, 0, 1163590511, 0);
+INSERT INTO coreg2_registro VALUES (889, 2, 1163631601, 1163676096, 0, 0, 0, 0, 0, 1163676096, 0);
+INSERT INTO coreg2_registro VALUES (890, 2, 1163631601, 1163676097, 0, 0, 0, 2, 0, 1163676097, 0);
+INSERT INTO coreg2_registro VALUES (891, 2, 1163631601, 1163676098, 0, 0, 0, 2, 0, 1163676098, 0);
+INSERT INTO coreg2_registro VALUES (892, 2, 1163631601, 1163679872, 0, 0, 0, 0, 0, 1163679872, 0);
+INSERT INTO coreg2_registro VALUES (893, 2, 1163631601, 1163679873, 0, 0, 0, 2, 0, 1163679873, 0);
+INSERT INTO coreg2_registro VALUES (894, 2, 1165446001, 1165509064, 0, 0, 0, 0, 0, 1165509064, 0);
+INSERT INTO coreg2_registro VALUES (895, 2, 1165446001, 1165509065, 0, 0, 0, 2, 0, 1165509065, 0);
+INSERT INTO coreg2_registro VALUES (896, 2, 1168470001, 1168530945, 0, 0, 0, 0, 0, 1168530945, 0);
+INSERT INTO coreg2_registro VALUES (897, 2, 1171062001, 1171132482, 0, 0, 0, 0, 0, 1171132482, 0);
+INSERT INTO coreg2_registro VALUES (898, 2, 1175119201, 1175169774, 0, 0, 0, 0, 0, 1175169774, 0);
+INSERT INTO coreg2_registro VALUES (899, 2, 1175119201, 1175169775, 0, 0, 0, 2, 0, 1175169775, 0);
+INSERT INTO coreg2_registro VALUES (900, 2, 1175119201, 1175169777, 0, 0, 0, 2, 0, 1175169777, 0);
+INSERT INTO coreg2_registro VALUES (901, 2, 1175119201, 1175169777, 0, 0, 0, 2, 0, 1175169777, 0);
+INSERT INTO coreg2_registro VALUES (902, 2, 1175119201, 0, 1175169888, 0, 0, 2, 0, 1175169888, 0);
+INSERT INTO coreg2_registro VALUES (903, 2, 1175464801, 1175521920, 0, 0, 0, 0, 0, 1175521920, 0);
+INSERT INTO coreg2_registro VALUES (904, 2, 1175464801, 1175521950, 0, 0, 0, 0, 0, 1175521950, 0);
+INSERT INTO coreg2_registro VALUES (905, 2, 1175464801, 1175522072, 0, 0, 0, 0, 0, 1175522072, 0);
+INSERT INTO coreg2_registro VALUES (906, 2, 1175464801, 1175522075, 0, 0, 0, 0, 0, 1175522075, 0);
+INSERT INTO coreg2_registro VALUES (907, 2, 1175464801, 1175522084, 0, 0, 0, 0, 0, 1175522084, 0);
+INSERT INTO coreg2_registro VALUES (908, 2, 1175464801, 1175522087, 0, 0, 0, 0, 0, 1175522087, 0);
+INSERT INTO coreg2_registro VALUES (909, 2, 1175464801, 1175522155, 0, 0, 0, 0, 0, 1175522155, 0);
+INSERT INTO coreg2_registro VALUES (910, 2, 1175464801, 1175522161, 0, 0, 0, 0, 0, 1175522161, 0);
+INSERT INTO coreg2_registro VALUES (911, 2, 1175464801, 1175522181, 0, 0, 0, 0, 0, 1175522181, 0);
+INSERT INTO coreg2_registro VALUES (912, 2, 1175464801, 1175522185, 0, 0, 0, 0, 0, 1175522185, 0);
+INSERT INTO coreg2_registro VALUES (913, 2, 1175464801, 1175522222, 0, 0, 0, 0, 0, 1175522222, 0);
+INSERT INTO coreg2_registro VALUES (914, 2, 1179180001, 1179221214, 0, 0, 0, 0, 0, 1179221214, 0);
+INSERT INTO coreg2_registro VALUES (915, 2, 1180562401, 1180632090, 0, 0, 0, 0, 0, 1180632090, 0);
+INSERT INTO coreg2_registro VALUES (916, 2, 1180648801, 1180713992, 0, 0, 0, 0, 0, 1180713992, 0);
+INSERT INTO coreg2_registro VALUES (917, 2, 1180648801, 0, 1180715188, 0, 0, 2, 0, 1180715188, 0);
+INSERT INTO coreg2_registro VALUES (918, 2, 1180648801, 1180715196, 0, 0, 0, 0, 0, 1180715196, 0);
+INSERT INTO coreg2_registro VALUES (919, 2, 1180908001, 1180947059, 0, 0, 0, 0, 0, 1180947059, 0);
+INSERT INTO coreg2_registro VALUES (920, 2, 1180908001, 1180966576, 0, 0, 0, 0, 0, 1180966576, 0);
+INSERT INTO coreg2_registro VALUES (921, 2, 1182117601, 1182167440, 0, 0, 0, 0, 0, 1182167440, 0);
+INSERT INTO coreg2_registro VALUES (922, 2, 1182117601, 1182167444, 0, 0, 0, 0, 0, 1182167444, 0);
+INSERT INTO coreg2_registro VALUES (923, 2, 1182117601, 1182167533, 0, 0, 0, 0, 0, 1182167533, 0);
+INSERT INTO coreg2_registro VALUES (924, 2, 1182290401, 1182333051, 0, 0, 0, 0, 0, 1182333051, 0);
+INSERT INTO coreg2_registro VALUES (925, 2, 1182290401, 1182333053, 0, 0, 0, 0, 0, 1182333053, 0);
+INSERT INTO coreg2_registro VALUES (926, 2, 1182290401, 1182333054, 0, 0, 0, 0, 0, 1182333054, 0);
+INSERT INTO coreg2_registro VALUES (927, 2, 1182290401, 1182333057, 0, 0, 0, 0, 0, 1182333057, 0);
+INSERT INTO coreg2_registro VALUES (928, 2, 1182290401, 1182333062, 0, 0, 0, 0, 0, 1182333062, 0);
+INSERT INTO coreg2_registro VALUES (929, 2, 1182290401, 1182333096, 0, 0, 0, 0, 0, 1182333096, 0);
+INSERT INTO coreg2_registro VALUES (930, 2, 1182290401, 1182333291, 0, 0, 0, 0, 0, 1182333291, 0);
+INSERT INTO coreg2_registro VALUES (931, 2, 1182290401, 1182333295, 0, 0, 0, 2, 0, 1182333295, 0);
+INSERT INTO coreg2_registro VALUES (932, 2, 1182290401, 1182333296, 0, 0, 0, 2, 0, 1182333296, 0);
+INSERT INTO coreg2_registro VALUES (933, 2, 1182290401, 1182333297, 0, 0, 0, 2, 0, 1182333297, 0);
+INSERT INTO coreg2_registro VALUES (934, 2, 1182290401, 1182333298, 0, 0, 0, 2, 0, 1182333298, 0);
+INSERT INTO coreg2_registro VALUES (935, 2, 1182290401, 1182333298, 0, 0, 0, 2, 0, 1182333298, 0);
+INSERT INTO coreg2_registro VALUES (936, 2, 1182290401, 1182333299, 0, 0, 0, 2, 0, 1182333299, 0);
+INSERT INTO coreg2_registro VALUES (937, 2, 1182290401, 1182333300, 0, 0, 0, 2, 0, 1182333300, 0);
+INSERT INTO coreg2_registro VALUES (938, 2, 1182290401, 1182333300, 0, 0, 0, 2, 0, 1182333300, 0);
+INSERT INTO coreg2_registro VALUES (939, 2, 1182290401, 1182333301, 0, 0, 0, 2, 0, 1182333301, 0);
+INSERT INTO coreg2_registro VALUES (940, 2, 1182290401, 1182333765, 0, 0, 0, 0, 0, 1182333765, 0);
+INSERT INTO coreg2_registro VALUES (941, 2, 1182290401, 1182333771, 0, 0, 0, 0, 0, 1182333771, 0);
+INSERT INTO coreg2_registro VALUES (942, 2, 1182290401, 1182333815, 0, 0, 0, 0, 0, 1182333815, 0);
+INSERT INTO coreg2_registro VALUES (943, 2, 1182290401, 1182333909, 0, 0, 0, 0, 0, 1182333909, 0);
+INSERT INTO coreg2_registro VALUES (944, 74, 1182290401, 1182333944, 0, 0, 0, 0, 0, 1182333944, 0);
+INSERT INTO coreg2_registro VALUES (945, 2, 1182290401, 1182333949, 0, 0, 0, 0, 0, 1182333949, 0);
+INSERT INTO coreg2_registro VALUES (946, 2, 1182290401, 1182334174, 0, 0, 0, 0, 0, 1182334174, 0);
+INSERT INTO coreg2_registro VALUES (947, 2, 1182290401, 1182334299, 0, 0, 0, 0, 0, 1182334299, 0);
+INSERT INTO coreg2_registro VALUES (948, 2, 1182290401, 1182334384, 0, 0, 0, 0, 0, 1182334384, 0);
+INSERT INTO coreg2_registro VALUES (949, 2, 1182290401, 1182334451, 0, 0, 0, 0, 0, 1182334451, 0);
+INSERT INTO coreg2_registro VALUES (950, 2, 1182290401, 1182334461, 0, 0, 0, 0, 0, 1182334461, 0);
+INSERT INTO coreg2_registro VALUES (951, 2, 1182290401, 1182334480, 0, 0, 0, 0, 0, 1182334480, 0);
+INSERT INTO coreg2_registro VALUES (952, 2, 1182290401, 1182334486, 0, 0, 0, 0, 0, 1182334486, 0);
+INSERT INTO coreg2_registro VALUES (953, 2, 1182290401, 1182334524, 0, 0, 0, 0, 0, 1182334524, 0);
+INSERT INTO coreg2_registro VALUES (954, 2, 1182290401, 1182334534, 0, 0, 0, 0, 0, 1182334534, 0);
+INSERT INTO coreg2_registro VALUES (955, 2, 1182290401, 1182334607, 0, 0, 0, 0, 0, 1182334607, 0);
+INSERT INTO coreg2_registro VALUES (956, 2, 1182290401, 1182358761, 0, 0, 0, 0, 0, 1182358761, 0);
+INSERT INTO coreg2_registro VALUES (957, 2, 1182376801, 1182443125, 0, 0, 0, 0, 0, 1182443125, 0);
+INSERT INTO coreg2_registro VALUES (958, 2, 1182463201, 1182495420, 0, 0, 0, 0, 0, 1182495420, 0);
+INSERT INTO coreg2_registro VALUES (959, 2, 1182722401, 1182759313, 0, 0, 0, 0, 0, 1182759313, 0);
+INSERT INTO coreg2_registro VALUES (960, 2, 1182722401, 1182780907, 0, 0, 0, 0, 0, 1182780907, 0);
 DROP TABLE IF EXISTS `coreg2_report`;
 # ----------------------------------------
 # table structure for table 'coreg2_report' 
@@ -1399,7 +1496,7 @@ CREATE TABLE coreg2_report (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_report VALUES (1, '', '',  NULL, 'HardCoded', 'No', 'No',  NULL,  NULL,  NULL,  NULL);
-INSERT INTO coreg2_report VALUES (2, 'Listado de todas las noticias', '', 2, 'SoftCoded', 'Si', 'Si', 0, 2, 0, 1140513851);
+INSERT INTO coreg2_report VALUES (3, 'Listado de Usuarios', '', 3, 'SoftCoded', 'Si', 'Si', 2, 0, 1171132562, 0);
 DROP TABLE IF EXISTS `coreg2_soft`;
 # ----------------------------------------
 # table structure for table 'coreg2_soft' 
@@ -1445,12 +1542,14 @@ CREATE TABLE coreg2_user (
   `p_state` varchar(50) NOT NULL default '',
   `zip` varchar(5) NOT NULL default '',
   `pais` varchar(50) NOT NULL default '',
+  `mojo` varchar(5) NOT NULL default '',
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-INSERT INTO coreg2_user VALUES (1, 'user', '', '', '', 2, 'No', '', '',  NULL,  NULL,  NULL,  NULL,  NULL, '', '', '', '', '');
-INSERT INTO coreg2_user VALUES (2, 'admin', '098f6bcd4621d373cade4e832627b4f6', 'Administrador', 'Sistema', 6, 'Si', '954426632', 'info@activasistemas.com', 0, 2, 0, 1159290485, 1159290485, 'Mi calle', 'Sevilla', 'Sevilla', '41003', 'Espa?a');
+INSERT INTO coreg2_user VALUES (1, 'user', '', '', '', 65536, 'No', '', '',  NULL,  NULL,  NULL,  NULL,  NULL, '', '', '', '', '', '');
+INSERT INTO coreg2_user VALUES (2, 'admin', '098f6bcd4621d373cade4e832627b4f6', 'Administrador', 'Sistema', 6, 'Si', '954426632', 'info@activasistemas.com', 0, 2, 0, 1182781222, 1182781222, 'Mi calle', 'Sevilla', 'Sevilla', '41003', 'Espa?a', '');
+INSERT INTO coreg2_user VALUES (74, 'operador', '098f6bcd4621d373cade4e832627b4f6', 'Operador', 'Sistema', 4, 'Si', '', '', 2, 0, 1162224261, 0, 0, '', '', '', '', '', '');
 DROP TABLE IF EXISTS `coreg2_user_pref`;
 # ----------------------------------------
 # table structure for table 'coreg2_user_pref' 

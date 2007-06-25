@@ -193,16 +193,16 @@ buscar: <INPUT type=\"text\" name=\"avsearch\" value=\"$avsearch\">
 ";
 		
 listList($u,array(),$template);		
-
+$SYS["FROOT"]=$SYS["ROOT"]."../../../"; 
 ?>
 <script type="text/javascript" language="JavaScript1.3">
 wresize();
 </script>
 <a  style="cursor:pointer;position:absolute;right:3px;top:2px;float : right;" href="javascript:frameClose()">
-<img src="<?php echo $SYS["ROOT"]."/Framework/Extensions/Zoom/local/Images/close.png"?>" alt="Cerrar" width="16" height="16" align="middle" border="0" title="Centrar"></a>
+<img src="<?php echo $SYS["FROOT"]."/Framework/Extensions/Zoom/local/Images/close.png"?>" alt="Cerrar" width="16" height="16" align="middle" border="0" title="Centrar"></a>
 <a  style="cursor:pointer;position:absolute;left:3px;top:2px;float : right;" href="javascript:wresize()">
-<img src="<?php echo $SYS["ROOT"]."/Framework/Extensions/Zoom/local/Images/center.png"?>" alt="Centrar" width="16" height="16" align="middle" border="0" title="Centrar"></a>
+<img src="<?php echo $SYS["FROOT"]."/Framework/Extensions/Zoom/local/Images/center.png"?>" alt="Centrar" width="16" height="16" align="middle" border="0" title="Centrar"></a>
 
 <a  style="cursor:pointer;position:absolute;left:19px;top:2px;float : right;" href="javascript:refresh()">
-<img src="<?php echo $SYS["ROOT"]."/Framework/Extensions/Zoom/local/Images/refresh.png"?>" alt="Actualizar" width="16" height="16" align="middle" title="Actualizar" border="0"></a>
+<img src="<?php echo $SYS["FROOT"]."/Framework/Extensions/Zoom/local/Images/refresh.png"?>" alt="Actualizar" width="16" height="16" align="middle" title="Actualizar" border="0"></a>
 </body>

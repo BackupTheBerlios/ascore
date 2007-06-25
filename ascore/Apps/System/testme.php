@@ -186,12 +186,13 @@ $tmpl=$a->makeTemplate("fake");
 $abm=getmicrotime();
 if ($SYS["bcompiler_extension"]) {
 	require_once("Lib/lib_list_ng.php.phb");
+	$example=new DataGrid();
 	for ($i=1;$i<=$M;$i+=($M/3)) {
 		$bm=getmicrotime();
 		setLimitRows($i);
 		$a->searchResults=$a->selectAll();
 		ob_start();
-		DataGrid::listList($a,array(),$tmpl);
+		$example->listList($a,array(),$tmpl);
 		ob_end_clean();
 		$plist_time_ellapsed[$i]=getmicrotime()-$bm;
 	}

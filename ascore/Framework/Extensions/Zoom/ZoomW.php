@@ -31,16 +31,16 @@ return $u->'.$method_n.'('.$method_p.');
 $u=newObject("'.$class.'");
 return $u->'.$method_n.'('.$method_p.');
 ',"cyan");
-}
+} 
 setNavVars(array("module","class","show","method","name"));
-
+$SYS["FROOT"]=$SYS["ROOT"]."../../../";
 $template="
 <!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
 <!--HEAD-->
 <html>
 <head>
 <title>Zoom $class </title>
-<LINK href=\"{$SYS["ROOT"]}/Themes/Estilos/global.css\" rel=\"stylesheet\" type=\"text/css\">
+<LINK href=\"{$SYS["FROOT"]}/Themes/Estilos/global.css\" rel=\"stylesheet\" type=\"text/css\">
 </head>
 
 <script type=\"text/javascript\" language=\"JavaScript1.3\">

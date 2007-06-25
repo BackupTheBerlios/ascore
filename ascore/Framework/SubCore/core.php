@@ -409,8 +409,13 @@ function _fixed($string,$len=17) {
 }
 
 function _closeSystem() {
-	global $SYS,$DEBUGHANDLER,$CODEINITTIME;
+	global $SYS,$DEBUGHANDLER,$CODEINITTIME,$monitor;
+	
 	$CORETIME=getmicrotime()-$CODEINITTIME;
+        $monitor->MonAverageUpdate($CORETIME);
+	$stats=$monitor->MonGetStat();
+        debug("Ending System: Pages {$stats["pages"]} Average:{$stats["avg"]} spp","white");
+	//$monitor->MonClose();
 	debug("Ending System: Total ms of ASCore:$CORETIME","white");
 	fflush($DEBUGHANDLER);
 	fclose($DEBUGHANDLER);
