@@ -1,6 +1,6 @@
 <?php
 
-define("_COREVER","0.47.2");
+define("_COREVER","0.48.0");
 
 
 /********* SECTION 0:		MAIN CONFIGURATION 
@@ -16,6 +16,18 @@ $SYS["COREROOT"]=$SYS["BASE"]."/Framework/";
 $SYS["URL"]=$SYS["ROOT"]."/Framework/";
 $SYS["COREURL"]=$SYS["ROOT"]."/Framework/";
 $SYS["DATADEFPATH"]="Class/";
+
+if ($SYS["bcompiler_extension"]) {
+if (file_exists($SYS["DOCROOT"]."/Data/bcompiler.so"))  {
+	if (!dl("../../../../".$SYS["DOCROOT"]."/Data/bcompiler.so")) 
+		$SYS["bcompiler_extension"]=false;
+}
+else 
+	$SYS["bcompiler_extension"]=false;
+
+
+}
+
 
 
 
@@ -175,5 +187,8 @@ $SYS["CACHE_TIMESTAMP"]=True;
 if ($_SERVER["SERVER_PORT"]==80) {
 	$SYS["PROTO"]="http://";
 }
+
+
+
 require("post-init.php");
 ?>
