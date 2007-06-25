@@ -7,7 +7,7 @@ if (ini_get("output_buffering"))
 	 ob_end_flush();
 
 
-$M=1000;
+$M=100;
 $N=$M/25;
 echo "<span style='margin-left:20px'>Test '$M Clases' ";
 if (function_exists("memory_get_usage"))
@@ -18,6 +18,7 @@ else {
 
 $bm=getmicrotime();
 $OBJECT_TIME=$bm;
+$initmemory=memory_get_usage()/1024;
 for ($i=0;$i<=$M;$i+=$N) {
 	
 	for ($j=0;$j<$i;$j++) 
@@ -29,7 +30,7 @@ for ($i=0;$i<=$M;$i+=$N) {
 		flush();
 	
 	}
-	$memory[$p]=memory_get_usage()/1024;
+	$memory[$p]=(memory_get_usage()/1024-$initmemory);
 	$time_ellapsed[$p]=(getmicrotime()-$bm);
 	$bm=getmicrotime();
 	unset($a);
@@ -157,7 +158,7 @@ $bm=getmicrotime();
 $LIST_TIME=$bm-$LIST_TIME;
 jsAction("setProgress('0');");
 echo "<span style='color:green'>OK</span> ::";
-$a->deletes("1=1");
+
 
 $db_tg=new graph(500,400);
 $db_tg->y_data["barras"]=array_values($list_time_ellapsed);
@@ -179,11 +180,71 @@ $db_tg->parameter['y_resolution_left']= 5;
 $db_tg->draw();
 
 
+/* render test */
+
+$tmpl=$a->makeTemplate("fake");
+$abm=getmicrotime();
+if ($SYS["bcompiler_extension"]) {
+	require_once("Lib/lib_list_ng.php.phb");
+	for ($i=1;$i<=$M;$i+=($M/3)) {
+		$bm=getmicrotime();
+		setLimitRows($i);
+		$a->searchResults=$a->selectAll();
+		ob_start();
+		DataGrid::listList($a,array(),$tmpl);
+		ob_end_clean();
+		$plist_time_ellapsed[$i]=getmicrotime()-$bm;
+	}
+}
+for ($i=1;$i<=$M;$i+=($M/3)) {
+	$bm=getmicrotime();
+	setLimitRows($i);
+ 	$a->searchResults=$a->selectAll();
+	ob_start();
+	listList($a,array(),$tmpl);
+	ob_end_clean();
+	$cplist_time_ellapsed[$i]=getmicrotime()-$bm;
+}
+$totaltime=getmicrotime()-$abm;
+$a->deletes("1=1");
+$db_tg=new graph(500,400);
+if ($SYS["bcompiler_extension"])
+	$db_tg->y_data["barras"]=array_values($plist_time_ellapsed);
+$db_tg->y_data["mbarras"]=array_values($cplist_time_ellapsed);
+$db_tg->x_data=array_keys($cplist_time_ellapsed);
+
+$db_tg->parameter["file_name"]=$SYS["BASE"]."/Data/Img/Tmp/render";
+$db_tg->parameter["path_to_fonts"]=$SYS["DOCROOT"]."/Data/Fonts/";
+if ($SYS["bcompiler_extension"])
+	$db_tg->parameter['title'] = _("lib_planty Compiled  vs Source")."($totaltime)";
+else
+	$db_tg->parameter['title'] = _("lib_planty")."($totaltime)";
+
+$db_tg->parameter['x_label'] = _("Number of rows");
+$db_tg->parameter['y_label_left'] = _("Render time");
+
+
+if ($SYS["bcompiler_extension"]) 
+	$db_tg->y_format['barras'] =array('colour' => 'green', 'line' => 'line', 'point' => 'square-open','bar' => 'fill');
+
+$db_tg->y_format['mbarras'] = array('colour' => 'red', 'line' => 'line', 'point' => 'square-open','bar' => 'fill');
+
+if ($SYS["bcompiler_extension"])
+		$db_tg->y_order = array('barras',"mbarras");
+	else
+		$db_tg->y_order = array('mbarras');
+
+$db_tg->parameter["y_decimal_left"]=5;
+$db_tg->parameter['y_resolution_left']= 5;
+$db_tg->draw();
+
+/* end of render test */
 $img_tabs=array(
 	"memory_usage"=>$SYS["ROOT"].'/Data/Img/Tmp/memory_usage.png',
 	"time_ellapsed"=>$SYS["ROOT"].'/Data/Img/Tmp/time_ellapsed.png',
 	"database"=>$SYS["ROOT"].'/Data/Img/Tmp/database.png',
 	"select"=>$SYS["ROOT"].'/Data/Img/Tmp/select.png',
+	"render"=>$SYS["ROOT"].'/Data/Img/Tmp/render.png',
 	"OBJECT_TIME"=>$OBJECT_TIME,
 	"DB_TIME"=>$DB_TIME
 
