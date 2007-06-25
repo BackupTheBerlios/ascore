@@ -15,6 +15,10 @@ function save() {
 		$this->ERROR=_("password vacio");
 		return FALSE;
 	}
+  	if (($this->userExist($this->username))&&($this->ID<2)) {
+		$this->ERROR=_("Usuario existente");
+		return FALSE;
+	}
 	//dataDump($this);
 	$par=new Ente($this->name);
 	$par=typecast($this,"Ente");
