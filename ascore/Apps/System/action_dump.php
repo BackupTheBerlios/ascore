@@ -1,4 +1,7 @@
 <?php 
+require_once("System.php");
+if (!BILO_isAdmin())
+	die();
 require_once("conf.php");
 ob_end_clean();
 // MySQL hostname
