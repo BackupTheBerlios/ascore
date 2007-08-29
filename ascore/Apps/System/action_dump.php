@@ -1,7 +1,9 @@
 <?php 
 require_once("System.php");
-if (!BILO_isAdmin())
-	die();
+if (!BILO_isAdmin()) {
+        if ($PSECRETKEY!=md5($SECRETKEY))
+                die("No safety");
+}
 require_once("conf.php");
 ob_end_clean();
 // MySQL hostname
