@@ -86,7 +86,7 @@ function fBack() {
 }
 </script>
 </head>
-<body bgcolor="#F6F6EE" style="border:1px solid #EBEBEB">
+<body bgcolor="#EEEAEE" style="border:1px solid #EBEBEB">
 <?php
 
   
@@ -126,13 +126,13 @@ function fBack() {
 
 		
 		
-		<td nowrap width="104" align="left" style="border:1px solid #E4E4E4">
-				<span id="progress" style="background-color:#F6F6EE;">&nbsp;</span>
+		<td nowrap width="104" align="left" style="border:1px solid lightgray">
+				<span id="progress" style="background-color:#EEEAEE;">&nbsp;</span>
 		
 		</td>
 		<td align="right" nowrap>
 			
-			<img src="Data/Img/Icons/ok.gif" width="16" height="16" align="right" border="0" id="semaforo">
+			<img src="Data/Img/Icons/ok.gif" width="16" height="16" align="right" border="" style="border:1px solid lightgray" id="semaforo">
 		</td>
 	</tr>
 </table>

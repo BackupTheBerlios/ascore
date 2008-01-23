@@ -389,18 +389,25 @@ class plantilla {
 		}
 
 		
-		/* Smart pag links */
+			/* Smart pag links */
+		//echo "<pre>";print_r($dat);echo "</pre>";
+		//echo "{$dat["nextP"]}>={$dat["totalPages"]}:{$dat["offset"]}";
 		if ($dat["nextP"]<1) {
 				$res=ereg_replace('<!-- IFPAGER1 -->.*<!-- FIPAGER1 -->','',$res);
 				$res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
 			}
 		else if (($dat["nextP"]>0)&&($dat["offset"]<1)) {
 				$res=ereg_replace('<!-- IFPAGER1 -->.*<!-- FIPAGER1 -->','',$res);
+			if	($dat["nextP"]==$dat["totalPages"]) 
+    				$res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
+				
+		}
+                else if (($dat["nextP"]==$dat["offset"])) {
+    				$res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
 				
 			}
-		//else if (($dat["nextP"]>=$dat["totalPages"])) {
-    			else if (($dat["nextP"]==$dat["offset"])) {
-				$res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
+		else if (($dat["nextP"]==$dat["totalPages"])) {
+    				$res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
 				
 			}
 		/* Smart pag links */
@@ -474,7 +481,7 @@ class plantilla {
 		
 		//dataDump($dat);
 		/* Smart pag links */
-		//echo "<pre>";print_r($dat);echo "</pre>";die();
+		//echo "<pre>";print_r($dat);echo "</pre>";
 		//echo "{$dat["nextP"]}>={$dat["totalPages"]}:{$dat["offset"]}";
 		if ($dat["nextP"]<1) {
 				$res=ereg_replace('<!-- IFPAGER1 -->.*<!-- FIPAGER1 -->','',$res);
@@ -482,10 +489,15 @@ class plantilla {
 			}
 		else if (($dat["nextP"]>0)&&($dat["offset"]<1)) {
 				$res=ereg_replace('<!-- IFPAGER1 -->.*<!-- FIPAGER1 -->','',$res);
+			if	($dat["nextP"]==$dat["totalPages"]) 
+    				$res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
+				
+		}
+                else if (($dat["nextP"]==$dat["offset"])) {
+    				$res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
 				
 			}
-
-                else if (($dat["nextP"]==$dat["offset"])) {
+		else if (($dat["nextP"]==$dat["totalPages"])) {
     				$res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
 				
 			}
@@ -551,6 +563,172 @@ class plantilla {
 		$res=preg_replace("/<!-- K:(.*)\('(.*)'\) -->/e","\\1('\\2')",$res);
 		$res=preg_replace("/<!-- K:(.*)\((.*)\) -->/e","\\1(\\2)",$res);
 		return $res."<!-- END OF PARSEFOOTER -->\n";
+	}
+
+function plParseTemplateFast($dat,$external="") {
+
+        global $styles,$nn,$SYS,$PET;
+	static $cut1,$cut2,$head,$navvars,$nextpage,$prevpage,$initialized;
+	
+	
+	$bm=getmicrotime();
+		
+		if (!isset($initialized)) {
+			$copy=$this->data;
+			$cut1=$this->_array_search_fuzz($copy,$this->mark["set"]);
+			$cut2=$this->_array_search_fuzz($copy,$this->mark["end"]);
+			$head=($cut1&&$cut2) ? array_splice($copy,$cut1,$cut2-$cut1) : $copy;
+			
+			$cc="dynamic_class_".$this->name.($nn%$styles).""; 
+			if (is_object($dat))
+				$dat=get_object_vars($dat);
+			//
+			debug("total pages:".$dat["totalPages"]." vs ".$dat["nextP"],"green");
+			/* Navvars patch */
+
+		    
+        /**************** mod_rewrite patch  */
+	if ($SYS["NAV_SEPARATOR"]=="/") {
+		$chunk=(strpos($PET,"navvars=on")!==false)?(strpos($PET,"navvars=on")):strlen($PET);
+		$navvars=$SYS["ROOT"]."/".(substr($PET,0,$chunk));
+		debug("Navvars init $navvars POS=".$chunk."($PET)","green");
+	}
+	/**************** mod_rewrite patch  */
+		
+		
+			$navvars.="{$SYS["NAV_SEPARATOR_I"]}navvars=on";
+			foreach ($SYS["NAVVARS"] as $k=>$v) {
+			        if ($v!="offset")
+				    $navvars.="{$SYS["NAV_SEPARATOR"]}$v=".$GLOBALS[$v];
+			}
+			if ($dat["totalPages"]>$dat["nextP"])
+		           $nextpage=$navvars."{$SYS["NAV_SEPARATOR"]}offset=".$dat["nextP"];
+			else {
+		           $nextpage="-----------";
+			   //echo "unveiling next page";
+			}
+		        $prevpage=$navvars."{$SYS["NAV_SEPARATOR"]}offset=".$dat["prevP"];
+		}
+		else
+			$initialized=True;			
+		
+		
+		$res=implode('',$head);
+		$res=str_replace('<!-- N:nextpage -->',$nextpage,$res);
+		$res=str_replace('<!-- N:prevpage -->',$prevpage,$res);
+		$res=str_replace('<!-- N:navvars -->',$navvars,$res);
+		//echo "-".($dat["parset"])."#";
+		if (($dat["parset"]==True)) {
+				debug("Using parset","red");
+				$res=ereg_replace("<!--STARTPARSET-->.*<!--ENDPARSET-->","<!--*-->",$res);
+			}
+		
+		if (!function_exists("__int_check_")) {
+			function __int_check_($data,$toprint) {
+				if (!$data)
+					return "";
+				else
+					return "$toprint";
+			}	
+		}
+		$res=preg_replace("/<!-- K:(.*)\(\"(.*)\"\) -->/e","\\1('\\2')",$res);
+		$res=preg_replace("/<!-- K:(.*)\('(.*)'\) -->/e","\\1('\\2')",$res);
+		$res=preg_replace("/<!-- K:(.*)\((.*)\) -->/e","\\1(\\2)",$res);
+
+		$res=strtr($res,array("\n"=>"","\r">=""));
+		$res=preg_replace("/<!-- D:([^\{]{1,100}?) -->/e",'$dat[$1]',$res);
+		$res=preg_replace("/<!-- I:([^\{]{1,100}?) -->(.*)<!-- I:([^\{]{1,100}?) -->/e",'__int_check_($dat["$1"],"$2")',$res);
+		$res=preg_replace("/<!-- F:([^\{]{1,100}?) -->/e",'sprintf("%.5f",$dat[$1])',$res);
+		$res=preg_replace("/<!-- V:([^\{]{1,100}?) -->/e",'$dat[$1]',$res);
+		$res=preg_replace("/<!-- S:([^\{]{1,100}?) -->/e",'number_format($dat[$1], 2, ",", ".")."&euro;"',$res);
+		$res=preg_replace("/<!-- E:([^\{]{1,100}?) -->/e",'number_format($dat[$1], 2, ",", ".")',$res);
+		$res=preg_replace("/<!-- P:([^\{]{1,100}?) -->/e",'nl2br(strip_tags($dat[$1]),"<br />")',$res);
+		
+		$res=preg_replace("/<!-- M:([^\{]{1,100}?) -->/e",'$dat[$1]',$res);
+		$res=preg_replace("/<!-- V:([^\{]{1,100}?) -->/e",'$dat[$1]',$res);
+		$res=preg_replace("/<!-- A:([^\{]{1,100}?) -->/e",'strftime("%d/%m/%Y &nbsp;",$dat[$1])',$res);
+		$res=preg_replace("/<!-- T:([^\{]{1,100}?) -->/e",'strftime("%H:%M &nbsp;",$dat[$1])',$res);
+		$res=preg_replace("/<!-- H:([^\{]{1,100}?) -->/e",'strftime("%d/%m/%Y %H:%S",$dat[$1])',$res);
+		$res=preg_replace("/<!-- C:([^\{]{1,100}?) -->/e",'echo "CHECKED"',$res);
+		$res=preg_replace("/<!-- R:([^\{]{1,100}?) -->/e",'int_to_text_ex($dat[$1])"',$res);
+		$res=preg_replace("/<!-- L:([^\{]{1,100}?) -->/e",'substr($dat[$1]),0,300)."..."',$res);
+		$res=preg_replace("/<!-- W:([^\{]{1,100}?) -->/e",'WordWrapping(strip_tags($dat[$1],"<strong>"),50)."..."',$res);
+		$res=preg_replace("/<!-- NR:([^\{]{1,100}?) -->/e",'number_format(sprintf("%.2f",$dat[$1]),2,",","")',$res);
+		
+		$res=str_replace('<!-- dynamic_class -->',$cc,$res);
+
+
+		////////////////////////* EXTERNAL DATA
+
+		if (isset($external[key($dat)])) {
+            	
+				//debug($external[key($dat)],"cyan");
+				for ($i=0,$ext_key_isze=sizeof($external[key($dat)]);$i<$ext_key_isze;$i++) {
+             				$buffer.="<option value=\"".key($external[key($dat)])."\" ";
+					
+					if (key($external[key($dat)])==current($dat))
+						$buffer.=" selected ";
+					if (is_array(current($dat)))
+						if (in_array(key($external[key($dat)]),array_keys(current($dat)))) {
+							$buffer.=" selected ";
+							
+							}
+					
+					if (key($external[key($dat)])==current($dat))
+						$buffer.=" selected ";
+						
+					$aux=explode("|",(current($external[key($dat)])));
+					if ($aux[1]=="Off") 
+						$buffer.=" disabled ";
+			
+					$buffer.=">";
+	             			$buffer.=$aux[0]."</option>";
+					//debug($buffer,"cyan");
+					next($external[key($dat)]);
+					
+				
+				}
+				$res_aux=str_replace('<!-- X:'.key($dat).' -->',$buffer,$res);
+				
+				$buffer="";
+				$res="<!-- EXTERNAL DATA --> ".$res_aux;
+				
+				
+				
+				// Soporte para radion button dinámicos 
+				reset($external[key($dat)]);
+				for ($i=0,$ext_key_isze=sizeof($external[key($dat)]);$i<$ext_key_isze;$i++) {
+             		$buffer.="<input type=\"radio\" name=".key($dat)." value=\"".key($external[key($dat)])."\" ";
+					if (key($external[key($dat)])==current($dat))
+						$buffer.=" checked ";
+					$buffer.=">";
+	             	$buffer.=current($external[key($dat)])."";
+					next($external[key($dat)]);
+				}
+				
+				
+				$res_aux=str_replace('<!-- B:'.key($dat).' -->',$buffer,$res);
+				$buffer="";
+				$res="<!-- EXTERNAL DATA --> ".$res_aux;
+				
+			
+
+			}
+		////////////////////////* EXTERNAL DATA
+
+		/* Function call */
+	
+			
+		//debug($res,"red");
+		//debug("Plantilla parseada!");
+		$nn++;
+		$res=preg_replace("'<!-- [\/\!]*?[^<>]*? -->'si","",$res);
+		//$res=preg_replace("'<!--[\/\!]*?[^<>]*?-->'si","",$res);
+		
+		
+		$SYS["parse_planty_time"]+=(getmicrotime()-$bm);
+		
+		return $res."\t\n";;
 	}
 
 }

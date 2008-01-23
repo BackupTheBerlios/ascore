@@ -6,7 +6,8 @@ if(BILO_isOperator()){
 	$u=newObject("user");
 	$u->isAdmin=BILO_isAdmin();
 	$u->searchResults=$u->selectAll($offset,$sort);
-	listList($u,array("grupos_nombre"=>"fref#user|ID|listGroupsNames"),"list_users");
+	dataDump($u);
+	listList($u,array("grupos_nombre"=>"fref#user|ID|listGroupsNames"),"list_users","",1,"plParseTemplateFast");
 
 }else
 	echo "<h4 align=\"center\">PRIVILEGIOS INSUFICIENTES</H4>";

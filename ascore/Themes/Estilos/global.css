@@ -1,33 +1,34 @@
 body {
-    font-family :verdana, geneva, sans-serif;
+    font-family :Bitstream Vera Sans,Verdana;
     font-size: 11px;
     background-color:#FFFFF;
     background-image:url('images/background.jpg');
 }
 
 * {
-    font-family :verdana, geneva, sans-serif;
+    font-family :Bitstream Vera Sans,Verdana;
     font-size: 11px;
   }
 
 a {
-    text-decoration:none;
+    text-decoration:none;font-weight:bold;
   }
 
 
 h1 {
-    font-size : 25px;
-    font-family: sans-serif, verdana, geneva ;
+    font-size : 20px;
+    font-family: Bitstream Vera Sans,Verdana;
   }
 
 h2 {
     font-size : 20px;
-    font-family: sans-serif, verdana, geneva ;
+    font-family: Bitstream Vera Sans,Verdana;
   }
 
 h3 {
     font-size : 15px;
-    font-family: sans-serif, verdana, geneva ;
+    font-family: Bitstream Vera Sans,Verdana;
+    color:#832029
   }
 
 
@@ -161,7 +162,80 @@ h3 {
  a {
  	color:#484768;
 	text-decoration:bold;
- 
+ 	
  }
 
- .main_notice{background-color:white;}
+.main_notice{background-color:white;}
+
+div.sexybutton {
+	background-color:none;
+	background-image:url(images/lbutton.gif);
+	background-position:top left;
+	background-repeat:no-repeat;
+	padding-left:1px;
+	padding-right:0px;
+	padding-top:0px;
+	padding-bottom:0px;
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-left:2px;
+	margin-right:0px;
+	border:0px;
+	height:17px;
+	min-height:17px;
+	float:left;
+	display:block;
+	
+	
+}
+a.sexybutton {
+	background-color:none;
+	background-image:url(images/lbutton.gif);
+	background-position:bottom right;
+	background-repeat:no-repeat;
+	margin:0px;
+	padding-left:4px;
+	padding-right:4px;
+	padding-top:0px;
+	//padding-top:3px;
+	padding-bottom:3px;
+	//padding-bottom:0px;
+	color:black;
+	font-weight:normal;
+	border:0px;
+	height:17px;
+	min-height:17px;
+	font-size:11px;
+}
+
+a.sexybutton:hover{
+	background-image:url(images/abutton.gif);
+	color:#5E70C1;
+}
+
+input.sexybutton {
+	cursor:pointer;
+	background-color:none;
+	background-image:url(images/lbutton.gif);
+	background-position:bottom right;
+	background-repeat:no-repeat;
+	margin:0px;
+	padding-left:4px;
+	padding-right:4px;
+	padding-top:0px;
+	//padding-top:3px;
+	padding-bottom:3px;
+	//padding-bottom:0px;
+	color:black;
+	font-weight:normal;
+	border:0px;
+	height:17px;
+	min-height:17px;
+	font-size:11px;
+	
+	bottom:0px;
+}
+input.sexybutton:hover {
+	background-image:url(images/abutton.gif);
+}
+	

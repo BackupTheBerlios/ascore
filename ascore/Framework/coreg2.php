@@ -1,6 +1,6 @@
 <?php
 
-define("_COREVER","0.48.1");
+define("_COREVER","0.48.2");
 
 
 /********* SECTION 0:		MAIN CONFIGURATION 

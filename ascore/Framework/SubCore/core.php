@@ -408,6 +408,22 @@ function _fixed($string,$len=17) {
 	return "${iz}$string{$de}";
 }
 
+/* 
+_rfixed(string cade, int size)
+
+Wrapper para cademas, las amplia en size por la derecha
+	
+*/
+
+function _rfixed($string,$len=25) {
+
+	$l=strlen($string);
+	if ($l<$len) 
+		$de=str_repeat("&nbsp;",($len-$l));
+		
+	return "$string{$de}";
+}
+
 function _closeSystem() {
 	global $SYS,$DEBUGHANDLER,$CODEINITTIME,$monitor;
 	

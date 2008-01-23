@@ -13,11 +13,11 @@ require_once("lib_planty.php");
 
 */
 
-function listList($psObject, $campos, $template,$navigation_vars="",$parset=1) {
+function listList($psObject, $campos, $template,$navigation_vars="",$parset=1,$plParseTemplateFunction="plParseTemplate") {
 
   global $TOTALTIME,$SYS,$offset,$PET,$styles,$nn,$FFPATCH;
     
-    
+    $nplParseTemplateFunction=$plParseTemplateFunction;
     $psObject->sc=$sc;
     $psObject->mod=$mod;
     $psObject->pag=$pag;
@@ -249,9 +249,9 @@ function listList($psObject, $campos, $template,$navigation_vars="",$parset=1) {
 				}
 
 			if (is_object($object))
-				echo $users->plParseTemplate(get_object_vars($object),$external);
+				echo $users->$plParseTemplateFunction(get_object_vars($object),$external);
 			else 
-				echo $users->plParseTemplate($object,$external);
+				echo $users->$plParseTemplateFunction($object,$external);
 
 		}
     }

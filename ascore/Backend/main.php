@@ -76,12 +76,17 @@ else if (empty($APP)){
 			</td>
 			';
 			$metadata["menu_entrys_items"].='
-				<div id="menuEntry'.$v.'_box" class="thook"  style="display : none; position : absolute; z-index : 1;" onclick="flip(\'none\')">';
-			foreach($menu_entry["items"] as $j)
+				<div id="menuEntry'.$v.'_box" class="thook"  style="display : none; position : absolute; z-index : 1;" onclick="flip(\'none\')"><div class="thookreal">';
+			foreach($menu_entry["items"] as $j) {
+				if ($j[3])
+					$metadata["menu_entrys_items"].='<img src="'.$SYS["ROOT"]."/Apps/".$k."/local/Img/".$j[3].' " align="left" style="margin-top:2px;margin-left:1px;" border="0"/>';
+				else
+					$metadata["menu_entrys_items"].='<img src="'.$SYS["ROOT"].'/Backend/local/Img/menu_none.gif" align="left" style="margin-top:2px" border="0"/>';
 				$metadata["menu_entrys_items"].='
-				<A href="'.$j[0].'" target="'.$j[1].'" class="tlink">&nbsp; '.$j[2].'</A><br>';
+				<a href="'.$j[0].'" target="'.$j[1].'" class="tlink">&nbsp; '.(_rfixed($j[2])).'</a><br>';
+			}
 				
-			$metadata["menu_entrys_items"].='</div>';
+			$metadata["menu_entrys_items"].='</div></div>';
 			
 			$TMI++;	
 		}

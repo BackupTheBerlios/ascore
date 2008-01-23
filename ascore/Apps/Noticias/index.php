@@ -47,5 +47,5 @@ $c=newObject("cat_not",$cat_id);
 $c->fecha_hoy=date(time());
 plantHTML($c,'menu_cat',array("ID"=>$c->listAll("nombre_cat")));
 
-listList($n,array(),'list_notice');
+listList($n,array(),'list_notice',"",1,"plParseTemplateFast");
 ?>

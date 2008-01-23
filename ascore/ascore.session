@@ -2,8 +2,12 @@
 <webprojectsession>
   <session usePreviewPrefix="0" previewPrefix="" >
     <itemcursorpositions>
-      <item column="10" line="16" url="Apps/Noticias/local/Tmpl/view_notice.html" />
-      <item line="39" column="8" url="Apps/Noticias/local/Tmpl/add.html" />
+      <item line="0" column="0" url="Framework/SubCore/root.php" />
+      <item line="411" column="56" url="Framework/SubCore/core.php" />
     </itemcursorpositions>
+    <treestatus>
+      <openfolder url="Framework" />
+      <openfolder url="Framework/SubCore" />
+    </treestatus>
   </session>
 </webprojectsession>

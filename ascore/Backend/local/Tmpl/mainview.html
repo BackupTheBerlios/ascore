@@ -15,14 +15,14 @@ body {
     padding-top:0px;
     padding-left:0px;
     margin-left:3px;
-    background-color:#D1CDC5;
+    background-color:#EEEAEE;
   }
 
 td.tmenuitem {
-    font-family:tahoma,verdana;
+    font-family:verdana;
     font-size:11px;
     cursor:pointer;
-    border:1px solid #D5CEC5;
+    border:1px solid #EEEAEE;
     white-space:nowrap;
     text-align:left;
   }
@@ -34,29 +34,41 @@ td.tmenuitem:hover {
   
 
 .thook {
-    background : #D5CEC5;
-    font-family:tahoma,verdana;
+    background-color : gray;
+    padding-right:2px;
+    padding-bottom:2px;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    -moz-border-radius:6px;
+    
+  }
+.thookreal {
+    background : #EEEAEE;
+    font-family:verdana;
     font-size:11px;
     border : 1px outset #DADADA;
     line-height:15px;
     text-align:left;
     padding-top:5px;
+    padding-bottom:5px;
     padding-right:5px;
     white-space:nowrap;
-    
+    -moz-border-radius:6px;
+    opacity:1.0;
+       
   }
 
 
 .tlink {
-    font-family:tahoma,verdana;
+    font-family:verdana;
     font-size:11px;
     color:black;
     text-decoration:none;
-    margin:5px;
+    margin-right:5px;
   }
  
  .tlink:hover {
-    color:white;
+    color:#5E70C1;
   
   }
 
@@ -79,7 +91,7 @@ function wResizeAll() {
 		
 		s=window.innerHeight-25-22-8-29;
 		if (isNaN(s))
-			s=document.body.clientHeight-25-22-8-25-75;
+			s=document.body.clientHeight-25-22-8-25-75+75;
 	
 		try{f=document.getElementById("fbody").style.height=s+"px";}
 		catch(e){alert(s+' '+e)};
@@ -191,11 +203,9 @@ function create_menu_entry_reverse(epos,box) {
 </table>
 
 <!-- D:menu_entrys_items -->
-
-
 <iframe name="statusbar" id="statusbar" width="100%" height="25" src="public_statusbar.php" frameborder="0" scrolling="no" style="border:1px solid #D8E6F2;"></iframe><br>
-<iframe src="<!-- D:page -->" height="100%" width="100%" scrolling="auto" frameborder="0" name="fbody" id="fbody" style="border:1px solid #D8E6F2;"></iframe><br>
-<iframe name="footer"  width="100%"  height="22" src="public_footer.php" frameborder="0" scrolling="no" style="bottom:0px;border:1px solid #D8E6F2;"></iframe><br>
+<iframe src="<!-- D:page -->" height="120%" width="100%" scrolling="auto" frameborder="0" name="fbody" id="fbody" style="border:1px solid #D8E6F2;height:120%;padding:0px;margin:0px"></iframe><br>
+<iframe name="footer"  width="100%"  height="22" src="public_footer.php" frameborder="0" scrolling="no" style="bottom:0px;border:1px solid #D8E6F2;height:22px;position:absolute;"></iframe><br>
 
 
 <SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript1.3">
@@ -213,9 +223,7 @@ for (i=0;i<<!-- D:total_menu_items -->;i++) {
 </html>
 <script>
 wResizeAll();
-s=window.innerHeight;
-	if (!isNaN(s))
-		window.onresize=wResizeAll;
+window.onresize=wResizeAll;
 /*
 document.getElementById('statusbar').style.display='';
 document.getElementById('fbody').style.display='';
