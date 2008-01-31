@@ -50,14 +50,19 @@ else
 	}	
 	
 	$q=newObject("queryb",$u->query_id);
-	$q->searchResults=$bulk;
-	$res=_query($q->queryb);
-        $bulk=array();
-        for ($i=0,$rows_affected=_affected_rows();$i<$rows_affected;$i++) {
+	$res=_query(ereg_replace("AS '([a-zA-z\|:0-9 ]*)'","",$q->queryb));
+	;
+    $bulk=array();
+    for ($i=0,$rows_affected=_affected_rows();$i<$rows_affected;$i++) {
             $rawres=_fetch_array($res);
             //$p=array_slice($rawres,1);
             $bulk[]=$rawres;
         }
+            
+	$q->searchResults=$bulk;
+	$res=_query($q->queryb);
+	$rawres=_fetch_array($res);
+	$titles=array_keys($rawres);
 	
 	$magic_template='
 	<!--HEAD-->
@@ -67,7 +72,7 @@ else
 	
 	';
 	
-	foreach($bulk[0] as $row=>$data) {
+	foreach($titles as $row) {
 		$row=explode("|",$row);
 		
 		$magic_template.="
@@ -81,6 +86,7 @@ $magic_template.='
 <!--SET-->
 <tr>
 ';
+	//print_r($keys);
 	$j=0;
 	foreach($bulk[0] as $row=>$data) {
 		$type=explode(":",$metadata[$j]);
@@ -114,6 +120,7 @@ $magic_template.='
 <!--END-->
 </table>';
 	
+	//print($magic_template);
 	$q->searchResults=$bulk;
 	listList($q,array(),$magic_template);
 	
