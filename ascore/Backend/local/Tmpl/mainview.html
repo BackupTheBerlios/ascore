@@ -147,6 +147,7 @@ function flip(id) {
 		else {
 			for (i=0;i<mEindex;i++)
 				document.getElementById(menuEntrys[i]).style.display='none';	
+			opaShow(id);	
 			document.getElementById(id).style.display='';
 			document.getElementById(id).style.zIndex=100;
 			
@@ -189,6 +190,41 @@ function create_menu_entry_reverse(epos,box) {
 	menuEntrys[mEindex]=box;
 	mEindex++;
 }
+
+var _opa_i=0;
+var sw=0;
+
+function setOpacity(elemento,value) {
+		testObj=document.getElementById(elemento);
+		testObj.style.opacity = value/10;
+		testObj.style.KhtmlOpacity = value/10;
+		testObj.style.filter = 'alpha(opacity=' + value*10 + ')';
+}
+function opaShow(elemento) {
+	
+	//if ((!sw)||(sw==0)) {
+		if (_opa_i<=10) {
+			setOpacity(elemento,_opa_i);
+			_opa_i++;
+			setTimeout("opaShow('"+elemento+"')", 25);
+		}
+		else
+			_opa_i=0;
+		//else if (_opa_i==10)
+			//sw=1;
+	//}
+	/*else if (sw==1){
+		if (_opa_i>=0) {
+			setOpacity(elemento,_opa_i);
+			_opa_i--;
+			setTimeout("opaShow('"+elemento+"')", 1);
+		}
+		else if (_opa_i==-1)
+			sw=0;
+	
+	}*/
+}
+
 </script>
 <body style="">
 <table width="100%" cellspacing="0" style="z-index : 2;">
