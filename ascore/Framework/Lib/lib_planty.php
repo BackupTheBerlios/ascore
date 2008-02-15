@@ -122,7 +122,8 @@ class plantilla {
 			$cut2=$this->_array_search_fuzz($copy,$this->mark["end"]);
 			$head=($cut1&&$cut2) ? array_splice($copy,$cut1,$cut2-$cut1) : $copy;
 			
-			$cc="dynamic_class_".$this->name.($nn%$styles).""; 
+			if ($styles)
+					$cc="dynamic_class_".$this->name.($nn%$styles).""; 
 			if (is_object($dat))
 				$dat=get_object_vars($dat);
 			//
