@@ -23,3 +23,4 @@ ASCore 0.47.2 - - Added NI: tag (relaxed conditional) in lib_planty
 		  Fixed bug in lib_planty (Paging)	
 ASCore 0.48.0 - - Fixed some update bugs
 ASCore 0.48.2 - - Added initial plParseTemplateFast (lib_planty,lib_list,testme.php)
+ASCore 0.99.0 - - Added support for PHP5 and various fixes

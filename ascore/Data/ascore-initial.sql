@@ -1,10 +1,10 @@
 # MySQL dump by phpMyDump
-# Host: localhost Database: asCore
+# Host: localhost Database: worldspace
 # ----------------------------
-# Server version: 4.1.11-Debian_4sarge7-log
+# Server version: 5.0.32-Debian_7etch3
 
 
-INSERT INTO coreg2_act VALUES (1, '', '', '',  NULL,  NULL,  NULL,  NULL,  NULL, '', '', '',  NULL);
+
 DROP TABLE IF EXISTS `coreg2_bilo_object`;
 # ----------------------------------------
 # table structure for table 'coreg2_bilo_object' 
@@ -20,7 +20,7 @@ CREATE TABLE coreg2_bilo_object (
   `S_Date_M` int(11) default NULL,
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_bilo_object VALUES (1,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL);
 DROP TABLE IF EXISTS `coreg2_bookmark`;
@@ -37,7 +37,7 @@ CREATE TABLE coreg2_bookmark (
   `S_Date_M` int(11) default NULL,
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_bookmark VALUES (1,  NULL, '', '',  NULL,  NULL,  NULL,  NULL);
 DROP TABLE IF EXISTS `coreg2_cat_act`;
@@ -53,7 +53,7 @@ CREATE TABLE coreg2_cat_act (
   `S_Date_M` int(11) default NULL,
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_cat_act VALUES (1, '', '',  NULL,  NULL,  NULL,  NULL);
 INSERT INTO coreg2_cat_act VALUES (2, 'Juegos', 'Actualizaciones de juegos que hay disponibles',  NULL,  NULL,  NULL,  NULL);
@@ -72,7 +72,7 @@ CREATE TABLE coreg2_cat_not (
   `S_Date_M` int(11) default NULL,
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_cat_not VALUES (1, '',  NULL,  NULL,  NULL,  NULL);
 INSERT INTO coreg2_cat_not VALUES (2, 'Empresa', 0, 2, 0, 1145526861);
@@ -94,7 +94,7 @@ CREATE TABLE coreg2_cat_soft (
   `S_Date_M` int(11) default NULL,
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_cat_soft VALUES (1, '', '',  NULL,  NULL,  NULL,  NULL);
 INSERT INTO coreg2_cat_soft VALUES (3, 'Drivers y controladores', 'Drivers y controladores', 0, 58, 0, 1151427522);
@@ -112,7 +112,7 @@ CREATE TABLE coreg2_categoria (
   `cat_pr` int(11) default NULL,
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_categoria VALUES (1, '',  NULL,  NULL,  NULL,  NULL,  NULL,  NULL);
 INSERT INTO coreg2_categoria VALUES (26, 'Example', 0, 2, 2, 1161945559, 1161945559, 26);
@@ -142,7 +142,7 @@ CREATE TABLE coreg2_data_object (
   `S_Date_M` int(11) default NULL,
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_data_object VALUES (1, 'archive',  NULL, '', '', '...', '...', '...',  NULL, '', '',  NULL, '',  NULL,  NULL,  NULL,  NULL);
 INSERT INTO coreg2_data_object VALUES (2, 'folder', 0, '2', '2', 'rwx', 'r.x', '...', 0, 'Documentacion', '', 1159290518, 'Documentacion', 2, 0, 1159290518, 0);
@@ -166,7 +166,7 @@ CREATE TABLE coreg2_documento (
   `cat_pr` int(11) default NULL,
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_documento VALUES (1, '', '', '',  NULL,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL);
 INSERT INTO coreg2_documento VALUES (21, 'Example', '<p><strong>This is a test example</strong></p><p>&nbsp;</p>', 'admin', 1161967943, 1182780950, 26, 2, 2, 1161967943, 1182780950, 26);
@@ -192,7 +192,7 @@ CREATE TABLE coreg2_fileh (
   `S_Date_M` int(11) default NULL,
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_fileh VALUES (1, '', '', '',  NULL,  NULL,  NULL, '', '',  NULL,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL);
 DROP TABLE IF EXISTS `coreg2_foro`;
@@ -212,7 +212,7 @@ CREATE TABLE coreg2_foro (
   `S_Date_M` int(11) default NULL,
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_foro VALUES (1, 'Foro asCore', 'Cuestiones del desarrollo de asCore', 0, 1159290258, '', 0, 0, 0, 1159290258, 0);
 INSERT INTO coreg2_foro VALUES (2, 'Foro asCore', 'Developer Issues', 0, 1182780968, '', 0, 0, 2, 1159290265, 1182780968);
@@ -231,7 +231,7 @@ CREATE TABLE coreg2_foto (
   `id_old` int(11) default NULL,
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=89 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_foto VALUES (1,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL, '',  NULL);
 INSERT INTO coreg2_foto VALUES (18, 4, 5, 2, 0, 1148310985, 0, '', 0);
@@ -308,7 +308,7 @@ CREATE TABLE coreg2_group (
   `S_Date_M` int(11) default NULL,
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_group VALUES (1, '',  NULL, 'No',  NULL,  NULL,  NULL,  NULL);
 INSERT INTO coreg2_group VALUES (2, 'Administradores', 2, 'Si', 0, 2, 0, 1161949224);
@@ -363,7 +363,7 @@ CREATE TABLE coreg2_notice (
   `fuente` varchar(100) NOT NULL default '',
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_notice VALUES (1, 'Introduzca titulo', 'Prueba', 0, 2, '', 0, '', 2, 0, 1180947539, 0, 0, 0, '', '');
 INSERT INTO coreg2_notice VALUES (10, 'prueba', 'Prueba', 0, 2, '', 0, 'prueba', 2, 2, 1180975291, 1180976093, 16, 1180976093, '', 'prueba');
@@ -405,7 +405,7 @@ CREATE TABLE coreg2_queryb (
   `S_Date_M` int(11) default NULL,
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_queryb VALUES (1, '', '',  NULL,  NULL,  NULL,  NULL);
 INSERT INTO coreg2_queryb VALUES (3, 'SELECT coreg2_user.username AS \'Usuario|string:50\',coreg2_user.nombre AS \'Nombre|string:50\',coreg2_user.apellidos AS \'Apellidos|string:50\' FROM coreg2_user WHERE ID>1', 'Usuarios', 2, 2, 1171132544, 1182781404);
@@ -426,7 +426,7 @@ CREATE TABLE coreg2_registro (
   `S_Date_M` int(11) default NULL,
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_registro VALUES (1,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL);
 DROP TABLE IF EXISTS `coreg2_report`;
@@ -446,7 +446,7 @@ CREATE TABLE coreg2_report (
   `S_Date_M` int(11) default NULL,
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_report VALUES (1, '', '',  NULL, 'HardCoded', 'No', 'No',  NULL,  NULL,  NULL,  NULL);
 INSERT INTO coreg2_report VALUES (3, 'Listado de Usuarios', '', 3, 'SoftCoded', 'Si', 'Si', 2, 0, 1171132562, 0);
@@ -469,7 +469,7 @@ CREATE TABLE coreg2_soft (
   `fecha_pub` int(11) default NULL,
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_soft VALUES (1, '', '', '', '',  NULL,  NULL,  NULL,  NULL,  NULL,  NULL, '',  NULL);
 DROP TABLE IF EXISTS `coreg2_user`;
@@ -498,7 +498,7 @@ CREATE TABLE coreg2_user (
   `mojo` varchar(5) NOT NULL default '',
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=75 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_user VALUES (1, 'user', '', '', '', 65536, 'No', '', '',  NULL,  NULL,  NULL,  NULL,  NULL, '', '', '', '', '', '');
 INSERT INTO coreg2_user VALUES (2, 'admin', '098f6bcd4621d373cade4e832627b4f6', 'Administrador', 'Sistema', 6, 'Si', '954426632', 'info@activasistemas.com', 0, 2, 0, 1182781222, 1182781222, 'Mi calle', 'Sevilla', 'Sevilla', '41003', 'Espa?a', '');
@@ -520,10 +520,9 @@ CREATE TABLE coreg2_user_pref (
   `S_Date_M` int(11) default NULL,
   PRIMARY KEY  (`ID`),
   KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 INSERT INTO coreg2_user_pref VALUES (1,  NULL, 'Si', 'popup',  NULL, 'Interno', '',  NULL,  NULL,  NULL,  NULL);
-INSERT INTO coreg2_usuario VALUES (323, 'Usuario', 0, 58, 0, 1151062253, 0);
 DROP TABLE IF EXISTS `coreg2_void`;
 # ----------------------------------------
 # table structure for table 'coreg2_void' 
