@@ -4,28 +4,6 @@
 # Server version: 4.1.11-Debian_4sarge7-log
 
 
-
-DROP TABLE IF EXISTS `coreg2_act`;
-# ----------------------------------------
-# table structure for table 'coreg2_act' 
-CREATE TABLE coreg2_act (
-  `ID` int(11) NOT NULL auto_increment,
-  `nombre` varchar(100) NOT NULL default '',
-  `desc` blob NOT NULL,
-  `url` varchar(100) NOT NULL default '',
-  `cat_id` int(11) default NULL,
-  `S_UserID_CB` int(11) default NULL,
-  `S_UserID_MB` int(11) default NULL,
-  `S_Date_C` int(11) default NULL,
-  `S_Date_M` int(11) default NULL,
-  `version` varchar(100) NOT NULL default '',
-  `prioridad` enum('Opcional','Recomendado','Importante') NOT NULL default 'Opcional',
-  `paquete` varchar(100) NOT NULL default '',
-  `fecha_pub` int(11) default NULL,
-  PRIMARY KEY  (`ID`),
-  KEY `ID` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 INSERT INTO coreg2_act VALUES (1, '', '', '',  NULL,  NULL,  NULL,  NULL,  NULL, '', '', '',  NULL);
 DROP TABLE IF EXISTS `coreg2_bilo_object`;
 # ----------------------------------------

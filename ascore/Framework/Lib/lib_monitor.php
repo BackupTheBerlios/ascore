@@ -6,17 +6,21 @@
     // MonInit()
     // MonRead()
     // MonWrite($data)
+
+if ($SYS["monitor_enabled"]) {
+
 ?>
 <?php
 class Monitor {
 
-    var $shm_id;
+    var $shm_id=0;
     var $SYSPERFOMANCE;
     // Creacion de un segmento de memoria compartida de 100 bytes y con un
     // identificador igual a 0xff3
     function MonInit()
     {
 
+	
         $this->$shm_id = shmop_open(0xff3, "c", 0644, 1024);
         if (!$this->$shm_id)
         {
@@ -69,9 +73,10 @@ class Monitor {
    }
 
 }
-$monitor=new Monitor();
-$monitor->MonInit();
-$monitor->SYSPERFOMANCE=unserialize($monitor->MonRead());
+	$monitor=new Monitor();
+	$monitor->MonInit();
+	$monitor->SYSPERFOMANCE=unserialize($monitor->MonRead());
 
 
+}
 ?>

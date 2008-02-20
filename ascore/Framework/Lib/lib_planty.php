@@ -226,9 +226,9 @@ class plantilla {
 			
 
 
-			$res=str_replace('<!-- A:'.key($dat).' -->',strftime("%d/%m/%Y &nbsp;",current($dat)),$res);
-			$res=str_replace('<!-- T:'.key($dat).' -->',strftime("%H:%M &nbsp;",current($dat)),$res);
-			$res=str_replace('<!-- H:'.key($dat).' -->',strftime("%d/%m/%Y %H:%S",current($dat)),$res);
+			$res=str_replace('<!-- A:'.key($dat).' -->',strftime("%d/%m/%Y &nbsp;",(int)current($dat)),$res);
+			$res=str_replace('<!-- T:'.key($dat).' -->',strftime("%H:%M &nbsp;",(int)current($dat)),$res);
+			$res=str_replace('<!-- H:'.key($dat).' -->',strftime("%d/%m/%Y %H:%S",(int)current($dat)),$res);
 			$res=str_replace('<!-- C:'.key($dat).' -->',"checked",$res);
 			$res=str_replace('<!-- R:'.key($dat).' -->',int_to_text_ex(current($dat)),$res);
 			
@@ -437,8 +437,8 @@ class plantilla {
 			$res=str_replace('<!-- F:'.key($dat).' -->',sprintf("%.5f",current($dat)),$res);
 			$res=str_replace('<!-- E:'.key($dat).' -->',number_format(current($dat), 2, ',', '.'),$res);
 			$res=str_replace('<!-- V:'.key($dat).' -->',sprintf("%.0f",current($dat)),$res);
-			$res=str_replace('<!-- A:'.key($dat).' -->',strftime("%d/%m/%Y ",current($dat)),$res);
-			$res=str_replace('<!-- H:'.key($dat).' -->',strftime("%d/%m/%Y %H:%S",current($dat)),$res);
+			$res=str_replace('<!-- A:'.key($dat).' -->',strftime("%d/%m/%Y ",(int)current($dat)),$res);
+			$res=str_replace('<!-- H:'.key($dat).' -->',strftime("%d/%m/%Y %H:%S",(int)current($dat)),$res);
 			$res=str_replace('<!-- R:'.key($dat).' -->',int_to_text_ex(current($dat)),$res);
 			$res=str_replace('<!-- N:nextpage -->',$nextpage,$res);
 			$res=str_replace('<!-- N:prevpage -->',$prevpage,$res);
@@ -550,8 +550,8 @@ class plantilla {
 			$res=str_replace('<!-- F:'.key($dat).' -->',sprintf("%.5f",current($dat)),$res);
 			$res=str_replace('<!-- E:'.key($dat).' -->',number_format(current($dat), 2, ',', '.'),$res);
 			$res=str_replace('<!-- V:'.key($dat).' -->',sprintf("%.0f",current($dat)),$res);
-			$res=str_replace('<!-- A:'.key($dat).' -->',strftime("%d/%m/%Y",current($dat)),$res);
-			$res=str_replace('<!-- H:'.key($dat).' -->',strftime("%d/%m/%Y %H:%S",current($dat)),$res);
+			$res=str_replace('<!-- A:'.key($dat).' -->',strftime("%d/%m/%Y",(int)current($dat)),$res);
+			$res=str_replace('<!-- H:'.key($dat).' -->',strftime("%d/%m/%Y %H:%S",(int)current($dat)),$res);
 			$res=str_replace('<!-- R:'.key($dat).' -->',int_to_text_ex(current($dat)),$res);
 			$res=str_replace('<!-- N:nextpage -->',$nextpage,$res);
 			$res=str_replace('<!-- N:prevpage -->',$prevpage,$res);
@@ -647,9 +647,9 @@ function plParseTemplateFast($dat,$external="") {
 		
 		$res=preg_replace("/<!-- M:([^\{]{1,100}?) -->/e",'$dat[$1]',$res);
 		$res=preg_replace("/<!-- V:([^\{]{1,100}?) -->/e",'$dat[$1]',$res);
-		$res=preg_replace("/<!-- A:([^\{]{1,100}?) -->/e",'strftime("%d/%m/%Y &nbsp;",$dat[$1])',$res);
-		$res=preg_replace("/<!-- T:([^\{]{1,100}?) -->/e",'strftime("%H:%M &nbsp;",$dat[$1])',$res);
-		$res=preg_replace("/<!-- H:([^\{]{1,100}?) -->/e",'strftime("%d/%m/%Y %H:%S",$dat[$1])',$res);
+		$res=preg_replace("/<!-- A:([^\{]{1,100}?) -->/e",'strftime("%d/%m/%Y &nbsp;",(int)$dat[$1])',$res);
+		$res=preg_replace("/<!-- T:([^\{]{1,100}?) -->/e",'strftime("%H:%M &nbsp;",(int)$dat[$1])',$res);
+		$res=preg_replace("/<!-- H:([^\{]{1,100}?) -->/e",'strftime("%d/%m/%Y %H:%S",(int)$dat[$1])',$res);
 		$res=preg_replace("/<!-- C:([^\{]{1,100}?) -->/e",'echo "CHECKED"',$res);
 		$res=preg_replace("/<!-- R:([^\{]{1,100}?) -->/e",'int_to_text_ex($dat[$1])"',$res);
 		$res=preg_replace("/<!-- L:([^\{]{1,100}?) -->/e",'substr($dat[$1]),0,300)."..."',$res);
@@ -750,7 +750,7 @@ function plantView($object, $campos, $template,$debug=false) {
 							$object->$fld=nl2br(strip_tags($object->f($fld),"<br />"));
 							break;
 						case "fecha":
-							$object->$fld=strftime("%d/%m/%Y",$object->f($fld));
+							$object->$fld=strftime("%d/%m/%Y",(int)$object->f($fld));
 							break;
 						case "ref":
 							$obj=explode("|",$multitype[1]);
@@ -785,7 +785,7 @@ function plantView($object, $campos, $template,$debug=false) {
 							
 							break;
 						case "hora":
-							$object->$fld=strftime("%H:%M",$object->f($fld));
+							$object->$fld=strftime("%H:%M",(int)$object->f($fld));
 							break;
 						case "var":
 							$object->$fld=0;

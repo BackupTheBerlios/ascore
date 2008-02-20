@@ -19,8 +19,9 @@ else {
 
 
 echo " :: $err Fallos";
-$stats=$monitor->MonGetStat();
-echo " <span style='color:black;'> Pages {$stats["pages"]} Average:{$stats["avg"]} spp </span>";
-
+if ($SYS["monitor_enabled"]) {
+	$stats=$monitor->MonGetStat();
+	echo " <span style='color:black;'> Pages {$stats["pages"]} Average:{$stats["avg"]} spp </span>";
+}
 plantHTML(array(),"action_footer");
 ?>

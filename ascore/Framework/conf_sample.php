@@ -20,10 +20,10 @@ $SYS["ROOT"]="http://".$_SERVER["SERVER_NAME"].dirname($_SERVER["SCRIPT_NAME"]).
 // 	DATABASE
 //
 $SYS["DBDRIVER"]=($SYS["DBDRIVER"])?$SYS["DBDRIVER"]:"mysql";
-$SYS["mysql"]["DBUSER"]=($SYS["mysql"]["DBUSER"])?$SYS["mysql"]["DBUSER"]:"ascore";
-$SYS["mysql"]["DBHOST"]=($SYS["mysql"]["DBHOST"])?$SYS["mysql"]["DBHOST"]:"localhost";
-$SYS["mysql"]["DBNAME"]=($SYS["mysql"]["DBNAME"])?$SYS["mysql"]["DBNAME"]:"asCore";
-$SYS["mysql"]["DBPASS"]=($SYS["mysql"]["DBPASS"])?$SYS["mysql"]["DBPASS"]:"ascore";
+$SYS["mysql"]["DBUSER"]=($SYS["mysql"]["DBUSER"])?$SYS["mysql"]["DBUSER"]:"<DBDBUSER>";
+$SYS["mysql"]["DBHOST"]=($SYS["mysql"]["DBHOST"])?$SYS["mysql"]["DBHOST"]:"<DBAHOST>";
+$SYS["mysql"]["DBNAME"]=($SYS["mysql"]["DBNAME"])?$SYS["mysql"]["DBNAME"]:"<DBDBNAME>";
+$SYS["mysql"]["DBPASS"]=($SYS["mysql"]["DBPASS"])?$SYS["mysql"]["DBPASS"]:"<DBDBPASS>";
 $SYS["DBDRIVER_CONFIGURED"]=true;
 //
 //	Default rows returned by selects
@@ -53,6 +53,6 @@ $SYS["config"]["zoom"]="iframe";
 $SYS["bcompiler_extension"]=false;
 
 /* Acces for myself */
-$SECRETKEY="hello_my_friend";
+$SECRETKEY="<SECRETKEY>";
 
 ?>

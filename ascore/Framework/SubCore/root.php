@@ -680,11 +680,18 @@ class Ente extends core{
 
 	function _clone($data) {
 
-		
-		$bin=$this;
-		$bin->properties=$data;
-		$bin->_normalize();
-		return $bin;
+		if (((int)substr(PHP_VERSION,0,1)==5)) {
+			$bin=clone($this);
+			$bin->properties=$data;
+			$bin->_normalize();
+			return $bin;
+		}
+		else {
+			$bin=$this;
+			$bin->properties=$data;
+			$bin->_normalize();
+			return $bin;
+		}
 	}
 
 	/*********************
