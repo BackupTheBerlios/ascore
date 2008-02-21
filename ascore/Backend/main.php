@@ -36,6 +36,9 @@ if ((!$isLoginScreen)&&(!$SYS["GLOBAL"]["void_login"])) {
 
 	}
 
+if ((!BILO_isAdmin())&&(!BILo_isOperator()))
+	 die(_("Sin privilegios"));
+	
 $EURI=explode("/",$petition);
 
 /* 
