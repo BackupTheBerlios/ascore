@@ -1,8 +1,10 @@
 body {
     font-family :Bitstream Vera Sans,Verdana;
     font-size: 11px;
-    background-color:#FFFFF;
+    background-color:#FFFFFF;
     background-image:url('images/background.jpg');
+    background-position:top left;
+    background-repeat:no-repeat;
 }
 
 * {
@@ -239,3 +241,6 @@ input.sexybutton:hover {
 	background-image:url(images/abutton.gif);
 }
 	
+@media print {
+	cortina {display:none}
+}	

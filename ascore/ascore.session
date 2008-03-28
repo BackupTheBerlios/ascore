@@ -2,7 +2,38 @@
 <webprojectsession>
   <session usePreviewPrefix="0" previewPrefix="" >
     <itemcursorpositions>
-      <item column="0" line="0" url="Framework/Lib/lib_list.php" />
+      <item line="11" column="0" url="Apps/System/action_check_pics.php" />
+      <item line="0" column="0" url="Apps/System/local/Tmpl/footer.html" />
+      <item line="0" column="0" url="Apps/System/System.php" />
+      <item line="0" column="0" url="Apps/System/action_import_csv.php" />
+      <item line="0" column="0" url="Apps/System/action_check_transactions.php" />
+      <item line="25" column="35" url="Apps/System/action_check_status.php" />
+      <item line="0" column="0" url="Framework/Class/foto.def" />
+      <item line="0" column="0" url="Framework/Class/fileh.def" />
+      <item line="0" column="0" url="Framework/Class/foto.php" />
+      <item line="97" column="18" url="Framework/Class/fileh.php" />
+      <item line="15" column="49" url="Apps/System/admin_menu_entry.php" />
+      <item line="36" column="25" url="Apps/System/action_check_files.php" />
+      <item line="0" column="0" url="Apps/System/info.php" />
+      <item line="6" column="22" url="Apps/System/testme.php" />
+      <item line="11" column="68" url="Apps/Noticias/admin_menu_entry.php" />
+      <item line="39" column="63" url="Framework/Plantillas/Public/portada.html" />
+      <item line="0" column="0" url="Backend/main.php" />
+      <item line="0" column="0" url="Login/login.php" />
+      <item line="0" column="0" url="Apps/Bilo/login.php" />
+      <item line="0" column="0" url="Login/index.php" />
+      <item line="15" column="6" url="Framework/Plantillas/opener.html" />
     </itemcursorpositions>
+    <treestatus>
+      <openfolder url="Apps" />
+      <openfolder url="Backend" />
+      <openfolder url="Backend/local" />
+      <openfolder url="Framework" />
+      <openfolder url="Framework/Class" />
+      <openfolder url="Framework/Plantillas" />
+      <openfolder url="Login" />
+      <openfolder url="Themes" />
+      <openfolder url="Themes/Estilos" />
+    </treestatus>
   </session>
 </webprojectsession>

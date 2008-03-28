@@ -56,7 +56,10 @@ if (is_file(dirname(__FILE__)."/../Apps/$APP/$ACTION")) {
 	
 	}
 	else {
-		plantHTML(array("PATH"=>$SYS["ROOT"]),"f_menu");
+		if ($print_mode)
+			plantHTML(array("PATH"=>$SYS["ROOT"]),"f_menu");
+		else
+			plantHTML(array("PATH"=>$SYS["ROOT"]),"f_menu_curtain");
 		include(dirname(__FILE__)."/../Apps/$APP/$ACTION");
 		plantHTML(array("PATH"=>$SYS["ROOT"]),"footer");
 	}

@@ -5,6 +5,7 @@ require_once("Bilo.php");
 if (!BILO_isLogged()) {
 	plantHTML(
 	array (
+		"ROOT"=>$SYS["ROOT"],
 		"MSG"=>"Entrada al Sistema",
 		"SMSG"=>$SYS["MESSAGES"],
 		"REFERER"=>$_SERVER["HTTP_REFERER"]

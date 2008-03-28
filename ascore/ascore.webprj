@@ -364,11 +364,6 @@
     <item url="Apps/Noticias/htmlarea.php" uploadstatus="1" />
     <item url="Apps/Noticias/index.php" uploadstatus="1" />
     <item url="Apps/Noticias/list_cat.php" uploadstatus="1" />
-    <item url="Apps/Noticias/list_cat_prim_actualizacion.php" uploadstatus="1" />
-    <item url="Apps/Noticias/list_cat_ult_actualizacion.php" uploadstatus="1" />
-    <item url="Apps/Noticias/list_prim_actualizacion" uploadstatus="1" />
-    <item url="Apps/Noticias/list_prim_actualizacion.php" uploadstatus="1" />
-    <item url="Apps/Noticias/list_ult_actualizacion.php" uploadstatus="1" />
     <item url="Apps/Noticias/mostrar_foto.php" uploadstatus="1" />
     <item url="Apps/Noticias/Noticias.php" uploadstatus="1" />
     <item url="Apps/Noticias/view_notice.php" uploadstatus="1" />
@@ -429,8 +424,6 @@
     <item url="Apps/System/import_sql.php" uploadstatus="1" />
     <item url="Apps/System/index.php" uploadstatus="1" />
     <item url="Apps/System/info.php" uploadstatus="1" />
-    <item url="Apps/System/sanitize_file.php" uploadstatus="1" />
-    <item url="Apps/System/sanitize_pics.php" uploadstatus="1" />
     <item url="Apps/System/System.php" uploadstatus="1" />
     <item url="Apps/System/testme.php" uploadstatus="1" />
     <item url="Backend/" uploadstatus="1" />
@@ -447,18 +440,6 @@
     <item url="Data/" uploadstatus="1" />
     <item url="Data/Img/" uploadstatus="1" />
     <item url="Data/Img/Backgrounds/" uploadstatus="1" />
-    <item url="Data/Img/Backgrounds/background_light_green.gif" uploadstatus="1" />
-    <item url="Data/Img/Backgrounds/background_light_yellow.gif" uploadstatus="1" />
-    <item url="Data/Img/Backgrounds/boton2.jpg" uploadstatus="1" />
-    <item url="Data/Img/Backgrounds/boton3.jpg" uploadstatus="1" />
-    <item url="Data/Img/Backgrounds/boton.jpg" uploadstatus="1" />
-    <item url="Data/Img/Backgrounds/fondo.jpg" uploadstatus="1" />
-    <item url="Data/Img/Backgrounds/footer_background_espiral_doc.gif" uploadstatus="1" />
-    <item url="Data/Img/Backgrounds/footer_background_espiral.gif" uploadstatus="1" />
-    <item url="Data/Img/Backgrounds/footer_background.gif" uploadstatus="1" />
-    <item url="Data/Img/Backgrounds/footer_background_gris2.gif" uploadstatus="1" />
-    <item url="Data/Img/Backgrounds/footer_background_gris.gif" uploadstatus="1" />
-    <item url="Data/Img/Backgrounds/list.gif" uploadstatus="1" />
     <item url="Data/Img/Icons/" uploadstatus="1" />
     <item url="Data/Img/Icons/back.png" uploadstatus="1" />
     <item url="Data/Img/Icons/b_c.gif" uploadstatus="1" />
@@ -490,16 +471,12 @@
     <item url="Data/Img/Tmp/time_ellapsed.png" uploadstatus="1" />
     <item url="Data/Img/actsys.png" uploadstatus="1" />
     <item url="Data/Img/coreg2_logo_simple.png" uploadstatus="1" />
-    <item url="Data/Img/logo_esinnova.gif" uploadstatus="1" />
-    <item url="Data/asCore-26-09-06.sql" uploadstatus="1" />
     <item url="Framework/" uploadstatus="1" />
     <item url="Framework/Class/" uploadstatus="1" />
     <item url="Framework/Class/bookmark.def" uploadstatus="1" />
     <item url="Framework/Class/fileh.def" uploadstatus="1" />
     <item url="Framework/Class/fileh.php" uploadstatus="1" />
-    <item url="Framework/Class/fileh.php.30318.backup" uploadstatus="1" />
     <item url="Framework/Class/foto.def" uploadstatus="1" />
-    <item url="Framework/Class/foto_legacy.def" uploadstatus="1" />
     <item url="Framework/Class/foto.php" uploadstatus="1" />
     <item url="Framework/Class/queryb.def" uploadstatus="1" />
     <item url="Framework/Class/void.def" uploadstatus="1" />
@@ -532,8 +509,6 @@
     <item url="Framework/Data/Images/refresh.png" uploadstatus="1" />
     <item url="Framework/Data/Images/reload.png" uploadstatus="1" />
     <item url="Framework/Data/Images/think.gif" uploadstatus="1" />
-    <item url="Framework/Data/last_backup.Tue.sql" uploadstatus="1" />
-    <item url="Framework/Data/last_backup.Wed.sql" uploadstatus="1" />
     <item url="Framework/Doc/" uploadstatus="1" />
     <item url="Framework/Doc/Bilo.docrc" uploadstatus="1" />
     <item url="Framework/Doc/core.c_filesize.html" uploadstatus="1" />
@@ -988,11 +963,7 @@
     <item url="Framework/SubCore/root.php" uploadstatus="1" />
     <item url="Framework/Tmp/" uploadstatus="1" />
     <item url="Framework/Tmp/Changelog" uploadstatus="1" />
-    <item url="Framework/Tmp/database.png" uploadstatus="1" />
-    <item url="Framework/Tmp/memory_usage.png" uploadstatus="1" />
     <item url="Framework/Tmp/notas.txt" uploadstatus="1" />
-    <item url="Framework/Tmp/select.png" uploadstatus="1" />
-    <item url="Framework/Tmp/time_ellapsed.png" uploadstatus="1" />
     <item url="Framework/conf.php" uploadstatus="1" />
     <item url="Framework/coreg2.php" uploadstatus="1" />
     <item url="Framework/coreg2.session" uploadstatus="1" />
@@ -1035,5 +1006,9 @@
     <item url="Framework/Extensions/barcodeGen_4v123pl1/" uploadstatus="1" />
     <item url="Framework/Plantillas/Public/portada.html" uploadstatus="1" />
     <item url="Framework/Plantillas/Public/" uploadstatus="1" />
+    <item desc="" url="Backend/local/Tmpl/f_menu_curtain.html" uploadstatus="1" />
+    <item url="Themes/curtain.php" />
+    <item url="Apps/System/action_check_pics.php" />
+    <item url="Apps/System/action_check_files.php" />
   </project>
 </webproject>

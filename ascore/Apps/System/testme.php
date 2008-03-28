@@ -4,8 +4,7 @@ require_once("System.php");
 
 $TrazaStatus=true;
 require_once("Lib/lib_chart.php");
-if (ini_get("output_buffering"))
-	 ob_end_flush();
+while( ob_end_flush());
 
 $a=newObject("void");
 $a->deletes("1=1");

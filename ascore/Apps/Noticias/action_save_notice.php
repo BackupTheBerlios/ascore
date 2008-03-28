@@ -19,7 +19,7 @@ else
 	//$n->adjunto=$f->save();
 
 $n->setAll($_POST);
-$n->body=$_POST['FCKeditor1'];
+
 
 
 

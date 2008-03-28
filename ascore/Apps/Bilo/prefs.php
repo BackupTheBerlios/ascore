@@ -12,6 +12,4 @@ plantHTML($p,"user_pref",$external_data);
 formClose();
 
 
-
-
 ?>

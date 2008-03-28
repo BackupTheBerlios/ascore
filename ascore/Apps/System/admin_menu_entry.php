@@ -12,8 +12,8 @@ $menu_entry=array(
 	array("System/import_csv.php","fbody","Importar CSV"),
 	array("System/action_check_transactions.php","footer","Test de InnoDB"),
 	array("System/testme.php","fbody","BenchMark de Sistema"),
-	array("System/sanitize_pics.php","fbody","Sanear FotoCatalogo"),
-	array("System/sanitize_file.php","fbody","Sanear Repositorio"),
+	array("System/action_check_pics.php","footer","Sanear FotoCatalogo"),
+	array("System/action_check_files.php","footer","Sanear Repositorio"),
 	array("System/info.php","fbody","Info"),
 	)
 );

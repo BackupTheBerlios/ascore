@@ -6,5 +6,6 @@
 	<rlimit type="int">Límite por defecto de los listados</rlimit>
 	<spooler type="list" option="Interno|ASPooler">Spooler de impresión</spooler>
 	<ip_spooler type="string" option="15">Dirección IP Spooler Externo</ip_spooler>
+	<curtain_effect type="list" option="Si|No">Efecto cortina</curtain_effect>
 </cpd>
 
