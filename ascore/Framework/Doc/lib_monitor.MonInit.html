@@ -1,0 +1,42 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion MonInit</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.99.0</h1>
+		<h2>MonInit</h2>
+		<span class="mini">Fichero /local/trabajo/asCore/Framework/../Framework/Lib/lib_monitor.php</span>
+		<br><br><br><br><div class="desc">    ************************
+<br>
+<br>    // MonClose()
+<br>    // MonInit()
+<br>    // MonRead()
+<br>    // MonWrite($data)
+<br>
+<br>if ($SYS["monitor_enabled"]) {
+<br>
+<br>?>
+<br><?php
+<br>class Monitor {
+<br>
+<br>    var $shm_id=0;
+<br>    var $SYSPERFOMANCE;
+<br>    // Creacion de un segmento de memoria compartida de 100 bytes y con un
+<br>    // identificador igual a 0xff3
+</div>
+<br><div class="box"><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">$shm_id&nbsp;</font><font color="#007700">=&nbsp;</font><font color="#0000BB">shmop_open</font><font color="#007700">(</font><font color="#0000BB">0xff3</font><font color="#007700">,&nbsp;</font><font color="#DD0000">"c"</font><font color="#007700">,&nbsp;</font><font color="#0000BB">0644</font><font color="#007700">,&nbsp;</font><font color="#0000BB">1024</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">$shm_id</font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">debug</font><font color="#007700">(</font><font color="#DD0000">"No&nbsp;se&nbsp;pudo&nbsp;crear&nbsp;el&nbsp;segmento&nbsp;de&nbsp;memoria&nbsp;compartida\n"</font><font color="#007700">,&nbsp;</font><font color="#DD0000">"red"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">//&nbsp;Obtencion&nbsp;del&nbsp;tama&amp;ntilde;o&nbsp;del&nbsp;segmento&nbsp;de&nbsp;memoria&nbsp;compartida<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$shm_size&nbsp;</font><font color="#007700">=&nbsp;</font><font color="#0000BB">shmop_size</font><font color="#007700">(</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">$shm_id</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">debug</font><font color="#007700">(</font><font color="#DD0000">"Segmento&nbsp;de&nbsp;memoria:&nbsp;se&nbsp;han&nbsp;reservado&nbsp;"</font><font color="#007700">.</font><font color="#0000BB">$shm_size</font><font color="#007700">.&nbsp;</font><font color="#DD0000">"&nbsp;bytes.\n"</font><font color="#007700">,&nbsp;</font><font color="#DD0000">"blue"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">?&gt;</font>
+</font>
+</code></div>
+		<br><br>
+		<div align="center"><a href="lib_monitor-index.html">up</a></div>
+		<br><br>
+		</body>
+		

@@ -1,9 +1,0 @@
-<?php
-function save()
-{
-	$t=newObject("fileh");
-	$t->CaptureFile='foto';
-	$this->id_thumb=$t->createThumb();
-	$this->id_foto=$t->save();
-}
-?>

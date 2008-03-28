@@ -3,11 +3,11 @@ ini_set("max_execution_time","500");
 //die("Deactivated");
 require_once("System.php");
 
-plantHTML(array(),"f_menu");
+HTML("action_header");
 $ou=newObject("fileh");
 
 $data=$ou->selectA();
-
+$i=$j=0;
 $total=sizeof($data);
  ob_end_flush();
 foreach($data as $v) {
@@ -34,6 +34,6 @@ foreach($data as $v) {
 	
 }
 
-echo "$i ficheros tratadas $j existen";
+echo "$i ficheros tratados $j existen";
 HTML("footer");
 ?>

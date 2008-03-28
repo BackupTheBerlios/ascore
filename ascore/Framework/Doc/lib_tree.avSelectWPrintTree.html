@@ -1,0 +1,42 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion avSelectWPrintTree</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.99.0</h1>
+		<h2>avSelectWPrintTree</h2>
+		<span class="mini">Fichero /local/trabajo/asCore/Framework/../Framework/Lib/lib_tree.php</span>
+		<br><br><br><br><div class="desc">	
+<br>	 
+<br>	 avSelectPrint($name,$module,$class,$show,$current,$method='')
+<br>	
+<br>	returns window.open linking to Zoom Data Modules.
+<br>	Compatbile CSS whith most Browsers.
+<br>	Parameters are:
+<br>	
+<br>	name: 		name of input
+<br>	module: 	module where to look data
+<br>	oclass: 	categorical class 
+<br>	class: 		class data source
+<br>	show: 		field to be shown
+<br>	current:	current value (ID)
+<br>	method:		if data has to be mined by this method (defaults to selectAll())
+<br>		
+<br>	
+</div>
+<br><div class="box"><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">function&nbsp;</font><font color="#0000BB">avSelectWPrintTree</font><font color="#007700">(</font><font color="#0000BB">$name</font><font color="#007700">,</font><font color="#0000BB">$module</font><font color="#007700">,</font><font color="#0000BB">$class</font><font color="#007700">,</font><font color="#0000BB">$cclass</font><font color="#007700">,</font><font color="#0000BB">$show</font><font color="#007700">,</font><font color="#0000BB">$current</font><font color="#007700">,</font><font color="#0000BB">$method</font><font color="#007700">=</font><font color="#DD0000">''</font><font color="#007700">){<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;global&nbsp;</font><font color="#0000BB">$SYS</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$cdata</font><font color="#007700">=</font><font color="#0000BB">newObject</font><font color="#007700">(</font><font color="#DD0000">"$class"</font><font color="#007700">,</font><font color="#0000BB">$current</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$dsize</font><font color="#007700">=</font><font color="#0000BB">strlen</font><font color="#007700">(</font><font color="#0000BB">$cdata</font><font color="#007700">-&gt;</font><font color="#0000BB">$show</font><font color="#007700">)*</font><font color="#0000BB">1.5</font><font color="#007700">+</font><font color="#0000BB">5</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=\"hidden\"&nbsp;size=\"11\"&nbsp;maxlength=\"11\"&nbsp;name=\"$name\"&nbsp;id=\"Target$class$name\"&nbsp;value=\"$current\"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=\"text\"&nbsp;size=\"$dsize\"&nbsp;name=\"_t_$name\"&nbsp;id=\"wTarget$class$name\"&nbsp;value=\""</font><font color="#007700">.</font><font color="#0000BB">$cdata</font><font color="#007700">-&gt;</font><font color="#0000BB">$show</font><font color="#007700">.</font><font color="#DD0000">"\"&nbsp;readonly&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;onclick='window.open(\"{$SYS["ROOT"]}/Framework/Extensions/Tree/TreeW.php?module=$module&amp;class=$class&amp;show=$show&amp;current=$current&amp;name=$name&amp;cclass=$cclass&amp;method=$method\",\"wFrame$class$name\",\"width=400,height=300,toolbar=0,scrollbar=0\")'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style=\"cursor:pointer;background-color:white;border:1px&nbsp;solid&nbsp;gray\"&gt;&amp;nbsp;+&amp;nbsp;&lt;/span&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">?&gt;</font>
+</font>
+</code></div>
+		<br><br>
+		<div align="center"><a href="lib_tree-index.html">up</a></div>
+		<br><br>
+		</body>
+		

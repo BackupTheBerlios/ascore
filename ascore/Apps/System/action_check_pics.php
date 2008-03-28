@@ -3,12 +3,13 @@ ini_set("max_execution_time","500");
 //die("Deactivated");
 require_once("System.php");
 
-plantHTML(array(),"f_menu");
+HTML("action_header");
 $ou=newObject("foto");
 
 $data=$ou->selectA();
 $total=sizeof($data);
 ob_end_flush();
+$i=$j=0;
 foreach($data as $v) {
 	
 	
@@ -17,13 +18,23 @@ foreach($data as $v) {
 			$dm=newObject("foto",$v["ID"]);
 			$dm->delete();
 		}
-		else
-			$j++;
+		else {
+			$fh=newObject("fileh",$v["id_foto"]);
+			if ((!file_exists($fh->localname()))||(!is_file($fh->localname()))) {
+				$dm=newObject("foto",$v["ID"]);
+				$dm->delete();
+			}
+			else {
+				$j++;
+				//echo $fh->localname();
+			}
+		}
+		
 				
 		$i++;
 		if ($i%25==0) {
 			$p=$i*100/$total;
-			jsAction("setProgress('$p');");
+			jsAction("parent.fbody.setProgress('$p');");
 			flush();
 		}
 	
@@ -31,5 +42,5 @@ foreach($data as $v) {
 }
 
 echo "$i fotos tratadas $j existen";
-HTML("footer");
+HTML("action_footer");
 ?>
