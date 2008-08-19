@@ -12,6 +12,7 @@ $menu_entry=array(
 	array("Bilo/add_user.php","fbody","Nuevo usuario","usuarios.gif"),
 	array("Bilo/add_group.php","fbody","Nuevo grupo","grupos.gif"),
 	array("","","&nbsp;"),
+	array("Bilo/registro.php","fbody","Registros"),
 	array("Bilo/action_skel.php","footer","Generar skel"),
 	array("Bilo/ticker.php","fbody","Ticker"),
 	

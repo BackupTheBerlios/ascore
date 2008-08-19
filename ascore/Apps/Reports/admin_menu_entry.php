@@ -8,6 +8,7 @@ $menu_entry=array(
 "items"=>array(
 	array("Reports/index.php","fbody","Informes disponibles"),
 	array("Reports/add.php","fbody","Nuevo informe"),
+	array("Reports/dev.php?command=querybuilder","fbody","Constructor de consultas"),
 	
 	
 	)

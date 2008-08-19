@@ -75,15 +75,15 @@ function listList($psObject, $campos, $template,$navigation_vars="",$parset=1,$p
 			for ($i=0;$i<$N;$i++) {
 				if (($offset/$W)==($i))
 					if ($i==0) 
-						$P.="<a style=\"text-decoration:underline;text-weight:bold;\" href=\"$navvars{$SYS["NAV_SEPARATOR"]}offset=".($i*$W)."\">".($i+1)."</a>";
+						$P.="<a style=\"text-decoration:underline;text-weight:bold;\" href=\"{$SYS["FORCEDURLFORPAGING"]}$navvars{$SYS["NAV_SEPARATOR"]}offset=".($i*$W)."\">".($i+1)."</a>";
 					else
-						$P.="&middot;<a style=\"text-decoration:underline;text-weight:bold;\" href=\"$navvars{$SYS["NAV_SEPARATOR"]}offset=".($i*$W)."\">".($i+1)."</a>";
+						$P.="&middot;<a style=\"text-decoration:underline;text-weight:bold;\" href=\"{$SYS["FORCEDURLFORPAGING"]}$navvars{$SYS["NAV_SEPARATOR"]}offset=".($i*$W)."\">".($i+1)."</a>";
 	
 				else
 					if ($i==0) 
-						$P.="<a style=\"text-decoration:none; text-weight:bold;\" href=\"$navvars{$SYS["NAV_SEPARATOR"]}offset=".($i*$W)."\">".($i+1)."</a>";
+						$P.="<a style=\"text-decoration:none; text-weight:bold;\" href=\"{$SYS["FORCEDURLFORPAGING"]}$navvars{$SYS["NAV_SEPARATOR"]}offset=".($i*$W)."\">".($i+1)."</a>";
 					else
-						$P.="&middot;<a style=\"text-decoration:none; text-weight:bold;\" href=\"$navvars{$SYS["NAV_SEPARATOR"]}offset=".($i*$W)."\">".($i+1)."</a>";
+						$P.="&middot;<a style=\"text-decoration:none; text-weight:bold;\" href=\"{$SYS["FORCEDURLFORPAGING"]}$navvars{$SYS["NAV_SEPARATOR"]}offset=".($i*$W)."\">".($i+1)."</a>";
 						
 			}
 		}
@@ -101,9 +101,9 @@ function listList($psObject, $campos, $template,$navigation_vars="",$parset=1,$p
 					$P.="&middot;...";
 				else {
 					if (($offset/$W)==($j))
-						$P.="&middot;<a style=\"text-decoration:underline;text-weight:bold;\" href=\"$navvars{$SYS["NAV_SEPARATOR"]}offset=".($j*$W)."\">".($j+1)."</a>";
+						$P.="&middot;<a style=\"text-decoration:underline;text-weight:bold;\" href=\"{$SYS["FORCEDURLFORPAGING"]}$navvars{$SYS["NAV_SEPARATOR"]}offset=".($j*$W)."\">".($j+1)."</a>";
 					else
-						$P.="&middot;<a style=\"text-decoration:none; text-weight:bold;\" href=\"$navvars{$SYS["NAV_SEPARATOR"]}offset=".($j*$W)."\">".($j+1)."</a>";
+						$P.="&middot;<a style=\"text-decoration:none; text-weight:bold;\" href=\"{$SYS["FORCEDURLFORPAGING"]}$navvars{$SYS["NAV_SEPARATOR"]}offset=".($j*$W)."\">".($j+1)."</a>";
 				}
 		}
 			
@@ -209,7 +209,26 @@ function listList($psObject, $campos, $template,$navigation_vars="",$parset=1,$p
 							
 							break;
 							
+					case "xxref":
+							$obj=explode("@",$multitype[1]);
+							$class=$obj[0];
+							$field=$obj[2];
+							$xid=$obj[1];
+						
+							if (is_object($object)) {
+								$void=newObject($class,$object->f($xid));
+								$object->$fld=$void->f($field);
+							}
+							else
+							{
+								$void=newObject($class,$object["$xid"]);
+								$object["$fld"]=$void->f($field);
+							}
 							
+								
+							
+							break;		
+								
 					case "fref":
 							$obj=explode("|",$multitype[1]);
 							$class=$obj[0];

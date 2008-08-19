@@ -1,6 +1,6 @@
 <?php
 
-$dir=session_save_path()."/coreg2_cache/";
+$dir=session_save_path()."/coreg2_cache/{$SYS["ASCACHEDIR"]}/";
 
 if (is_dir($dir)) 
     if ($dh = opendir($dir)) 

@@ -4,16 +4,8 @@
 	<password type="string" option="50">Contraseña</password>
 	<nombre type="string" option="50">Nombre</nombre>
 	<apellidos type="string" option="50">Apellidos</apellidos>
-	<fecha_hoy type="date">Fecha</fecha_hoy>
 	<grupos type="int">Grupos</grupos>
 	<activo type="boolean" option="No">Activo</activo>
-	<telefono type="string" option="15">Telefono de Contacto</telefono>
 	<email type="string" option="75">E-mail de contacto</email>
-	<direccion type="string" option="75">Dirección</direccion>
-	<localidad type="string" option="50">Localidad</localidad>
-	<p_state type="string" option="50">Provincia / Estado</p_state>
-	<zip type="string" option="5">Código Postal / ZIP</zip>
-	<mojo type="string" option="5">Campo de coña</mojo>
-	<pais type="string" option="50">Pais</pais>
 </cpd>
 

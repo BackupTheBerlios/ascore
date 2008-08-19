@@ -10,9 +10,12 @@ if (isset($_POST["ID"])) {
 		$u->setAll($_POST);
 		$u->password=md5($u->password);
 		$u->grupos=$u->setGroupCode($_POST["grupos"]);
-		if ($u->save()) {
+		$NID=$u->save();
+		if ($NID) {
 			echo _("Grabado correctamente {$u->username}");
-			//frameGo("fbody","list.php");
+			if ($ID<2) {
+				frameGo("fbody","list.php?OID=$NID");
+			}
 		}
 		else {
 			echo _("Error grabando {$u->username}: ").$u->ERROR;

@@ -6,5 +6,6 @@
 	<salida_m type="time">Hora de salida (mañana)</salida_m>
 	<entrada_t type="time">Hora de entrada (tarde)</entrada_t>
 	<salida_t type="time">Hora de salida (tarde)</salida_t>
+	<ip type="string" option="15">Direccion IP></ip>
 </cpd>
 

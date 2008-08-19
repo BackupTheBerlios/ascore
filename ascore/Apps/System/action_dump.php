@@ -1,7 +1,7 @@
 <?php 
 require_once("System.php");
 if (!BILO_isAdmin()) {
-        if ($PSECRETKEY!=md5($SECRETKEY))
+        if (($PSECRETKEY!=md5($SECRETKEY))||(!empty($_SERVER)))
                 die("No safety");
 }
 require_once("conf.php");

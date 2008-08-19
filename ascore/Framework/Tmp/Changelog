@@ -19,9 +19,18 @@ ASCore 0.46.9 - - Arreglo de .0.46.8. Nueva funcion http_build_query
 ASCore 0.47.0 - - Arreglo de .0.46.9. Arreglado fileh (codigo obsoleto)
 ASCore 0.47.1 - - Added W: tag in lib_planty for wordwrapping
 ASCore 0.47.2 - - Added NI: tag (relaxed conditional) in lib_planty
-		  Changed select to support more SQL Syntax
-		  Fixed bug in lib_planty (Paging)	
+		  		  Changed select to support more SQL Syntax
+		  		  Fixed bug in lib_planty (Paging)	
 ASCore 0.48.0 - - Fixed some update bugs
 ASCore 0.48.2 - - Added initial plParseTemplateFast (lib_planty,lib_list,testme.php)
 ASCore 0.99.0 - - Added support for PHP5 and various fixes
 ASCore 0.99.1 - - CleanUp
+ASCore 0.99.9 - - Added new parameter to select to force to retrieve a specific page
+				  Added new type for listList (xxref). Is an initial support for automatic foreing keys	
+				  Added $SYS["FORCEDURLFORPAGING"] to force a URL in listList links
+				  Added new extensions: QueryBuilder, GeoIP and phpsysinfo
+				  Added new libs: QueryBuilder, GeoIP and xml2array
+				  Added new field to registro class
+				  Updated Report applicative to fit new QueryBuilder
+				  
+				  

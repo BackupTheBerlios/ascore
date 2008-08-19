@@ -80,4 +80,36 @@ function hour_to_int($data) {
 	
 	
 }
+
+/* Funciones de fecha. Dan el timestamp tal y como se guarda en la BBDD
+
+
+Hoy            -> asTimeStamp();
+Ayer           -> asTimeStampYesterday();
+Hace dos dias  -> asTimeStampYesterday(asTimeStampYesterday());
+Hace tres dias -> asTimeStampYesterday(asTimeStampYesterday(asTimeStampYesterday()));
+El dias antes 
+de 01/01/1980  -> asTimeStampYesterday(text_to_int("01/01/1980"));
+
+*/
+
+function asTimeStamp($stamp='') {
+	
+	if (empty($stamp))
+		$stamp=time();
+	
+	return dateTodayStamp($stamp);
+	
+	
+}
+
+function asTimeStampYesterday($stamp='') {
+	
+	if (empty($stamp))
+		$stamp=time();
+	return dateTodayStamp(yesterday()-2);
+	
+	
+	
+}
 ?>

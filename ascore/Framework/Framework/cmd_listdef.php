@@ -14,6 +14,7 @@ Fecha: <?php echo strftime("%d/%m/%Y",$info->release());?></div>
 [ <a href="'.$_SERVER["SCRIPT_URI"].'?command=phpinfo&nodebug=True">PHPinfo</a> ]
 [ <a href="'.$_SERVER["SCRIPT_URI"].'?command=selfphpinfo&nodebug=True">PHPClient PHPinfo</a> ]
 [ <a href="'.$_SERVER["SCRIPT_URI"].'?command=querybuilder">QueryBuilder</a> ]
+[ <a href="'.$_SERVER["SCRIPT_URI"].'?command=asistente">Nueva Definicion</a> ]
 
 ';?>
 </div>
@@ -37,9 +38,16 @@ if (is_dir($dir)) {
 				
 				echo "[  <a href=\"".$_SERVER["SCRIPT_URI"]."?command=edit_class&class=".str_replace(".def","",$file)."\">Editar</a> ] ";
 				echo "[  <a target=\"_blank\" href=\"".$_SERVER["SCRIPT_URI"]."?command=edit_template&void_framming=yes&class=".str_replace(".def","",$file)."&nodebug=1&action=yes\">Pl.Edicion</a> ] ";
+
+				echo "[  <a target=\"_blank\" href=\"".$_SERVER["SCRIPT_URI"]."?command=edit_template2&void_framming=yes&class=".str_replace(".def","",$file)."&nodebug=1&action=yes\">Pl.Edicion2</a> ] ";
+
+
 				echo "[  <a target=\"_blank\" href=\"".$_SERVER["SCRIPT_URI"]."?command=view_template&void_framming=yes&class=".str_replace(".def","",$file)."&nodebug=1&action=yes\">Pl.Visualizacion</a> ] ";
 				echo "[  <a target=\"_blank\" href=\"".$_SERVER["SCRIPT_URI"]."?command=list_template&void_framming=yes&class=".str_replace(".def","",$file)."&nodebug=1&action=yes\">Pl.Listado</a> ] ";
 				echo "[  <a  href=\"".$_SERVER["SCRIPT_URI"]."?command=change_type&class=".str_replace(".def","",$file)."\">Cambiar tipo</a> ] ";
+
+				echo "[  <a href=\"".$_SERVER["SCRIPT_URI"]."?command=delete_class&class=".str_replace(".def","",$file)."\">Borrar Clase</a> ] ";
+
 
 	            
                 if ($test_status) {
@@ -79,9 +87,15 @@ if (is_dir($dir)) {
 				echo "[  <a href=\"".$_SERVER["SCRIPT_URI"]."?command=test&module=".$SYS["PROJECT"]."&class=".str_replace(".def","",$file)."\">Propiedades</a> ] ";
 				echo "[  <a href=\"".$_SERVER["SCRIPT_URI"]."?command=edit_class&class=".str_replace(".def","",$file)."\">Editar</a> ] ";
 				echo "[  <a target=\"_blank\" href=\"".$_SERVER["SCRIPT_URI"]."?command=edit_template&void_framming=yes&class=".str_replace(".def","",$file)."&nodebug=1&action=yes\">Pl.Edicion</a> ] ";
+				
+				echo "[  <a target=\"_blank\" href=\"".$_SERVER["SCRIPT_URI"]."?command=edit_template2&void_framming=yes&class=".str_replace(".def","",$file)."&nodebug=1&action=yes\">Pl.Edicion2</a> ] ";		
+
 				echo "[  <a target=\"_blank\" href=\"".$_SERVER["SCRIPT_URI"]."?command=view_template&void_framming=yes&class=".str_replace(".def","",$file)."&nodebug=1&action=yes\">Pl.Visualizacion</a> ] ";
 				echo "[  <a target=\"_blank\" href=\"".$_SERVER["SCRIPT_URI"]."?command=list_template&void_framming=yes&class=".str_replace(".def","",$file)."&nodebug=1&action=yes\">Pl.Listado</a> ] ";
 				echo "[  <a  href=\"".$_SERVER["SCRIPT_URI"]."?command=change_type&class=".str_replace(".def","",$file)."\">Cambiar tipo</a> ] ";
+			
+				echo "[  <a href=\"".$_SERVER["SCRIPT_URI"]."?command=delete_class&class=".str_replace(".def","",$file)."\">Borrar Clase</a> ] ";	
+
 
 	            
                 if ($test_status) {
@@ -112,7 +126,7 @@ if (is_dir($dir)) {
 ?>
 </pre>
 <br>
-<form action="?command=edit_class" method="POST" enctype="multipart/form-data">
+<form action="?command=asistente" method="POST" enctype="multipart/form-data">
 <div align="center">Nueva clase: <input type="text" name="class"><input type="submit">  </div>
 </form>
 <hr>

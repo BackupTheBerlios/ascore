@@ -30,9 +30,45 @@ else if ($action=="save") {
 	frameGo("fbody","dev.php?command=querybuilder");
 	die();
 	
+} else if ($action=="promote") {
+	plantHTML(array(),"action_header");
+	$d=newObject("queryb",$ID);
+	$vquery="SHOW FULL TABLES WHERE table_type='VIEW'";
+		$res=_query($vquery);
+		while ($vdata=_fetch_array($res)) {
+			$all_views[]=current($vdata);
+			
+		}
+	if (in_array("View_".strtr($d->nombre," ","_"),$all_views))
+		$q="ALTER VIEW View_".strtr($d->nombre," ","_")." AS ".$d->queryb;
+	else
+		$q="CREATE VIEW View_".strtr($d->nombre," ","_")." AS ".$d->queryb;
+	$res=_query($q);
+	if ($res)
+			echo "<div align=\"left\">La consulta $d->nombre ha sido promocionada a vista</div><br>";
+	else
+			echo "<strong>Error</strong>";
+	
+	/*
+	$d=newObject("queryb",$ID);
+	if ($d->delete())
+		echo "borrado";
+	else
+		echo "no borrado";*/
+	
+	plantHTML(array(),"action_footer");
+	frameGo("fbody","dev.php?command=querybuilder");
+	die();
+
 }
 ?>
-<table width="80%" border="0" cellspacing="5" align="center" bgcolor="#eeeeee" style="border : 1px #c6c6c6  outset; -moz-border-radius : 10px;">
+<?php
+				
+echo "<script type=\"text/javascript\" language=\"JavaScript\" src=\"{$SYS["ROOT"]}/Extensions/querybuilder_helper.js\"></script>";
+
+?>
+		
+<table width="95%" border="0" cellspacing="5" align="center" bgcolor="#eeeeee" style="border : 1px #c6c6c6  outset; -moz-border-radius : 10px;">
 <TR><TD align="center" bgcolor="#e6a129">
 <h2>Core QUERY BUILDER</h2>
 </TD></TR>
@@ -43,8 +79,8 @@ else if ($action=="save") {
 // 
 if ($_POST["QB_CMD"]=="module") {
 
-	$dir=$SYS["BASE"]."/Apps/$module/local/Class/";
-		debug("=>Reading ".$SYS["BASE"]."/Apps/$module/local/Class/","yellow");
+		$dir=$SYS["BASE"]."/Apps/$module/local/Class/";
+		debug("=>>Reading ".$SYS["BASE"]."/Apps/$module/local/Class/","yellow");
 		if (is_dir($dir)) {
 		if ($dh = opendir($dir)) {
 			while (($file = readdir($dh)) !== false) {
@@ -54,7 +90,8 @@ if ($_POST["QB_CMD"]=="module") {
 				}
 			}
 		}
-
+		
+	
 		echo '
 		<br><br><br>
 		<div align="center">Selección de Clases Implicadas</div>
@@ -77,7 +114,7 @@ if ($_POST["QB_CMD"]=="module") {
 				<input type="hidden" name="modulo" value="'.$module.'"> 
 				<input type="submit"> 
 				</form>
-		
+	
 			</td>
 		</tr>
 		</tbody>
@@ -194,7 +231,8 @@ else if ($_POST["QB_CMD"]=="origs") {
 				</select>
 				</td><td>
 				<select name="condition2" >
-				<option value="">Entrada manual</option>';
+				<option value="">Entrada manual</option>
+				<option value="Funcion">Funcion</option>';
 			
 			
 			foreach ($data as $k=>$v)
@@ -250,10 +288,13 @@ else if ($_POST["QB_CMD"]=="condition") {
 		
 		if (empty($condition3))
 			$query=$queryx." AND $condition1$condition$condition2";
-		else
-			$query=$queryx." AND $condition1$condition\'$condition3\'";
-
-			echo $query.'
+		else {
+			if ($condition2!='Funcion')
+				$query=$queryx." AND $condition1$condition\'$condition3\'";
+			else
+				$query=$queryx." AND $condition1$condition$condition3";
+		}
+		echo $query.'
 		<br><br><br>
 				<form action="" method="POST" enctype="multipart/form-data" >
 				
@@ -285,7 +326,8 @@ else if ($_POST["QB_CMD"]=="condition") {
 				</select>
 				</td><td>
 				<select name="condition2" >
-				<option value="">Entrada manual</option>';
+				<option value="">Entrada manual</option>
+				<option value="Funcion">Funcion</option>';
 			
 			
 			foreach ($data as $k=>$v)
@@ -293,7 +335,7 @@ else if ($_POST["QB_CMD"]=="condition") {
 		
 		echo '
 				</select></td><td>
-				<input type="text" name="condition3">
+				<input type="text" name="condition3" id="condition3">
 				</td></tr></table>
 				<input type="hidden" name="QB_CMD" id ="QB_CMD" value="condition"> 
 				
@@ -310,6 +352,9 @@ else if ($_POST["QB_CMD"]=="condition") {
 		
 		
 		</td>
+		<td>
+		<a href="#" onclick="window.open(\''.$SYS["ROOT"].'Framework/Extensions/QueryBuilder/Helper.html\',\'helper\')">Ayuda de funciones</a>
+		</td>						
 		</tr>
 		
 		</table>
@@ -381,7 +426,12 @@ if (empty($_POST["QB_CMD"])) {
 			}
 		}
 	}
-	
+	$vquery="SHOW FULL TABLES WHERE table_type='VIEW'";
+		$res=_query($vquery);
+		while ($vdata=_fetch_array($res)) {
+			$all_views[]=current($vdata);
+			
+		}
 /* Module Selection */
 	
 	
@@ -406,11 +456,21 @@ foreach ($SYS["APPS"] as $k=>$v)
 
 
 echo '		</select>
-		<br><br>
+		&nbsp;&nbsp;
 		<input type="hidden" name="QB_CMD" value="module"> 
 		<input type="submit"> 
 		</form>
-
+			<hr>O bien, seleccione una vista con la que trabajar:
+		<form action="dev.php?command=querybuilder_views" method="POST" enctype="multipart/form-data" >
+		<select name="views" >&nbsp;';
+		foreach ($all_views as $k=>$v)
+						echo "<option value=\"$v\">$v</option>";
+		
+		
+echo '		</select>
+				&nbsp;&nbsp;
+				<input type="submit"> 
+				</form>
 	 </td>
     </tr>
   </tbody>

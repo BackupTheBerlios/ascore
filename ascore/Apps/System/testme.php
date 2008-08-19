@@ -1,16 +1,13 @@
 <?php
 ini_set("max_execution_time","500");
 require_once("System.php");
-
-$TrazaStatus=true;
+$TrazaStatus=false;
 require_once("Lib/lib_chart.php");
-while( ob_end_flush());
+if (ini_get("output_buffering"))
+	 ob_end_flush();
 
-$a=newObject("void");
-$a->deletes("1=1");
-unset($a);
 
-$M=1000;
+$M=100;
 $N=$M/25;
 echo "<span style='margin-left:20px'>Test '$M Clases' ";
 if (function_exists("memory_get_usage"))
@@ -21,6 +18,7 @@ else {
 
 $bm=getmicrotime();
 $OBJECT_TIME=$bm;
+$initmemory=memory_get_usage()/1024;
 for ($i=0;$i<=$M;$i+=$N) {
 	
 	for ($j=0;$j<$i;$j++) 
@@ -32,7 +30,7 @@ for ($i=0;$i<=$M;$i+=$N) {
 		flush();
 	
 	}
-	$memory[$p]=memory_get_usage()/1024;
+	$memory[$p]=(memory_get_usage()/1024-$initmemory);
 	$time_ellapsed[$p]=(getmicrotime()-$bm);
 	$bm=getmicrotime();
 	unset($a);
@@ -55,9 +53,9 @@ $g->parameter['x_label'] = _("Objetos creados (x".($M/100).")");
 $g->parameter['y_label_left'] = _("Consumo memoria (KB)");
 $g->y_format['barras'] =
   array('colour' => 'green', 'line' => 'line', 'point' => 'square-open','bar' => 'fill');
-$g->y_format['lineas'] =
+$g->y_format['linea'] =
   array('colour' => 'black', 'line' => 'line', 'point' => 'square-open');
-$g->y_order = array('barras','lineas');
+$g->y_order = array('barras','linea');
 $g->parameter['y_resolution_left']= 1;
 $g->parameter['y_decimal_left']= 0;
 
@@ -75,9 +73,9 @@ $t->parameter['x_label'] = _("Objetos creados (x".($M/100).")");
 $t->parameter['y_label_left'] = _("Tiempo de creacion (milisegundos)");
 $t->y_format['barras'] =
   array('colour' => 'green', 'line' => 'line', 'point' => 'square-open','bar' => 'fill');
-$t->y_format['lineas'] =
+$t->y_format['linea'] =
   array('colour' => 'black', 'line' => 'line', 'point' => 'square-open');
-$t->y_order = array('barras','lineas');
+$t->y_order = array('barras','linea');
 $t->parameter["y_decimal_left"]=5;
 $t->parameter['y_resolution_left']= 5;
 
@@ -123,32 +121,20 @@ $db_tg->parameter['x_label'] = _("Objetos guardados (x".($M/100).")");
 $db_tg->parameter['y_label_left'] = _("Tiempo (milisegundos)");
 $db_tg->y_format['barras'] =
   array('colour' => 'green', 'line' => 'line', 'point' => 'square-open','bar' => 'fill');
-$db_tg->y_format['lineas'] =
+$db_tg->y_format['linea'] =
   array('colour' => 'black', 'line' => 'line', 'point' => 'square-open');
-$db_tg->y_order = array('barras','lineas');
+$db_tg->y_order = array('barras','linea');
 $db_tg->parameter["y_decimal_left"]=5;
 $db_tg->parameter['y_resolution_left']= 5;
 $db_tg->draw();
 
 
 echo "Test '$M^ List' ";
-
-
+$a=newObject("void");
 $bm=getmicrotime();
 $LIST_TIME=$bm;
+
 $MINIT=memory_get_usage()/(1024*1024);
-
-$a=newObject("void");
-$a->searchResults=$a->selectA();	
-$list_time_ellapsed["selectA"]=(getmicrotime()-$bm);
-$memories["selectA"]=(memory_get_usage()/(1024*1024))-$MINIT;
-jsAction("setProgress('100');");
-flush();
-
-unset($a->searchResults);
-unset($a);
-  
-$a=newObject("void");
 setLimitRows(6500);
 $a->searchResults=$a->selectAll();	
 $list_time_ellapsed["selectAll"]=(getmicrotime()-$bm);
@@ -156,12 +142,23 @@ $memories["selectAll"]=(memory_get_usage()/(1024*1024))-$MINIT;
 jsAction("setProgress('50');");
 flush();
 
-$bm=getmicrotime();
-$LIST_TIME=$bm-$LIST_TIME;
 
+unset($a->searchResults);
+unset($a);
+$MINIT=memory_get_usage()/(1024*1024);
+$a=newObject("void");
+$bm=getmicrotime();
+$a->searchResults=$a->selectA();	
+$list_time_ellapsed["selectA"]=(getmicrotime()-$bm);
+$memories["selectA"]=(memory_get_usage()/(1024*1024))-$MINIT;
+jsAction("setProgress('100');");
+flush();
+$bm=getmicrotime();
+
+$LIST_TIME=$bm-$LIST_TIME;
 jsAction("setProgress('0');");
 echo "<span style='color:green'>OK</span> ::";
-$a->deletes("1=1");
+
 
 $db_tg=new graph(500,400);
 $db_tg->y_data["barras"]=array_values($list_time_ellapsed);
@@ -183,12 +180,8 @@ $db_tg->parameter['y_resolution_left']= 5;
 $db_tg->draw();
 
 
-/* render test     */
-for ($k=0;$k<$M;$k++) {
-	$a->ID=0;
-	$a->save();
-}
-$M=100;
+/* render test */
+
 $tmpl=$a->makeTemplate("fake");
 $abm=getmicrotime();
 if ($SYS["bcompiler_extension"]) {
@@ -196,7 +189,7 @@ if ($SYS["bcompiler_extension"]) {
 	$example=new DataGrid();
 	for ($i=1;$i<=$M;$i+=($M/3)) {
 		$bm=getmicrotime();
-		setLimitRows(round($i));
+		setLimitRows($i);
 		$a->searchResults=$a->selectAll();
 		ob_start();
 		$example->listList($a,array(),$tmpl);
@@ -204,35 +197,21 @@ if ($SYS["bcompiler_extension"]) {
 		$plist_time_ellapsed[$i]=getmicrotime()-$bm;
 	}
 }
-for ($i=1;$i<=$M;$i+=($M/12)) {
+for ($i=1;$i<=$M;$i+=($M/3)) {
 	$bm=getmicrotime();
-	setLimitRows(round($i));
+	setLimitRows($i);
  	$a->searchResults=$a->selectAll();
 	ob_start();
 	listList($a,array(),$tmpl);
 	ob_end_clean();
 	$cplist_time_ellapsed[$i]=getmicrotime()-$bm;
 }
-unset($a->searchResults);
-for ($i=1;$i<=$M;$i+=($M/12)) {
-	$bm=getmicrotime();
-	setLimitRows(round($i));
- 	$a->searchResults=$a->selectAll();
-	ob_start();
-	listList($a,array(),$tmpl,"",1,"plParseTemplateFast");
-	ob_end_clean();
-	$fplist_time_ellapsed[$i]=getmicrotime()-$bm;
-	$afplist_time_ellapsed[$i]=0;
-}
-
-
 $totaltime=getmicrotime()-$abm;
 $a->deletes("1=1");
 $db_tg=new graph(500,400);
 if ($SYS["bcompiler_extension"])
 	$db_tg->y_data["barras"]=array_values($plist_time_ellapsed);
 $db_tg->y_data["mbarras"]=array_values($cplist_time_ellapsed);
-$db_tg->y_data["fbarras"]=array_values($fplist_time_ellapsed);
 $db_tg->x_data=array_keys($cplist_time_ellapsed);
 
 $db_tg->parameter["file_name"]=$SYS["BASE"]."/Data/Img/Tmp/render";
@@ -240,7 +219,7 @@ $db_tg->parameter["path_to_fonts"]=$SYS["DOCROOT"]."/Data/Fonts/";
 if ($SYS["bcompiler_extension"])
 	$db_tg->parameter['title'] = _("lib_planty Compiled  vs Source")."($totaltime)";
 else
-	$db_tg->parameter['title'] = _("lib_planty vs lib_plantyFast")."($totaltime)";
+	$db_tg->parameter['title'] = _("lib_planty")."($totaltime)";
 
 $db_tg->parameter['x_label'] = _("Number of rows");
 $db_tg->parameter['y_label_left'] = _("Render time");
@@ -250,13 +229,11 @@ if ($SYS["bcompiler_extension"])
 	$db_tg->y_format['barras'] =array('colour' => 'green', 'line' => 'line', 'point' => 'square-open','bar' => 'fill');
 
 $db_tg->y_format['mbarras'] = array('colour' => 'red', 'line' => 'line', 'point' => 'square-open','bar' => 'fill');
-$db_tg->y_format['fbarras'] = array('colour' => 'blue', 'line' => 'line', 'point' => 'square-open','bar' => 'fill');
-
 
 if ($SYS["bcompiler_extension"])
-		$db_tg->y_order = array('barras',"mbarras","fbarras");
+		$db_tg->y_order = array('barras',"mbarras");
 	else
-		$db_tg->y_order = array('mbarras',"fbarras");
+		$db_tg->y_order = array('mbarras');
 
 $db_tg->parameter["y_decimal_left"]=5;
 $db_tg->parameter['y_resolution_left']= 5;

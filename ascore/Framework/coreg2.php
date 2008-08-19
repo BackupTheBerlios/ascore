@@ -1,6 +1,6 @@
 <?php
 
-define("_COREVER","0.99.0");
+define("_COREVER","0.99.9");
 
 
 /********* SECTION 0:		MAIN CONFIGURATION 
@@ -16,7 +16,7 @@ $SYS["COREROOT"]=$SYS["BASE"]."/Framework/";
 $SYS["URL"]=$SYS["ROOT"]."/Framework/";
 $SYS["COREURL"]=$SYS["ROOT"]."/Framework/";
 $SYS["DATADEFPATH"]="Class/";
-
+$SYS["ASCACHEDIR"]=md5(__FILE__);
 if ($SYS["bcompiler_extension"]) {
 if (file_exists($SYS["DOCROOT"]."/Data/bcompiler.so"))  {
 	if (!dl("../../../../".$SYS["DOCROOT"]."/Data/bcompiler.so")) 
@@ -179,8 +179,8 @@ Compiled properties support:
 ****************************************************/
 
 /* Compiled properties support */
-if (!is_dir(session_save_path()."/coreg2_cache/"))
-	mkdir(session_save_path()."/coreg2_cache/");
+if (!is_dir(session_save_path()."/coreg2_cache/{$SYS["ASCACHEDIR"]}"))
+	mkdir(session_save_path()."/coreg2_cache/{$SYS["ASCACHEDIR"]}");
 $SYS["CACHE_TIMESTAMP"]=True;
 
 
