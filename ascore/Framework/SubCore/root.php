@@ -94,7 +94,6 @@ la clase al vuelo.
 			xml_parser_free($xml_parser);
 			$prop["pd"][$curEle[0]]=$curEle["saved"];//What a fuckin' patch!! Ugh!
 			
-					
 			/* Some default System properties */
 			$prop["p"]["S_UserID_CB"]="";
 			$prop["pd"]["S_UserID_CB"]="Creado por";
@@ -116,11 +115,6 @@ la clase al vuelo.
 
 	}
 
-
-
-
-
-	
 
 
 
@@ -179,8 +173,8 @@ class Ente extends core{
 		
 		
 		if (!isset($MEMORY_CACHE["$name"])) {
-			if (file_exists(session_save_path()."/coreg2_cache/".$SYS["ASCACHEDIR"]."/".$name.".cached_core_object_properties_".$SYS["PROJECT"])) 
-				$cache_time=filemtime(session_save_path()."/coreg2_cache/".$SYS["ASCACHEDIR"]."/".$name.".cached_core_object_properties_".$SYS["PROJECT"]);
+			if (file_exists(session_save_path()."/coreg2_cache/".$name.".cached_core_object_properties_".$SYS["PROJECT"])) 
+				$cache_time=filemtime(session_save_path()."/coreg2_cache/".$name.".cached_core_object_properties_".$SYS["PROJECT"]);
 				
 			else
 				$cache_time=false;
@@ -204,7 +198,7 @@ class Ente extends core{
 			if (($cache_time!==False)&&($cache_time>$source_time)) {
 				
 				debug("Cargando definicion compilada de '$name'","yellow");
-				$fd = c_fopen (session_save_path()."/coreg2_cache/".$SYS["ASCACHEDIR"]."/".$name.".cached_core_object_properties_".$SYS["PROJECT"], "r");
+				$fd = c_fopen (session_save_path()."/coreg2_cache/".$name.".cached_core_object_properties_".$SYS["PROJECT"], "r");
 				$buffer="";
 				while (!feof($fd)) {
 				$buffer .= fgets($fd, 4096);
@@ -234,16 +228,12 @@ class Ente extends core{
 		
 				debug("Cargando definicion de '$name'","yellow");
 		
-				
-
-				
 				$prop=load_prop($file);
-				
 		
 				
 				
 				debug("Compilando dinamicamente '$name'","magenta");
-				$fd = c_fopen (session_save_path()."/coreg2_cache/".$SYS["ASCACHEDIR"]."/".$name.".cached_core_object_properties_".$SYS["PROJECT"], "w");
+				$fd = c_fopen (session_save_path()."/coreg2_cache/".$name.".cached_core_object_properties_".$SYS["PROJECT"], "w");
 				fwrite($fd,serialize($prop),strlen(serialize($prop)));
 				fclose($fd);
 				
@@ -265,9 +255,6 @@ class Ente extends core{
 		
 
 	}
-
-
-	
 
 	/*********************
 	Function show
@@ -580,39 +567,18 @@ class Ente extends core{
 	Function select
 	*********************/
 
-	function select($q,$poffset=0,$sort="ID",$groupby='',$addfields='',$overrideoffsetbyid='') {
+	function select($q,$offset=0,$sort="ID",$groupby='',$addfields='') {
 
-		global $prefix,$SYS,$offset;
+		global $prefix,$SYS;
 
 		$All=array();
 		if ((empty($sort)))
 			$sort="ID";
-		if ((empty($poffset))||($poffset<0))
-			$poffset=0;
+		if ((empty($offset))||($offset<0))
+			$offset=0;
 
-		if ($overrideoffsetbyid!='') {
-			debug("OVERRIDING OFFSET!","red");
-			$qx="SELECT ID from {$prefix}_".$this->name." WHERE $q AND ID>1 $groupby";
-			$qx.=" ORDER BY $sort";
-			$bdres=_query($qx);
-			$counter=0;
-			while($superdata=_fetch_array($bdres)){
-					if ($superdata["ID"]==$overrideoffsetbyid) {
-						$realposition=$counter;
-						break;
-					}
-					else 
-						$counter++;
-			}
-			$offset=(floor($counter/$SYS["DEFAULTROWS"]))*$SYS["DEFAULTROWS"];
-			$poffset=$offset;
-			
-			debug("OFFSET OVERRRIDEN:$counter,$offset","yellow");
-			
-		}
-		
 		$q="SELECT SQL_CALC_FOUND_ROWS *$addfields from {$prefix}_".$this->name." WHERE $q AND ID>1 $groupby";
-		$q.=" ORDER BY $sort LIMIT $poffset,".$SYS["DEFAULTROWS"];
+		$q.=" ORDER BY $sort LIMIT $offset,".$SYS["DEFAULTROWS"];
 
 
 		$bdres=_query($q);
@@ -627,10 +593,10 @@ class Ente extends core{
 		}
 		$this->nRes=_affected_rows();
 		if ($this->nRes<$SYS["DEFAULTROWS"])
-			$this->nextP=$poffset;
+			$this->nextP=$offset;
 		else
-			$this->nextP=$poffset+$this->nRes;
-		$this->prevP=$poffset-$SYS["DEFAULTROWS"];
+			$this->nextP=$offset+$this->nRes;
+		$this->prevP=$offset-$SYS["DEFAULTROWS"];
 		
 			$bdres=_query("SELECT FOUND_ROWS()");
 		$aux=_fetch_array($bdres);
@@ -745,6 +711,7 @@ class Ente extends core{
 			$this->$k="".$v."";
 
 		}
+		$this->data_normalize();
 	}
 
 	/*********************
@@ -789,7 +756,7 @@ class Ente extends core{
 
 	     else	if ((strpos($v,"date")!==False)&&(!ereg("^[0-9]+$",$this->$k))) {
 					$fecha=explode("/", $this->$k);
-					$fecha=strtotime($fecha[1]."/".$fecha[0]."/".$fecha[2])+1;				
+					$fecha=strtotime(((int)$fecha[1])."/".((int)$fecha[0])."/".((int)$fecha[2]))+1;				
 					$this->$k=$fecha;
 			 }
 	     
@@ -1090,7 +1057,7 @@ td.dynamic_class_'.$name.'3 {text-align:center;vertical-align:top;background-col
 	}
 
 
-	function makeEditTemplate($name){
+	function makeEditTemplate($name) {
 
         $q='
 <!--HEAD-->
@@ -1225,167 +1192,6 @@ $q.="
 		 return $q;
 		
 	}
-
-
-
-function makeEditTemplate2($name){
-
-        $q='
-<!--HEAD-->
-<!--SET-->
-<script type="text/javascript" language="JavaScript1.3">
-<!--
-function checkDate(ele) {
- dat=document.getElementById(ele).value;
- b1=dat.search("/");
- dat2=dat.slice(b1+1);
- b2=dat2.search("/")+b1+1;
- dia=parseInt(dat.slice(0,b1));
- mes=parseInt(dat.slice(b1+1,b2));
- an=parseInt(dat.slice(b2+1));
- ok=0;
- if ((dia>31)||(dia<1)||(isNaN(dia)))
-	ok=1;
- if ((mes>12)||(mes<1)||(isNaN(mes)))
-	ok=1;
- if ((an<2000)||(an>2030)||(isNaN(an)))
-	ok=1;
- if (ok==1) {
-	alert("Fecha incorrecta");
-	dia="01";
-	mes="01";
-	an="2004";
-	document.getElementById(ele).value=""; 		
-	}
-}
-
-function checkMoney(ele) {
-
-	money=new String(document.getElementById(ele).value);
-	dot=money.indexOf(",");
-	if (dot!=-1) {
-		money2=money.slice(0,dot)+".";
-		money2+=money.slice(dot+1);
-		money=money2;
-	}
-	value=parseFloat(money);
-	if (isNaN(value)) {
-		alert("Valor monetario incorrecto");
-		money=0;
-	}
-	else
-		money=value.toString();
-
-	document.getElementById(ele).value=money; 		
-}
-
-
-
--->
-</script>
-<style  type="text/css">
-td.dynamic_class_'.$name.'0 {text-align:center;vertical-align:top;background-color:#EEEEF6}
-td.dynamic_class_'.$name.'1 {text-align:center;vertical-align:top;background-color:white}
-td.dynamic_class_'.$name.'2 {text-align:center;vertical-align:top;background-color:#F7F7F7}
-td.dynamic_class_'.$name.'3 {text-align:center;vertical-align:top;background-color:white}
-</style>
-
-<table width="95%" cellspacing="1" border="0" cellpadding="1" align="center" style="border:solid 1px gray">
-';
-		
-		reset($this->properties_desc);
-		reset($this->properties);
-		reset($this->properties_type);
-		
-		for ($i=0;$i<sizeof($this->properties);$i++) {
-		
-
-		if(key($this->properties)!="S_UserID_CB" &&
-		   key($this->properties)!="S_UserID_MB" &&
-		   key($this->properties)!="S_Date_C" &&
-		   key($this->properties)!="S_Date_M"){
-
-			$q.="<tr>\n\t<td>".current($this->properties_desc)."</td>\n";
-				if (strstr(current($this->properties_type),"string")) {
-                	if (substr(current($this->properties_type),strpos(current($this->properties_type),":")+1)<51) {
-						$q.="\n\t<td><input type=\"text\" name=\"".key($this->properties)."\" maxlength=\"".substr(current($this->properties_type),strpos(current($this->properties_type),":")+1)."\"
-						value=\"<!-- D:".key($this->properties)." -->\" size=\"".substr(current($this->properties_type),strpos(current($this->properties_type),":")+1)."\"/>";
-					}
-					else {
-						$q.="\n\t<td><textarea name=\"".key($this->properties)."\" cols=\"50\"><!-- D:".key($this->properties)." --></textarea>";
-					}
-				}
-
-				else if (strstr(current($this->properties_type),"date"))
-					$q.="\n\t<td><input type=\"text\" id=\"".key($this->properties)."\" name=\"".key($this->properties)."\" maxlength=\"10\"
-					size=\"10\" value=\"<!-- A:".key($this->properties)." -->\" onblur=\"javascript:checkDate('".key($this->properties)."')\"/>";
-				else if (strstr(current($this->properties_type),"datex"))
-					$q.="\n\t<td><input type=\"text\" id=\"".key($this->properties)."\" name=\"".key($this->properties)."\" maxlength=\"10\"
-					size=\"10\" value=\"<!-- A:".key($this->properties)." -->\" onblur=\"javascript:checkDate('".key($this->properties)."')\"/>";					
-				else if (strstr(current($this->properties_type),"time"))
-					$q.="\n\t<td><input type=\"text\" id=\"".key($this->properties)."\" name=\"".key($this->properties)."\" maxlength=\"10\"
-					size=\"10\" value=\"<!-- T:".key($this->properties)." -->\" />";
-
-				else if (strstr(current($this->properties_type),"int"))
-					$q.="\n\t<td><input type=\"text\" id=\"".key($this->properties)."\" name=\"".key($this->properties)."\" maxlength=\"11\"
-					size=\"11\" value=\"<!-- D:".key($this->properties)." -->\"/>";
-
-				else if (strstr(current($this->properties_type),"list")) {
-					$q.="\n\t<td><select name=\"".key($this->properties)."\">";
-					$options=substr(current($this->properties_type),strpos(current($this->properties_type),":")+1);
-					$ops=explode("|",$options);
-					//dataDump($ops);
-					foreach ($ops as $minikey=>$minival)
-						$q.="\t<option value=\"$minival\" <!-- O:".key($this->properties).$minival." -->>$minival</option>\n";
-					$q.= "</select>";
-				}
-				else if (strstr(current($this->properties_type),"money")) {
-					$q.="\n\t<td><input type=\"text\" id=\"".key($this->properties)."\" name=\"".key($this->properties)."\" maxlength=\"15\"
-					size=\"15\" value=\"<!-- S:".key($this->properties)." -->\" onblur=\"javascript:checkMoney('".key($this->properties)."')\"/>";
-				}
-				else if (strstr(current($this->properties_type),"float")) {
-					$q.="\n\t<td><input type=\"text\" id=\"".key($this->properties)."\" name=\"".key($this->properties)."\" maxlength=\"15\"
-					size=\"15\" value=\"<!-- F:".key($this->properties)." -->\" onblur=\"javascript:checkMoney('".key($this->properties)."')\"/>";
-				}
-				else if (strstr(current($this->properties_type),"boolean")) {
-					$q.="\n\t<td><input type=\"checkbox\" id=\"".key($this->properties)."\" name=\"".key($this->properties)."\" <!-- G:".key($this->properties)." -->/>";
-					
-
-				}
-				else                       
-					$q.="<td>".current($this->properties);
-				$q.="\n\t</td>\n</tr>\n";
- 		}
-
-				next($this->properties_desc);
-				next($this->properties);
-				next($this->properties_type);
-			
-			
-		}				
-
-$q.="
-<tr>
-	<td colspan=\"2\" align=\"right\"><!-- D:boton0 -->&nbsp;&nbsp;<!-- D:boton1 -->&nbsp;&nbsp;<!-- D:boton2 -->&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr></table>
-<input type=\"hidden\" name=\"ID\" value=\"<!-- D:ID -->\"/>
-<!--END-->
-";
-		 return $q;
-		
-	}
-
-
-
-
-
-
-
-
-
-
-
-
 
 	function makeViewTemplate($name) {
 
@@ -1586,6 +1392,7 @@ $q.="</table>
 	}
 	
 	
+
 
 
 }
