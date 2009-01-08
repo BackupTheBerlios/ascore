@@ -7,8 +7,8 @@
 	<resumen type="longtext" option="1024">Resumen de la noticia</resumen>
 	<adjunto type="ref">Foto adjunta</adjunto>
 	<keyword type="string" option="100">Palabras clave</keyword>
-        <visita type="int">Numero visitas</visita>
-        <fech_ult_consulta type="date">F. ultima consulta</fech_ult_consulta>
+    <visita type="int">Numero visitas</visita>
+    <fech_ult_consulta type="date">F. ultima consulta</fech_ult_consulta>
 	<notas type="string" option="100">Notas</notas>
 	<fuente type="string" option="100">fuente</fuente>
 </cpd>

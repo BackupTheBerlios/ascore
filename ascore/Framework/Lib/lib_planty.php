@@ -31,7 +31,7 @@ class plantilla {
 	<!-- A:'.key($dat).' -->	Date
 	<!-- K:'.key($dat).' -->	Function call
 	<!-- O:'.key($dat).' -->	HardCode selects
-	<!-- X:'.key($dat).' -->	Dynamic selects
+	<!-- X:'.key($dat).' -->	Dynamic selects	
 	<!-- G:'.key($dat).' -->	Check boxes
 	<!-- R:'.key($dat).' -->	Datex (Extended Date)
 	<!-- I:'.key($dat).' -->	Conditional block. Parsed if key(dat) is true.
@@ -311,12 +311,8 @@ class plantilla {
 				
 			/* Dynamic Selects  2nd Try */
 
-			$res=str_replace('<!-- O:'.key($dat).current($dat).' -->',"SELECTED",$res);					
-			
-			
-			
+			$res=str_replace('<!-- O:'.key($dat).current($dat).' -->',"SELECTED",$res);
 
-	
 			next($dat);
 		}
 		

@@ -380,7 +380,7 @@ class Ente extends core{
 		foreach ($this->properties as $pk=>$pv)
 			if (strpos($this->properties_type[$pk],"boolean:")!==False)
 				$this->properties[$pk]=(($arraydata["$pk"]=="on")||($arraydata["$pk"]=="Si")||($arraydata["$pk"]=="1"))?'Si':'No';
-	
+		
 		$this->ID=$arraydata["ID"];
 		$this->_normalize();
 		
@@ -462,22 +462,32 @@ class Ente extends core{
 		
 			$this->_flat();
 			//-------------------------------------------------
-			$xrefs=array();
-			$table_names=array();
+			$xref=array();
 			foreach ($this->properties as $pk=>$pv) {
 				if (strpos($this->properties_type[$pk],"xref:")!==False) {
-					$xrefs[$pk]=explode(":",$this->properties_type[$pk]);
-					$table_names[$pk]=$this->name."_".$xrefs[$pk][1];
+					$xref=explode(":",$this->properties_type[$pk]);
+					$table_name=$this->name."_".$xref[1];
+					//print_r($xref);
+					//echo " -> ".$table_name;
+
+					// Creamos la tabla de referencias externas
+					$field2=$this->name."_id";
+					$field3=$xref[1]."_id";
+					$q="CREATE TABLE `{$prefix}_".$table_name."` (\n";
+					$q.="`ID` INT NOT NULL AUTO_INCREMENT ,\n";
+					$q.="`".$field2."` INT NOT NULL ,\n";
+					$q.="`".$field3."` INT NOT NULL ,\n";
+					$q.="INDEX ( `ID` ), PRIMARY KEY ( `ID` )\n)\n";
+					//$bdres=_query($q);
+					print_r($this->properties);
+					
+					// Rellenamos la tabla de referencias externas
+					//$q="INSERT INTO `{$prefix}_".$table_name."`( `ID` ".",`$field2`".",`$field3`".")";
+
+					//$q.=" VALUES (''$res)";
 				}
-			}
-			print_r($xrefs);
-			echo "<br/>";
-			print_r($table_names);
-$q="CREATE TABLE `{$prefix}_".$this->name."` (\n";
+			}			
 			
-			
-
-
 			//--------------------------------------------------
 			array_walk(array_keys($this->properties),"fsadd");
 			$q="INSERT INTO `{$prefix}_".$this->name."`( `ID` ".$res.")";

@@ -17,7 +17,7 @@ if(BILO_isLogged())
 	formAction("action_save_documento.php","footer","editForm");
 	
 	$wRes=new avSelectTree();
-	$p->categoria=$wRes->avSelectPrintTree("cat_id","Articulus","categoria","cat_id","nombre",$p->cat_id);
+	$p->categoria=$wRes->avSelectPrintTree("cat_id","Articulus","categoria","cat_id","nombre",$p->cat_pr);
 
 	
 	$p->filehelper=$SYS["ROOT"]."Backend/Memo/action_fileselector.php";
