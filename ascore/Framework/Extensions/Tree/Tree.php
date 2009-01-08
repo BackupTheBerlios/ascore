@@ -41,11 +41,15 @@ require_once($SYS["DOCROOT"]."/../Apps/".$module."/".$module.".php");
 
 $u=newObject("$class");
 $dynCat=(isset($$cclass))?$$cclass:0;
+if (empty($dynCat)) {
+	$dynCat=0;
+	$$cclass=0;
+}
 setNavVars(array("module","class","show","method","name","cclass","$cclass","avsearch"));	
 if($dynCat>0)
 {
 	$c=newObject($class,$dynCat);
-	tMdP(&$c->ID,&$u->MDP,$SYS["ROOT"]."Framework/Extensions/Tree/Tree.php?module=".$module."&".$cclass."=".$dynCat."&class=".$class."&cclass=$cclass"."&show=".$show."&name=".$name."&method=".$method."");
+	tMdP(&$c->ID,&$u->MDP,"Tree.php?module=".$module."&".$cclass."=".$dynCat."&class=".$class."&cclass=$cclass"."&show=".$show."&name=".$name."&method=".$method."");
 	
 }
 
@@ -199,7 +203,7 @@ td.dynamic_class_autotemplate3 {text-align:left;vertical-align:top;background-co
 		<!-- I:subtree -->
 		<a 
 	style=\"cursor:pointer;background-color:white;border:1px solid gray\"
-	href=\"<!-- D:ROOT -->/Framework/Extensions/Tree/Tree.php?module=".$module."&class=".$class."&show=".$show."&current=".$current."&name=".$name."&method=".$cmethod."&".$cclass."=<!-- D:ID -->&cclass=".$cclass."\" id=\"wFrame".$class.$name."\" width=\"400\" name=\"wFrame".$class.$name."\"  height=\"300\"  border=\"0\" style=\"display:none;position:absolute;\" \">&nbsp;+&nbsp;</a>
+	href=\"Tree.php?module=".$module."&class=".$class."&show=".$show."&current=".$current."&name=".$name."&method=".$cmethod."&".$cclass."=<!-- D:ID -->&cclass=".$cclass."\" id=\"wFrame".$class.$name."\" width=\"400\" name=\"wFrame".$class.$name."\"  height=\"300\"  border=\"0\" style=\"display:none;position:absolute;\" \">&nbsp;+&nbsp;</a>
 		<!-- I:subtree -->
 		<!-- L:".$show." -->
 		</td>
@@ -263,10 +267,10 @@ listList($u,$ed,$template);
 wresize();
 </script>
 <a  style="cursor:pointer;position:absolute;right:3px;top:2px;float : right;" href="javascript:frameClose()">
-<img src="<?php echo $SYS["ROOT"]."/Framework/Extensions/Zoom/local/Images/close.png"?>" alt="Cerrar" width="16" height="16" align="middle" border="0" title="Centrar"></a>
+<img src="<?php echo "../Zoom/local/Images/close.png"?>" alt="Cerrar" width="16" height="16" align="middle" border="0" title="Centrar"></a>
 <a  style="cursor:pointer;position:absolute;left:3px;top:2px;float : right;" href="javascript:wresize()">
-<img src="<?php echo $SYS["ROOT"]."/Framework/Extensions/Zoom/local/Images/center.png"?>" alt="Centrar" width="16" height="16" align="middle" border="0" title="Centrar"></a>
+<img src="<?php echo "../Zoom/local/Images/center.png"?>" alt="Centrar" width="16" height="16" align="middle" border="0" title="Centrar"></a>
 
 <a  style="cursor:pointer;position:absolute;left:19px;top:2px;float : right;" href="javascript:refresh()">
-<img src="<?php echo $SYS["ROOT"]."/Framework/Extensions/Zoom/local/Images/refresh.png"?>" alt="Actualizar" width="16" height="16" align="middle" title="Actualizar" border="0"></a>
+<img src="<?php echo "../Zoom/local/Images/refresh.png"?>" alt="Actualizar" width="16" height="16" align="middle" title="Actualizar" border="0"></a>
 </body>
