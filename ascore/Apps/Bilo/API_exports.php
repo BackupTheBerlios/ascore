@@ -88,7 +88,7 @@ function BILO_login() {
 				$reg->salida_m=time();
 			else
 				$reg->entrada_m=time();
-		
+		    $reg->ip=CheckIP();
 			if ($reg->save()) {
 				$SYS["MESSAGES"].=_("Registro correcto");
 				$_SESSION["__auth"]["username"]=$user->username;
@@ -182,6 +182,22 @@ function BILO_void_login() {
 		}
 	}
 
-
+function CheckIP() {
+	
+	if (isset($_SERVER["REMOTE_ADDR"]))
+		if (strpos($_SERVER["REMOTE_ADDR"],"10.")!==0)
+			if (strpos($_SERVER["REMOTE_ADDR"],"172.16")!==0)
+				if (strpos($_SERVER["REMOTE_ADDR"],"192.168")!==0)
+					return $_SERVER["REMOTE_ADDR"];
+	
+	if (isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
+		if (strpos($_SERVER["HTTP_X_FORWARDED_FOR"],"10.")!==0)
+			if (strpos($_SERVER["HTTP_X_FORWARDED_FOR"],"172.16")!==0)
+				if (strpos($_SERVER["HTTP_X_FORWARDED_FOR"],"192.168")!==0)
+					return $_SERVER["HTTP_X_FORWARDED_FOR"];
+	
+	
+	return "".$_SERVER["REMOTE_ADDR"];
+}
 
 ?>
