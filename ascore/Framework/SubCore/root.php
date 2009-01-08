@@ -1,5 +1,6 @@
 <?php
 
+if(substr(PHP_VERSION, 0, 1) < 5) {
 /* 
 
 Previous XML stuff 
@@ -117,6 +118,51 @@ la clase al vuelo.
 
 
 
+} else if(substr(PHP_VERSION, 0, 1)==5) {
+	
+	
+	function load_prop($file) {
+	
+		if (!($fp = c_fopen($file, "r"))) {
+				die(debug("could not open XML input","red"));
+			}
+
+			while ($tdata = fread($fp, 4096))
+					$data.=$tdata;
+			
+			
+		$entity=simplexml_load_string(($data));
+		$prop=array(array(array()));
+		//dataDump(get_object_vars($entity));
+		foreach(get_object_vars($entity) as $k=>$v) {
+			$prop["p"][$k]='';
+			$prop["pd"][$k]=utf8_decode($v);
+			$atts=$entity->$k->attributes();
+			//print_r($atts[0]);
+			$prop["pt"][$k]=$atts[0].":".$atts[1];
+		}
+		
+		
+		$prop["p"]["S_UserID_CB"]="";
+		$prop["pd"]["S_UserID_CB"]="Creado por";
+		$prop["pt"]["S_UserID_CB"]="ref:";
+			
+		$prop["p"]["S_UserID_MB"]="";
+		$prop["pd"]["S_UserID_MB"]="Modificado por";
+		$prop["pt"]["S_UserID_MB"]="ref:";
+			
+		$prop["p"]["S_Date_C"]="";
+		$prop["pd"]["S_Date_C"]="Fecha Creacion";
+		$prop["pt"]["S_Date_C"]="date:";
+			
+		$prop["p"]["S_Date_M"]="";
+		$prop["pd"]["S_Date_M"]="Fecha Modificacion";
+		$prop["pt"]["S_Date_M"]="date:";
+			
+		return ($prop);
+	
+	}
+}
 
 
 /* 
@@ -173,8 +219,8 @@ class Ente extends core{
 		
 		
 		if (!isset($MEMORY_CACHE["$name"])) {
-			if (file_exists(session_save_path()."/coreg2_cache/".$name.".cached_core_object_properties_".$SYS["PROJECT"])) 
-				$cache_time=filemtime(session_save_path()."/coreg2_cache/".$name.".cached_core_object_properties_".$SYS["PROJECT"]);
+			if (file_exists(session_save_path()."/coreg2_cache/{$SYS["ASCACHEDIR"]}/".$name.".cached_core_object_properties_".$SYS["PROJECT"])) 
+				$cache_time=filemtime(session_save_path()."/coreg2_cache/{$SYS["ASCACHEDIR"]}/".$name.".cached_core_object_properties_".$SYS["PROJECT"]);
 				
 			else
 				$cache_time=false;
@@ -198,7 +244,7 @@ class Ente extends core{
 			if (($cache_time!==False)&&($cache_time>$source_time)) {
 				
 				debug("Cargando definicion compilada de '$name'","yellow");
-				$fd = c_fopen (session_save_path()."/coreg2_cache/".$name.".cached_core_object_properties_".$SYS["PROJECT"], "r");
+				$fd = c_fopen (session_save_path()."/coreg2_cache/{$SYS["ASCACHEDIR"]}/".$name.".cached_core_object_properties_".$SYS["PROJECT"], "r");
 				$buffer="";
 				while (!feof($fd)) {
 				$buffer .= fgets($fd, 4096);
@@ -233,7 +279,7 @@ class Ente extends core{
 				
 				
 				debug("Compilando dinamicamente '$name'","magenta");
-				$fd = c_fopen (session_save_path()."/coreg2_cache/".$name.".cached_core_object_properties_".$SYS["PROJECT"], "w");
+				$fd = c_fopen (session_save_path()."/coreg2_cache/{$SYS["ASCACHEDIR"]}/".$name.".cached_core_object_properties_".$SYS["PROJECT"], "w");
 				fwrite($fd,serialize($prop),strlen(serialize($prop)));
 				fclose($fd);
 				
@@ -326,7 +372,7 @@ class Ente extends core{
 	*********************/
 
 	function setAll($arraydata) {
-	
+		
 		foreach ($arraydata as $k=>$v) 
 			if (in_array($k,array_keys($this->properties)))
 					$this->properties[$k]=$v;
@@ -385,7 +431,7 @@ class Ente extends core{
 		global $res,$prefix;
 
 		/* Normalizamos datos */
-
+		
 		$this->data_normalize();
 		$res="";
 		if (($this->ID>1)&&!empty($this->ID)) {
@@ -415,6 +461,24 @@ class Ente extends core{
 			$this->S_Date_C=time();
 		
 			$this->_flat();
+			//-------------------------------------------------
+			$xrefs=array();
+			$table_names=array();
+			foreach ($this->properties as $pk=>$pv) {
+				if (strpos($this->properties_type[$pk],"xref:")!==False) {
+					$xrefs[$pk]=explode(":",$this->properties_type[$pk]);
+					$table_names[$pk]=$this->name."_".$xrefs[$pk][1];
+				}
+			}
+			print_r($xrefs);
+			echo "<br/>";
+			print_r($table_names);
+$q="CREATE TABLE `{$prefix}_".$this->name."` (\n";
+			
+			
+
+
+			//--------------------------------------------------
 			array_walk(array_keys($this->properties),"fsadd");
 			$q="INSERT INTO `{$prefix}_".$this->name."`( `ID` ".$res.")";
 			$res="";
@@ -1391,7 +1455,43 @@ $q.="</table>
 		return $query;
 	}
 	
+	/*********************
+	Funcion get_external_reference($field)
 	
+	Siguiente elemento en la tabla
+
+
+	*********************/
+
+	function get_external_reference($field) {
+
+		$data=explode(":",$this->properties_type["$field"]);
+	
+       		$tclass=$data[1];
+		$tfield=$data[2];
+		debug("{$this->properties_type["$field"]} $tclass|$field|$tfield","red");
+		return "xref#$tclass|$field|$tfield";
+	}
+
+	/*
+
+	FUNCION 	get_external_method
+	
+	$field
+	$method
+
+	*/
+
+
+	function get_external_method($field,$method) {
+
+		$data=explode(":",$this->properties_type["$field"]);
+	
+       		$tclass=$data[1];
+		$tfield=$data[2];
+		debug("{$this->properties_type["$field"]} $tclass|$field|$tfield","red");
+		return "fref#$tclass|$field|$method";
+	}
 
 
 
