@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='ISO-8859-15'?>
+<cpd>
+	<titulo	type="string"	option="100">Título</titulo>
+	<autor	type="string"	option="100">Autor</autor>
+	<b_categoria	type="xref" option="b_categoria:nombre_cat">Categoría</b_categoria>
+	<isbn	type="string"	option="20">ISBN</isbn>
+</cpd>

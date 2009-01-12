@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<cpd>
+	<nombre_cat type="string" option="50">Nombre categoría</nombre_cat>
+	<b_cat_padre_id type="ref" option="b_categoria:nombre_cat">Nombre categoría padre</b_cat_padre_id>
+</cpd>
