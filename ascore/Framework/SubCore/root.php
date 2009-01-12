@@ -375,7 +375,7 @@ class Ente extends core{
 		
 		foreach ($arraydata as $k=>$v) 
 			if (in_array($k,array_keys($this->properties)))
-					$this->properties[$k]=$v;
+					$this->properties[$k]=$arraydata["$k"];
 		
 		foreach ($this->properties as $pk=>$pv)
 			if (strpos($this->properties_type[$pk],"boolean:")!==False)
@@ -459,36 +459,8 @@ class Ente extends core{
 			}
 			$this->S_UserID_CB=$_SESSION["__auth"]["uid"];
 			$this->S_Date_C=time();
-		
+ 			
 			$this->_flat();
-			//-------------------------------------------------
-			$xref=array();
-			foreach ($this->properties as $pk=>$pv) {
-				if (strpos($this->properties_type[$pk],"xref:")!==False) {
-					$xref=explode(":",$this->properties_type[$pk]);
-					$table_name=$this->name."_".$xref[1];
-					//print_r($xref);
-					//echo " -> ".$table_name;
-
-					// Creamos la tabla de referencias externas
-					$field2=$this->name."_id";
-					$field3=$xref[1]."_id";
-					$q="CREATE TABLE `{$prefix}_".$table_name."` (\n";
-					$q.="`ID` INT NOT NULL AUTO_INCREMENT ,\n";
-					$q.="`".$field2."` INT NOT NULL ,\n";
-					$q.="`".$field3."` INT NOT NULL ,\n";
-					$q.="INDEX ( `ID` ), PRIMARY KEY ( `ID` )\n)\n";
-					//$bdres=_query($q);
-					print_r($this->properties);
-					
-					// Rellenamos la tabla de referencias externas
-					//$q="INSERT INTO `{$prefix}_".$table_name."`( `ID` ".",`$field2`".",`$field3`".")";
-
-					//$q.=" VALUES (''$res)";
-				}
-			}			
-			
-			//--------------------------------------------------
 			array_walk(array_keys($this->properties),"fsadd");
 			$q="INSERT INTO `{$prefix}_".$this->name."`( `ID` ".$res.")";
 			$res="";
@@ -498,6 +470,37 @@ class Ente extends core{
 			
 			$bdres=_query($q);
 			$this->ID=_last_id();
+			//----------------------------------------------------------------------------------
+
+			$xref=array();
+			foreach ($this->properties as $pk=>$pv) {
+				if (strpos($this->properties_type[$pk],"xref")!==False) {
+					$xref=explode(":",$this->properties_type[$pk]);
+					$table_name=$this->name."_".$xref[1];
+
+					$field2=$this->name."_id";
+					$field3=$xref[1]."_id";
+					
+					$xref_2_array=array();
+					
+					if(!empty($this->$pk)) {
+						// Rellenamos la tabla de referencias externas
+						foreach ($this->$pk as $k=>$v) {
+							$q="INSERT INTO `{$prefix}_".$table_name."`( `ID` ".",`$field2`".",`$field3`".")";
+							$q.=" VALUES (''".",'$this->ID'".",'$v'".")";
+							$bdres=_query($q);
+
+							$q2="SELECT `$xref[2]` FROM `{$prefix}_".$xref[1]."` WHERE `ID`=$v";
+							$bdres=_query($q2);
+							$rawres=_fetch_array($bdres);
+							$xref_2_array[$v]=$rawres["nombre_cat"];
+						}		
+					}			
+					$this->$pk=$xref_2_array;					
+				}
+			}			
+			
+			//----------------------------------------------------------------------------------
 			$this->nRes=_affected_rows();
 			if ($this->nRes>0)
 				return $this->ID;
@@ -514,7 +517,23 @@ class Ente extends core{
 	function delete() {
 
 		global $res,$prefix;
-    	$q="DELETE FROM `{$prefix}_".$this->name."` WHERE `ID` = '".$this->ID."'  ";
+		//----------------------------------------------------------------------------------
+		
+		$xref=array();
+		foreach ($this->properties as $pk=>$pv) {
+			if (strpos($this->properties_type[$pk],"xref")!==False) {
+				$xref=explode(":",$this->properties_type[$pk]);
+				$table_name=$this->name."_".$xref[1];
+				
+				$field2=$this->name."_id";				
+
+				$q="DELETE FROM `{$prefix}_".$table_name."` WHERE `".$field2."`=".$this->ID;
+				$bdres=_query($q);
+			}
+		}
+
+		//----------------------------------------------------------------------------------
+    		$q="DELETE FROM `{$prefix}_".$this->name."` WHERE `ID` = '".$this->ID."'  ";
 		$bdres=_query($q);
 		$this->nRes=_affected_rows();
 		if ($this->nRes>0)
@@ -549,7 +568,7 @@ class Ente extends core{
 	function load($id){
 
 		global $prefix;
-
+		
 		if ($id==0)
 			return array();	
 		$q="SELECT * from {$prefix}_".$this->name." WHERE ID=$id";
@@ -583,11 +602,44 @@ class Ente extends core{
 				$res.=" `$key`='$val' , ";
 			}
 		}
+		//------------------------------------------------------------------------------------------
+		
+		$xref=array();
+		foreach ($this->properties as $pk=>$pv) {
+			if (strpos($this->properties_type[$pk],"xref")!==False) {
+				$xref=explode(":",$this->properties_type[$pk]);
+				$table_name=$this->name."_".$xref[1];
+
+				$field2=$this->name."_id";
+				$field3=$xref[1]."_id";
+
+				$xref_2_array=array();
+				
+				// Antes de actualizar borramos lo que hubiera en la tabla de referencias externas asociado al objeto que llama al método
+				$q="DELETE FROM `{$prefix}_".$table_name."` WHERE `".$field2."`=".$this->ID;
+				$bdres=_query($q);
+
+				// Actualizamos la tabla de referencias externas
+				foreach ($this->$pk as $k=>$v) {			
+					$q="INSERT INTO `{$prefix}_".$table_name."`( `ID` ".",`$field2`".",`$field3`".")";
+					$q.=" VALUES (''".",'$this->ID'".",'$v'".")";
+					$bdres=_query($q);
+
+					$q2="SELECT `$xref[2]` FROM `{$prefix}_".$xref[1]."` WHERE `ID`=$v";
+					$bdres=_query($q2);
+					$rawres=_fetch_array($bdres);
+					$xref_2_array[$v]=$rawres["nombre_cat"];
+				}
+				$this->$pk=$xref_2_array;		
+			}					
+		}		
+
+		//------------------------------------------------------------------------------------------
 		array_walk($this->properties,"fadd");
 		$q="UPDATE `{$prefix}_".$this->name."` SET ";
 		$q.=substr($res,0,strlen(sizeof($res))-3)."  WHERE `ID`=".$this->ID. " LIMIT 1";
-		$bdres=_query($q);
-		$this->nRes=_affected_rows();
+		$bdres=_query($q);		
+		$this->nRes=_affected_rows();		
 		if ($this->nRes>-1)
 			return $this->ID;
 		else
@@ -782,7 +834,10 @@ class Ente extends core{
 					
 			}
 		else
-			$this->$k="".$v."";
+			if (!is_array($this->properties[$k]))
+				$this->$k="".$v."";
+			else
+				$this->$k=$this->properties[$k];
 
 		}
 		$this->data_normalize();
@@ -808,10 +863,11 @@ class Ente extends core{
 
 	function _flat() {
 		$newproperties=$this->properties;
-        foreach ($newproperties as $k=>$v) 
-					$this->properties[$k]="".$this->$k."";
-
-
+        	foreach ($newproperties as $k=>$v)
+			if(!is_array($this->properties[$k]))
+				$this->properties[$k]="".$this->$k."";
+			else
+				$this->properties[$k]=$this->$k;		
 	}
 
 
@@ -880,10 +936,11 @@ class Ente extends core{
 
 		global $prefix;
 
-		debug("Prefijo $prefix tabla $this->name","red"); 
+		debug("Prefijo $prefix tabla $this->name","red");
 		$q="SHOW TABLES";
 		$bdres=_query($q);
 		$exists=False;
+		
 		while ($rawres=_fetch_array($bdres)) {
 			if (current($rawres)=="{$prefix}_{$this->name}")
 				$exists=True;
@@ -894,7 +951,7 @@ class Ente extends core{
 			$q="SHOW FIELDS FROM `{$prefix}_{$this->name}`";
 			$bdres=_query($q);
 			$j=0;
-			while ($rawres=_fetch_array($bdres)) { 
+			while ($rawres=_fetch_array($bdres)) {
 				$fieldlst[$j]=current($rawres);
 				$j++;
 			}
@@ -908,7 +965,7 @@ class Ente extends core{
 				else
 					$action="ALTER TABLE `{$prefix}_".$this->name."` ADD `".key($this->properties)."` ";
 
-				if (strstr(current($this->properties_type),"string")) {
+				if (strstr(current($this->properties_type),"string")) {	
 					$len=explode(":",current($this->properties_type));
 					$q.= $action."VARCHAR( $len[1] ) NOT NULL ;\n";
 				}
@@ -933,6 +990,37 @@ class Ente extends core{
 				elseif (strstr(current($this->properties_type),"nulo")) {
 					$q.="";
 				}
+				//------------------------------------------------------------------------------------------
+
+				else if (strstr(current($this->properties_type),"xref")) {
+				$q.=$action." INT;\n";
+
+				$xref=explode(":",current($this->properties_type));
+				$table_name=$this->name."_".$xref[1];
+
+				$field2=$this->name."_id";
+				$field3=$xref[1]."_id";
+				
+				$q2="SHOW TABLES";
+				$bdres=_query($q2);
+				$exists=False;
+				while ($rawres=_fetch_array($bdres)) {
+					if (current($rawres)=="{$prefix}_{$table_name}")
+						$exists=True;
+				}
+				if (!$exists) { // Si no existe, creamos la tabla de referencias externas
+					$q2="CREATE TABLE `{$prefix}_".$table_name."` (\n";
+					$q2.="`ID` INT NOT NULL AUTO_INCREMENT ,\n";
+					$q2.="`".$field2."` INT NOT NULL ,\n";
+					$q2.="`".$field3."` INT NOT NULL ,\n";
+					$q2.="INDEX ( `ID` ), PRIMARY KEY ( `ID` )\n)\n";
+					$bdres=_query($q2);
+					$warning="La tabla de referencias externas creada anteriormente deberá ser borrada manualmente de la base de datos";
+				}				
+
+				}
+
+				//------------------------------------------------------------------------------------------
 				else if (strstr(current($this->properties_type),"ref")) {
 				$q.=$action." INT;\n";
 
@@ -967,7 +1055,7 @@ class Ente extends core{
 					$q.="DEFAULT '{$len[1]}' NOT NULL;\n";
 
 				}
-
+			
 			next($this->properties_type);
 			next($this->properties);
 			}
@@ -976,15 +1064,42 @@ class Ente extends core{
 			for ($i=0,$fieldlst_options=sizeof($fieldlst);$i<$fieldlst_options;$i++)
 				if ((in_array($fieldlst[$i],array_keys($this->properties)))||($fieldlst[$i]=="ID"))
 					echo "";
-				else
-					$q.="ALTER TABLE `{$prefix}_{$this->name}` DROP `".$fieldlst[$i]."`;\n";
-
+				else {
+				$q.="ALTER TABLE `{$prefix}_{$this->name}` DROP `".$fieldlst[$i]."`;\n";
+				}
 			echo "<pre>$q</pre>";
+			//------------------------------------------------------------------------------------------
+
+			echo $warning;
+
+			//------------------------------------------------------------------------------------------
 			return $q;
 
 		}
 		else
 		{
+			//------------------------------------------------------------------------------------------
+			
+			// Creamos previamente la tabla de referencias externas
+			foreach ($this->properties as $pk=>$pv) {
+				if (strpos($this->properties_type[$pk],"xref")!==False) {
+					$xref=explode(":",$this->properties_type[$pk]);
+					$table_name=$this->name."_".$xref[1];
+
+					
+					$field2=$this->name."_id";
+					$field3=$xref[1]."_id";
+					
+					$q="CREATE TABLE `{$prefix}_".$table_name."` (\n";
+					$q.="`ID` INT NOT NULL AUTO_INCREMENT ,\n";
+					$q.="`".$field2."` INT NOT NULL ,\n";
+					$q.="`".$field3."` INT NOT NULL ,\n";
+					$q.="INDEX ( `ID` ), PRIMARY KEY ( `ID` )\n)\n";
+					$bdres=_query($q);
+				}
+			}
+
+			//------------------------------------------------------------------------------------------
 			$q ="CREATE TABLE `{$prefix}_".$this->name."` (\n";
 			$q.="`ID` INT NOT NULL AUTO_INCREMENT ,\n";
 			reset($this->properties_type);
@@ -1503,6 +1618,30 @@ $q.="</table>
 		return "fref#$tclass|$field|$method";
 	}
 
+	/****************************
+	Function get_selected_options
+	****************************/
 
+	function get_selected_options($field) {		
+		global $prefix;
+		$xref=array();
+		$selected = array();
+		$xref=explode(":",$this->properties_type[$field]);
+		$table_name=$this->name."_".$xref[1];
+		$field2=$this->name."_id";
+		$field3=$xref[1]."_id";
+		
+		$q="SELECT `$field3` FROM `{$prefix}_".$table_name."` WHERE `$field2`=$this->ID";
+		$bdres=_query($q);
 
+		$af_rows=_affected_rows();
+		if($af_rows) {
+			for($i=0;$i<$af_rows;$i++) {
+				$rawres=_fetch_array($bdres);
+				$selected[$rawres[$field3]] = "";	
+			}			
+		}
+	
+		return $selected;
+	}
 }
