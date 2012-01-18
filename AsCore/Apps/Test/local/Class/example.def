@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cpd>
+	<titulo type="string" option="100">Titulo</titulo>
+	<fecha_pub type="date" option="%d/%m/%Y %H:%M">Fecha publicacion</fecha_pub>
+	<visita type="int" option="Si">Numero visitas</visita>
+        <activo type="boolean" option="No">Activados</activo>
+	<email type="string" option="75">E-mail de contacto</email>
+        <host type="ref" option="bookmark:nombre">Host</host>
+        <contenido type="longtext" option="1024">Contenido</contenido>
+        <adjunto type="ref" option="fileh:nombre">Foto adjunta</adjunto>
+</cpd>
